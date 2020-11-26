@@ -1,5 +1,5 @@
 const API = {
-    login: function (data) {
+    login: function (userData) {
         console.log(userData)
         return fetch("http://localhost:8080/api/users/login", {
             method: "POST",
@@ -8,6 +8,14 @@ const API = {
             },
             body: JSON.stringify(userData)
         }).then(res => res.json()).catch(err => null)
+    },
+
+    getProfile:function(token){
+        return fetch("http://localhost:8080/api/users/secretProfile", {
+            headers: {
+                "authorization": `Bearer ${token}`
+            }
+        }).then(res=>res.json()).catch(err=>null)
     }
 }
 
