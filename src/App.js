@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import API from './utils/API'
 
 function App() {
@@ -14,6 +14,20 @@ function App() {
     isLoggedIn: false
   })
 
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    API.getProfile(token).then(profileData => {
+      if (profileData) {
+        setProfileState({
+          name: profileData.name,
+          email: profileData.email,
+          keebs: profileData.Keebs,
+          isLoggedIn: true
+        })
+      }
+    })
+  }, [])
+
   const handleInputChange = event => {
     const { name, value } = event.target
     setLoginFormState({
@@ -25,6 +39,7 @@ function App() {
   const handleFormSubmit = event => {
     event.preventDefault();
     API.login(loginFormState).then(newToken => {
+      localStorage.setItem("token", newToken.token)
       API.getProfile(newToken.token).then(profileData => {
         setProfileState({
           name: profileData.name,
@@ -44,7 +59,7 @@ function App() {
         <input onChange={handleInputChange} value={loginFormState.password} type='password' name='password' placeholder='password' />
         <input type='submit' value="login" />
       </form>
-      {profileState.isLoggedIn?profileState.keebs.map(keebObj=><p>{keebObj.name}</p>):<h2>Login to see your Keebs!</h2>}
+      {profileState.isLoggedIn ? profileState.keebs.map(keebObj => <p>{keebObj.name}</p>) : <h2>Login to see your Keebs!</h2>}
     </div>
   );
 }
