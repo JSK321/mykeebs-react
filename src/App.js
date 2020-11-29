@@ -24,6 +24,14 @@ function App() {
           keebs: profileData.Keebs,
           isLoggedIn: true
         })
+      } else {
+        localStorage.removeItem("token");
+        setProfileState({
+          name: "",
+          email: "",
+          keebs: [],
+          isLoggedIn: false
+        })
       }
     })
   }, [])
