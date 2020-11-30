@@ -1,5 +1,9 @@
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React, { useState, useEffect } from 'react'
 import API from './utils/API'
+import KeebCard from './components/KeebCard'
+import NavBar from './components/NavBar'
+import Home from './pages/Home'
 
 function App() {
   const [loginFormState, setLoginFormState] = useState({
@@ -46,30 +50,47 @@ function App() {
 
   const handleFormSubmit = event => {
     event.preventDefault();
-    API.login(loginFormState).then(newToken => {
-      localStorage.setItem("token", newToken.token)
-      API.getProfile(newToken.token).then(profileData => {
-        setProfileState({
-          name: profileData.name,
-          email: profileData.email,
-          keebs: profileData.Keebs,
-          isLoggedIn: true
+    if (!loginFormState.email || !loginFormState.password) {
+      alert("Incorrect email/password, please try again")
+    } else {
+      API.login(loginFormState).then(newToken => {
+        localStorage.setItem("token", newToken.token)
+        API.getProfile(newToken.token).then(profileData => {
+          setProfileState({
+            name: profileData.name,
+            email: profileData.email,
+            keebs: profileData.Keebs,
+            isLoggedIn: true
+          })
         })
       })
-    })
+    }
   }
 
   return (
-    <div className="App">
-      <h1>My Keebs</h1>
-      <form onSubmit={handleFormSubmit}>
-        <input onChange={handleInputChange} value={loginFormState.email} type='text' name='email' placeholder='email' />
-        <input onChange={handleInputChange} value={loginFormState.password} type='password' name='password' placeholder='password' />
-        <input type='submit' value="login" />
-      </form>
-      {profileState.isLoggedIn ? profileState.keebs.map(keebObj => <p>{keebObj.name}</p>) : <h2>Login to see your Keebs!</h2>}
-    </div>
+    <Router>
+      <NavBar
+        handleInputChange={handleInputChange}
+        handleFormSubmit={handleFormSubmit}
+        email={loginFormState.email}
+        password={loginFormState.password}
+      />
+      <Route exact path="/">
+        <Home />
+      </Route>
+    </Router>
   );
 }
 
 export default App;
+
+
+{/* {profileState.isLoggedIn ? profileState.keebs.map(keebObj =>
+          <KeebCard
+            name={keebObj.name}
+            size={keebObj.size}
+            maker={keebObj.maker}
+            case={keebObj.case}
+            color={keebObj.color}
+            plate={keebObj.plate}
+          />) : <h2>Login to see your Keebs!</h2>} */}
