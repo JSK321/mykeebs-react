@@ -11,7 +11,6 @@ export default function Home(props) {
 
     function loadKeebInfo() {
         API.getAllKeebs().then(res => {
-            console.log(res)
             setKeebInfo({
                 ...keebInfo,
                 keebs: res

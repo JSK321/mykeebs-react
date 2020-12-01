@@ -8,6 +8,7 @@ import Jumbotron from './components/Jumbotron'
 import Home from './pages/Home'
 import Keebs from './pages/Keebs'
 import KeebDetail from './pages/KeebDetail'
+import Parts from './pages/Parts'
 
 function App() {
   const [loginFormState, setLoginFormState] = useState({
@@ -93,6 +94,11 @@ function App() {
       </Route>
       <Route exact path="/keebs/:id">
         <KeebDetail />
+      </Route>
+      <Route exact path="/addpartsform">
+        <Parts 
+          profile={profileState}
+        />
       </Route>
     </Router>
   );

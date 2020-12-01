@@ -32,8 +32,13 @@ const API = {
         return fetch(`${URL_PREFIX}/api/keebs/${keebId}`, {
         }).then(res => res.json()).catch(err => null)
     },
-    //Create new Keeb
-    createKeeb:function (token, keebData){
+    // Retrieve all keeb parts function
+    getAllParts: function () {
+        return fetch(`${URL_PREFIX}/api/parts`, {
+        }).then(res => res.json()).catch(err => null)
+    },
+    //Create new Keeb function
+    createKeeb: function (token, keebData) {
         return fetch(`${URL_PREFIX}/api/keebs/`, {
             method: "POST",
             headers: {
