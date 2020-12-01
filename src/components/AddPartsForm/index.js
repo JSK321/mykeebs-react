@@ -1,32 +1,43 @@
 import React from 'react'
 
-export default function AddKeebForm() {
+export default function AddKeebForm(props) {
     return (
-        <div classNameName="addKeebForm">
+        <div className="addKeebForm">
             <div className="card addKeeb">
                 <h5 className="card-header">Add Keeb Parts!</h5>
                 <div className="card-body">
                     <form>
                         <div className="form-group">
-                            <input onChange value name='name' type="text" className="form-control" placeholder="Name" />
+                        <select className="form-control" onChange={props.handleSelectKeeb} value={props.keeb}>
+                                <option>Select Keeb...</option>
+                                {props.Keeb != undefined ? (
+                                    props.Keeb.map(keebObj=><option>{keebObj.name}</option>)
+                                ): null}
+                            </select>
                         </div>
                         <div className="form-group">
-                            <input onChange value name='name' type="text" className="form-control" placeholder="Name" />
+                            <input onChange={props.handleInputChange} value={props.switches} name='switches' type="text" className="form-control" placeholder="Switch" />
                         </div>
                         <div className="form-group">
-                            <input onChange value name='maker' type="text" className="form-control" placeholder="Maker" />
+                            <input onChange={props.handleInputChange} value={props.springWeight} name='springWeight' type="number" className="form-control" placeholder="Spring Weight" />
                         </div>
                         <div className="form-group">
-                            <input onChange value name='case' type="text" className="form-control" placeholder="Case" />
+                            <input onChange={props.handleInputChange} value={props.switchLube} name='switchLube' type="text" className="form-control" placeholder="Switch Lube" />
                         </div>
                         <div className="form-group">
-                            <input onChange value name='color' type="text" className="form-control" placeholder="Color" />
+                            <input onChange={props.handleInputChange} value={props.switchFilm} name='switchFilm' type="text" className="form-control" placeholder="Switch Film" />
                         </div>
                         <div className="form-group">
-                            <input onChange value name='plate' type="text" className="form-control" placeholder="Plate" />
+                            <input onChange={props.handleInputChange} value={props.stabs} name='stabs' type="text" className="form-control" placeholder="Stabilizers" />
                         </div>
                         <div className="form-group">
-                            <input type='submit' className="addKeebBtn btn btn-primary" value="Add Keeb" />
+                            <input onChange={props.handleInputChange} value={props.stabLube} name='stabLube' type="text" className="form-control" placeholder="Stabilizer Lube" />
+                        </div>
+                        <div className="form-group">
+                            <input onChange={props.handleInputChange} value={props.keyset} name='keyset' type="text" className="form-control" placeholder="Keyset" />
+                        </div>
+                        <div className="form-group">
+                            <input type='submit' className="addKeebBtn btn btn-primary" value="Add Parts" />
                         </div>
                     </form>
                 </div>
