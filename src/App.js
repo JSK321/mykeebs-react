@@ -1,9 +1,13 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React, { useState, useEffect } from 'react'
 import API from './utils/API'
-import KeebCard from './components/KeebCard'
+// Components
 import NavBar from './components/NavBar'
+import Jumbotron from './components/Jumbotron'
+// Pages
 import Home from './pages/Home'
+import Keebs from './pages/Keebs'
+import KeebDetail from './pages/KeebDetail'
 
 function App() {
   const [loginFormState, setLoginFormState] = useState({
@@ -76,7 +80,14 @@ function App() {
         password={loginFormState.password}
       />
       <Route exact path="/">
+        <Jumbotron />
         <Home />
+      </Route>
+      <Route exact path="/addkeebform">
+        <Keebs />
+      </Route>
+      <Route exact path="/keebs/:id">
+        <KeebDetail />
       </Route>
     </Router>
   );

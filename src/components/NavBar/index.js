@@ -1,14 +1,14 @@
 import React from 'react'
 
-export default function NAvBar(props) {
+export default function NavBar(props) {
     return (
         <div className="NavBar">
             <ul className="nav justify-content-end">
                 <li className="nav-item">
-                    <a className="nav-link" href="#">Register</a>
+                    <a className="nav-link" href="/">Home</a>
                 </li>
                 <li className="nav-item">
-                    <button type="button" className="btn btn-primary logInBtn" data-toggle="modal" data-target="#logInModal">
+                    <button className="btn btn-primary logInBtn" data-toggle="modal" data-target="#logInModal">
                         Log In
                     </button>
                     <div className="modal fade" id="logInModal" tabindex="-1" aria-labelledby="logInModalLabel" aria-hidden="true">

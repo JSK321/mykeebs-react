@@ -5,13 +5,15 @@ import API from '../../utils/API'
 export default function Home(props) {
 
     const [keebInfo, setKeebInfo] = useState({
-        keebs: []
+        keebs: [],
+        parts:[]
     })
 
     function loadKeebInfo() {
         API.getAllKeebs().then(res => {
             console.log(res)
             setKeebInfo({
+                ...keebInfo,
                 keebs: res
             })
         })

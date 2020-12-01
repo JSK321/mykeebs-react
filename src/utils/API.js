@@ -4,7 +4,7 @@ const URL_PREFIX = "http://localhost:8080"
 
 const API = {
     // Log In function
-    login:function (userData) {
+    login: function (userData) {
         console.log(userData)
         return fetch(`${URL_PREFIX}/api/users/login`, {
             method: "POST",
@@ -15,16 +15,20 @@ const API = {
         }).then(res => res.json()).catch(err => null)
     },
     // Profile function
-    getProfile:function(token){
+    getProfile: function (token) {
         return fetch(`${URL_PREFIX}/api/users/secretProfile`, {
             headers: {
                 "authorization": `Bearer ${token}`
             }
-        }).then(res=>res.json()).catch(err=>null)
+        }).then(res => res.json()).catch(err => null)
     },
     // Retrieve all Keebs function
-    getAllKeebs:function() {
+    getAllKeebs: function () {
         return fetch(`${URL_PREFIX}/api/keebs`, {
+        }).then(res => res.json()).catch(err => null)
+    },
+    getOneKeeb: function (keebId) {
+        return fetch(`${URL_PREFIX}/api/keebs/${keebId}`, {
         }).then(res => res.json()).catch(err => null)
     }
 }
