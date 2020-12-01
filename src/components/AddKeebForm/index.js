@@ -7,7 +7,7 @@ export default function AddKeebForm(props) {
             <div className="card addKeeb">
                 <h5 className="card-header">Add New Keeb!</h5>
                 <div className="card-body">
-                    <form>
+                    <form onSubmit={props.handleFormSubmit}>
                         <div className="form-group">
                             <input onChange={props.handleInputChange} value={props.name} name='name' type="text" className="form-control" placeholder="Name" />
                         </div>

@@ -6,7 +6,7 @@ export default function Home(props) {
 
     const [keebInfo, setKeebInfo] = useState({
         keebs: [],
-        parts:[]
+        parts: []
     })
 
     function loadKeebInfo() {
@@ -24,17 +24,21 @@ export default function Home(props) {
     }, [])
 
     return (
-        <div className="col-md-4">
-            {keebInfo.keebs.map(keebObj => (
-                <KeebCard
-                    name={keebObj.name}
-                    size={keebObj.size}
-                    maker={keebObj.maker}
-                    case={keebObj.case}
-                    color={keebObj.color}
-                    plate={keebObj.plate}
-                />
-            ))}
+        <div className="container">
+            <div className="row">
+                {keebInfo.keebs.map(keebObj => (
+                    <div className="col-md-auto">
+                        <KeebCard
+                            name={keebObj.name}
+                            size={keebObj.size}
+                            maker={keebObj.maker}
+                            case={keebObj.case}
+                            color={keebObj.color}
+                            plate={keebObj.plate}
+                        />
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }

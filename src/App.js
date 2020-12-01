@@ -19,6 +19,7 @@ function App() {
     name: "",
     email: "",
     keebs: [],
+    token: "",
     isLoggedIn: false
   })
 
@@ -30,6 +31,7 @@ function App() {
           name: profileData.name,
           email: profileData.email,
           keebs: profileData.Keebs,
+          token: token,
           isLoggedIn: true
         })
       } else {
@@ -38,6 +40,7 @@ function App() {
           name: "",
           email: "",
           keebs: [],
+          token: "",
           isLoggedIn: false
         })
       }
@@ -84,7 +87,9 @@ function App() {
         <Home />
       </Route>
       <Route exact path="/addkeebform">
-        <Keebs />
+        <Keebs
+          profile={profileState}
+        />
       </Route>
       <Route exact path="/keebs/:id">
         <KeebDetail />

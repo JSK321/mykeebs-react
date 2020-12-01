@@ -18,7 +18,7 @@ const API = {
     getProfile: function (token) {
         return fetch(`${URL_PREFIX}/api/users/secretProfile`, {
             headers: {
-                "authorization": `Bearer ${token}`
+                'authorization': `Bearer ${token}`
             }
         }).then(res => res.json()).catch(err => null)
     },
@@ -27,10 +27,22 @@ const API = {
         return fetch(`${URL_PREFIX}/api/keebs`, {
         }).then(res => res.json()).catch(err => null)
     },
+    // Retrieve one Keeb
     getOneKeeb: function (keebId) {
         return fetch(`${URL_PREFIX}/api/keebs/${keebId}`, {
         }).then(res => res.json()).catch(err => null)
-    }
+    },
+    //Create new Keeb
+    createKeeb:function (token, keebData){
+        return fetch(`${URL_PREFIX}/api/keebs/`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(keebData)
+        }).then(res => res.json()).catch(err => null)
+    },
 }
 
 module.exports = API;
