@@ -21,7 +21,13 @@ export default function KeebCard(props) {
                         </div>
                         <div className="back">
                             <ul className="list-group">
-                                <li className="list-group-item">Hello</li>
+                                <li className="list-group-item"><strong>Switches:</strong> {props.switches}</li>
+                                <li className="list-group-item"><strong>Spring Weight:</strong> {props.springWeight}</li>
+                                <li className="list-group-item"><strong>Spring Lube:</strong> {props.springLube}</li>
+                                <li className="list-group-item"><strong>Switch Film:</strong> {props.switchFilm}</li>
+                                <li className="list-group-item"><strong>Stabilizers:</strong> {props.stabs}</li>
+                                <li className="list-group-item"><strong>Stabilzers Lube:</strong> {props.stabLube}</li>
+                                <li className="list-group-item"><strong>Keyset:</strong> {props.keyset}</li>
                             </ul>
                         </div>
                     </div>

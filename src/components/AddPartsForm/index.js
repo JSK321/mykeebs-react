@@ -22,6 +22,9 @@ export default function AddKeebForm(props) {
                             <input onChange={props.handleInputChange} value={props.springWeight} name='springWeight' type="number" className="form-control" placeholder="Spring Weight" />
                         </div>
                         <div className="form-group">
+                            <input onChange={props.handleInputChange} value={props.springLube} name='springLube' type="text" className="form-control" placeholder="Spring Lube" />
+                        </div>
+                        <div className="form-group">
                             <input onChange={props.handleInputChange} value={props.switchLube} name='switchLube' type="text" className="form-control" placeholder="Switch Lube" />
                         </div>
                         <div className="form-group">
@@ -37,7 +40,7 @@ export default function AddKeebForm(props) {
                             <input onChange={props.handleInputChange} value={props.keyset} name='keyset' type="text" className="form-control" placeholder="Keyset" />
                         </div>
                         <div className="form-group">
-                            <input type='submit' className="addKeebBtn btn btn-primary" value="Add Parts" />
+                            <input onClick={props.handleKeebId} type='submit' className="addKeebBtn btn btn-primary" value="Add Parts" />
                         </div>
                     </form>
                 </div>

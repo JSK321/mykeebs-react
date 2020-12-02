@@ -74,7 +74,27 @@ function App() {
           })
         })
       })
+      refreshPage()
     }
+  }
+
+  function refreshPage() {
+    setInterval(function () {
+      window.location.reload(false)
+    }, 10)
+  }
+
+  const handleLogOut = event => {
+    localStorage.removeItem("token");
+    setProfileState({
+      name: "",
+      email: "",
+      keebs: [],
+      parts: [],
+      token: "",
+      isLoggedIn: false
+    })
+    refreshPage()
   }
 
   return (
@@ -82,8 +102,10 @@ function App() {
       <NavBar
         handleInputChange={handleInputChange}
         handleFormSubmit={handleFormSubmit}
+        handleLogOut={handleLogOut}
         email={loginFormState.email}
         password={loginFormState.password}
+        isLoggedIn={profileState.isLoggedIn}
       />
       <Route exact path="/">
         <Jumbotron />
@@ -98,7 +120,7 @@ function App() {
         <KeebDetail />
       </Route>
       <Route exact path="/addpartsform">
-        <Parts 
+        <Parts
           profile={profileState}
         />
       </Route>

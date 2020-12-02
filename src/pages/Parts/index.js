@@ -8,6 +8,7 @@ export default function Parts(props) {
         keeb: "",
         switches: "",
         springWeight: "",
+        springLube: "",
         switchLube: "",
         switchFilm: "",
         stabs: "",
@@ -28,6 +29,7 @@ export default function Parts(props) {
                     name: keebData.name,
                     email: keebData.email,
                     keebs: keebData.Keebs,
+                    parts: keebData.Parts,
                     token: token,
                     isLoggedIn: true
                 })
@@ -45,18 +47,6 @@ export default function Parts(props) {
         })
     }, [])
 
-    function checkKeebId() {
-        for (let i = 0; i < props.profile.keebs.length; i++) {
-            if (props.profile.keebs[i].name === partsFormState.keeb) {
-                return props.profile.keebs[i].id
-                // setPartsFormState({
-                //     ...partsFormState,
-                //     KeebId: props.profile.keebs[i].id
-                // })
-            }
-        }
-    }
-    
     const handleInputChange = event => {
         const { name, value } = event.target
         setPartsFormState({
@@ -67,43 +57,57 @@ export default function Parts(props) {
 
     const handleSelectKeeb = event => {
         let keeb = event.target.value
-        let KeebId = checkKeebId()
         setPartsFormState({
             ...partsFormState,
             keeb: keeb,
-            KeebId: KeebId
         })
+    }
+
+    function checkKeebId() {
+        for (let i = 0; i < props.profile.keebs.length; i++) {
+            if (props.profile.keebs[i].name === partsFormState.keeb) {
+                setPartsFormState({
+                    ...partsFormState,
+                    KeebId: props.profile.keebs[i].id
+                })
+            }
+        }
+    }
+
+    const handleKeebId = event => {
+        checkKeebId()
     }
 
     const handleFormSubmit = event => {
         event.preventDefault()
-        // API.createParts(props.profile.token, {
-        //     ...partsFormState,
-        //     userId: id,
-        // }).then(data => {
-        //     const token = localStorage.getItem('token')
-        //     API.getProfile(token).then(keebData => {
-        //         if (keebData) {
-        //             setUserProfile({
-        //                 name: keebData.name,
-        //                 email: keebData.email,
-        //                 keebs: keebData.Keebs,
-        //                 token: token,
-        //                 isLoggedIn: true
-        //             })
-        //         } else {
-        //             localStorage.removeItem("token");
-        //             setUserProfile({
-        //                 name: "",
-        //                 email: "",
-        //                 keebs: [],
-        //                 parts: [],
-        //                 token: "",
-        //                 isLoggedIn: false
-        //             })
-        //         }
-        //     })
-        // })
+        API.createParts(props.profile.token, {
+            ...partsFormState,
+            userId: id,
+        }).then(data => {
+            const token = localStorage.getItem('token')
+            API.getProfile(token).then(keebData => {
+                if (keebData) {
+                    setUserProfile({
+                        name: keebData.name,
+                        email: keebData.email,
+                        keebs: keebData.Keebs,
+                        parts: keebData.Parts,
+                        token: token,
+                        isLoggedIn: true
+                    })
+                } else {
+                    localStorage.removeItem("token");
+                    setUserProfile({
+                        name: "",
+                        email: "",
+                        keebs: [],
+                        parts: [],
+                        token: "",
+                        isLoggedIn: false
+                    })
+                }
+            })
+        })
     }
 
     return (
@@ -112,9 +116,11 @@ export default function Parts(props) {
             handleInputChange={handleInputChange}
             handleSelectKeeb={handleSelectKeeb}
             handleFormSubmit={handleFormSubmit}
+            handleKeebId={handleKeebId}
             keeb={partsFormState.keeb}
             switches={partsFormState.switches}
             springWeight={partsFormState.springWeight}
+            springLube={partsFormState.springLube}
             switchLube={partsFormState.switchLube}
             switchFilm={partsFormState.switchFilm}
             stabs={partsFormState.stabs}
