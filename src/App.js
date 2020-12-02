@@ -20,6 +20,7 @@ function App() {
     name: "",
     email: "",
     keebs: [],
+    parts: [],
     token: "",
     isLoggedIn: false
   })
@@ -41,6 +42,7 @@ function App() {
           name: "",
           email: "",
           keebs: [],
+          parts: [],
           token: "",
           isLoggedIn: false
         })

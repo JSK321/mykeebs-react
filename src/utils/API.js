@@ -48,6 +48,17 @@ const API = {
             body: JSON.stringify(keebData)
         }).then(res => res.json()).catch(err => null)
     },
+    // Create Parts function
+    createParts : function(token, partsData) {
+        return fetch(`${URL_PREFIX}/api/parts/`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(partsData)
+        }).then(res => res.json()).catch(err => null)
+    }
 }
 
 module.exports = API;

@@ -6,7 +6,7 @@ export default function AddKeebForm(props) {
             <div className="card addKeeb">
                 <h5 className="card-header">Add Keeb Parts!</h5>
                 <div className="card-body">
-                    <form>
+                    <form onSubmit={props.handleFormSubmit}>
                         <div className="form-group">
                         <select className="form-control" onChange={props.handleSelectKeeb} value={props.keeb}>
                                 <option>Select Keeb...</option>
