@@ -1,49 +1,169 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import API from "../../utils/API"
-import './styles.css'
+import KeebUpdateCard from '../../components/KeebUpdateCard'
 
-export default function KeebDetail() {
-    const [keeb, setKeeb] = useState({
-        name: "",
-        maker: "",
-        size: "",
-        case: "",
+export default function KeebDetail(props) {
+    const [updateKeeb, setUpdateKeeb] = useState({
+        keebId: "",
         color: "",
         plate: ""
     })
 
+    const [updateParts, setUpdateParts] = useState({
+        switches: "",
+        switchLube: "",
+        springWeight: "",
+        springLube: "",
+        switchFilm: "",
+        stabs: "",
+        stabLube: "",
+        keyset: ""
+    })
+
+    const [userProfile, setUserProfile] = useState({})
+
     const { id } = useParams()
 
     useEffect(() => {
-        API.getOneKeeb(id).then(keebData => {
+        const token = localStorage.getItem('token')
+        API.getProfile(token).then(keebData => {
             if (keebData) {
-                setKeeb({
+                setUserProfile({
                     name: keebData.name,
-                    maker: keebData.maker,
-                    size: keebData.size,
-                    case: keebData.case,
-                    color: keebData.color,
-                    plate: keebData.plate
+                    email: keebData.email,
+                    keebs: keebData.Keebs,
+                    token: token,
+                    isLoggedIn: true
+                })
+            } else {
+                localStorage.removeItem("token");
+                setUserProfile({
+                    name: "",
+                    email: "",
+                    keebs: [],
+                    parts: [],
+                    token: "",
+                    isLoggedIn: false
                 })
             }
         })
+        loadKeeb()
     }, [])
+
+    function loadKeeb() {
+        API.getOneKeeb(id).then(keebData => {
+            setUpdateKeeb({
+                keebId: id,
+                color: keebData.color,
+                plate: keebData.plate
+            })
+
+        })
+        API.getOneParts(id).then(partsData => {
+            setUpdateParts({
+                switches: partsData.switches,
+                switchLube: partsData.switchLube,
+                springWeight: partsData.springWeight,
+                springLube: partsData.springLube,
+                switchFilm: partsData.switchFilm,
+                stabs: partsData.stabs,
+                stabLube: partsData.stabLube,
+                keyset: partsData.keyset
+            })
+
+        })
+    }
+
+    const handleKeebInputChange = event => {
+        const { name, value } = event.target
+        setUpdateKeeb({
+            ...updateKeeb,
+            [name]: value
+        })
+    }
+    const handlePartsInputChange = event => {
+        const { name, value } = event.target
+        setUpdateParts({
+            ...updateParts,
+            [name]: value
+        })
+    }
+
+    const handleDeleteKeeb = event => {
+        event.preventDefault()
+        let confirmAlert = window.confirm("Are you willing to delete Keeb?")
+        if (confirmAlert === true) {
+            API.deleteKeeb(props.profile.token, id).then(data => {
+                alert("Keeb Deleted!")
+                window.location.href = "/"
+            })
+            API.deleteParts(props.profile.token, id)
+        }
+    }
+
+    const handleFormSubmit = event => {
+        event.preventDefault()
+        API.updateKeeb({
+            color: updateKeeb.color,
+            plate: updateKeeb.plate
+        }).then(
+            API.updateParts({
+                switches: updateParts.switches,
+                switchLube: updateParts.switchLube,
+                springWeight: updateParts.springWeight,
+                springLube: updateParts.springLube,
+                switchFilm: updateParts.switchFilm,
+                stabs: updateParts.stabs,
+                stabLube: updateParts.stabLube,
+                keysetL: updateParts.keyset
+            }))
+        // .then(data => {
+        //     const token = localStorage.getItem('token')
+        //     API.getProfile(token).then(keebData => {
+        //         if (keebData) {
+        //             setUserProfile({
+        //                 name: keebData.name,
+        //                 email: keebData.email,
+        //                 keebs: keebData.Keebs,
+        //                 parts: keebData.Parts,
+        //                 token: token,
+        //                 isLoggedIn: true
+        //             })
+        //         } else {
+        //             localStorage.removeItem("token");
+        //             setUserProfile({
+        //                 name: "",
+        //                 email: "",
+        //                 keebs: [],
+        //                 parts: [],
+        //                 token: "",
+        //                 isLoggedIn: false
+        //             })
+        //         }
+        //     })
+        // })
+    }
 
     return (
         <div className="KeebDetails">
-            <div className="card">
-                <img src="https://i.imgur.com/OVqaz9t.jpg" className="card-img-top" alt="Keeb Pic" />
-                <div className="card-body">
-                    <h5 className="card-title">{keeb.maker} {keeb.name}</h5>
-                    <ul className="list-group" style={{ listStyleType: "none" }}>
-                        <li className="list-group-item"><strong>Keeb Size:</strong> {keeb.size}%</li>
-                        <li className="list-group-item"><strong>Case:</strong> {keeb.case}</li>
-                        <li className="list-group-item"><strong>Color:</strong> {keeb.color}</li>
-                        <li className="list-group-item"><strong>Plate:</strong> {keeb.plate}</li>
-                    </ul>
-                </div>
-            </div>
+            <KeebUpdateCard
+                handleKeebInputChange={handleKeebInputChange}
+                handlePartsInputChange={handlePartsInputChange}
+                handleFormSubmit={handleFormSubmit}
+                handleDeleteKeeb={handleDeleteKeeb}
+                keebId={updateKeeb.keebId}
+                color={updateKeeb.color}
+                plate={updateKeeb.plate}
+                switches={updateParts.switches}
+                switchLube={updateParts.switchLube}
+                springWeight={updateParts.springWeight}
+                springLube={updateParts.springLube}
+                switchFilm={updateParts.switchFilm}
+                stabs={updateParts.stabs}
+                stabLube={updateParts.stabLube}
+                keyset={updateParts.keyset}
+            />
         </div>
     )
 }

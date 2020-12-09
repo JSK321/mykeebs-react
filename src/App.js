@@ -10,6 +10,7 @@ import Keebs from './pages/Keebs'
 import KeebDetail from './pages/KeebDetail'
 import Parts from './pages/Parts'
 
+
 function App() {
   const [loginFormState, setLoginFormState] = useState({
     email: "",
@@ -20,12 +21,14 @@ function App() {
     name: "",
     email: "",
     keebs: [],
-    parts: [],
     token: "",
+    id: "",
     isLoggedIn: false
   })
 
-  useEffect(() => {
+  useEffect(() => { fetchUserData() }, [])
+
+  function fetchUserData() {
     const token = localStorage.getItem('token')
     API.getProfile(token).then(profileData => {
       if (profileData) {
@@ -34,6 +37,7 @@ function App() {
           email: profileData.email,
           keebs: profileData.Keebs,
           token: token,
+          id: profileData.id,
           isLoggedIn: true
         })
       } else {
@@ -42,13 +46,13 @@ function App() {
           name: "",
           email: "",
           keebs: [],
-          parts: [],
           token: "",
+          id: "",
           isLoggedIn: false
         })
       }
     })
-  }, [])
+  }
 
   const handleInputChange = event => {
     const { name, value } = event.target
@@ -70,6 +74,7 @@ function App() {
             name: profileData.name,
             email: profileData.email,
             keebs: profileData.Keebs,
+            id: profileData.id,
             isLoggedIn: true
           })
         })
@@ -109,15 +114,20 @@ function App() {
       />
       <Route exact path="/">
         <Jumbotron />
-        <Home />
+        <Home
+          profile={profileState}
+        />
       </Route>
       <Route exact path="/addkeebform">
         <Keebs
           profile={profileState}
         />
       </Route>
-      <Route exact path="/keebs/:id">
-        <KeebDetail />
+      <Route exact path="/updatekeeb/:id">
+        <KeebDetail
+          profile={profileState}
+          fetchData={fetchUserData}
+        />
       </Route>
       <Route exact path="/addpartsform">
         <Parts

@@ -1,0 +1,20 @@
+.KeebUpdateCard {
+    width: 400px;
+    text-align: center;
+    margin: 0 auto;
+    float: none;
+    margin-top: 10px;
+}
+
+.updateKeebInput {
+    width: 100%;
+    text-align: center;
+    /* margin-left: 10px;
+    margin-right: 5px; */
+}
+
+.deleteBtn{
+    margin-top:4px;
+    width: 100%
+}
+

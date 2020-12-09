@@ -106,7 +106,7 @@ export default function Parts(props) {
                         isLoggedIn: false
                     })
                 }
-            })
+            }).then(alert("Parts Added!"), window.location.href="/")
         })
     }
 

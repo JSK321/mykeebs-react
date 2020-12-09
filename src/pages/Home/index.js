@@ -43,6 +43,8 @@ export default function Home(props) {
                                 stabs={keebObj.Parts[0].stabs}
                                 stabLube={keebObj.Parts[0].stabLube}
                                 keyset={keebObj.Parts[0].keyset}
+                                id={keebObj.id}
+                                isLoggedIn={props.profile.isLoggedIn}
                             />
                         </div>
                     ))

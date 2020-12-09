@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './styles.css'
 
 export default function KeebCard(props) {
@@ -10,7 +11,7 @@ export default function KeebCard(props) {
                         <div className="front">
                             <img src="https://i.imgur.com/OVqaz9t.jpg" className="card-img-top" alt="Keeb Pic" />
                             <div className="card-body">
-                                <h5 className="card-title">{props.maker} {props.name}</h5>
+                                <h5 className="card-title" style={{ textAlign: "center" }}>{props.maker} {props.name}</h5>
                                 <ul className="list-group" style={{ listStyleType: "none" }}>
                                     <li className="list-group-item"><strong>Keeb Size:</strong> {props.size}%</li>
                                     <li className="list-group-item"><strong>Case:</strong> {props.case}</li>
@@ -20,15 +21,20 @@ export default function KeebCard(props) {
                             </div>
                         </div>
                         <div className="back">
-                            <ul className="list-group">
-                                <li className="list-group-item"><strong>Switches:</strong> {props.switches}</li>
-                                <li className="list-group-item"><strong>Spring Weight:</strong> {props.springWeight}</li>
-                                <li className="list-group-item"><strong>Spring Lube:</strong> {props.springLube}</li>
-                                <li className="list-group-item"><strong>Switch Film:</strong> {props.switchFilm}</li>
-                                <li className="list-group-item"><strong>Stabilizers:</strong> {props.stabs}</li>
-                                <li className="list-group-item"><strong>Stabilzers Lube:</strong> {props.stabLube}</li>
-                                <li className="list-group-item"><strong>Keyset:</strong> {props.keyset}</li>
-                            </ul>
+                            <div className="card-body">
+                                <ul className="list-group">
+                                    <li className="list-group-item"><strong>Switches:</strong> {props.switches}</li>
+                                    <li className="list-group-item"><strong>Spring Weight:</strong> {props.springWeight}g</li>
+                                    <li className="list-group-item"><strong>Spring Lube:</strong> {props.springLube}</li>
+                                    <li className="list-group-item"><strong>Switch Film:</strong> {props.switchFilm}</li>
+                                    <li className="list-group-item"><strong>Stabilizers:</strong> {props.stabs}</li>
+                                    <li className="list-group-item"><strong>Stabilizers Lube:</strong> {props.stabLube}</li>
+                                    <li className="list-group-item"><strong>Keyset:</strong> {props.keyset}</li>
+                                    {props.isLoggedIn ? <li className="list-group-item"  style={{ textAlign: "center" }}><Link to={`/updatekeeb/${props.id}`}><strong>Update Keeb</strong></Link></li> 
+                                    : 
+                                    null}
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

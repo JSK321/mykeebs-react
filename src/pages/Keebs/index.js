@@ -86,7 +86,7 @@ export default function Keebs(props) {
                         isLoggedIn: false
                     })
                 }
-            })
+            }).then(alert("Keeb Added!"), window.location.href = "/addpartsform")
         })
     }
 

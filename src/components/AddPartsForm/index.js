@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function AddKeebForm(props) {
+export default function AddPartsForm(props) {
     return (
         <div className="addKeebForm">
             <div className="card addKeeb">
