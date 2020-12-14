@@ -8,18 +8,18 @@ export default function AddPartsForm(props) {
                 <div className="card-body">
                     <form onSubmit={props.handleFormSubmit}>
                         <div className="form-group">
-                        <select className="form-control" onChange={props.handleSelectKeeb} value={props.keeb}>
+                            <select className="form-control" onChange={props.handleSelectKeeb} value={props.keeb}>
                                 <option>Select Keeb...</option>
                                 {props.Keeb != undefined ? (
-                                    props.Keeb.map(keebObj=><option>{keebObj.name}</option>)
-                                ): null}
+                                    props.Keeb.map(keebObj => <option>{keebObj.name}</option>)
+                                ) : null}
                             </select>
                         </div>
                         <div className="form-group">
                             <input onChange={props.handleInputChange} value={props.switches} name='switches' type="text" className="form-control" placeholder="Switch" />
                         </div>
                         <div className="form-group">
-                            <input onChange={props.handleInputChange} value={props.springWeight} name='springWeight' type="number" className="form-control" placeholder="Spring Weight" />
+                            <input onChange={props.handleInputChange} value={props.springWeight} name='springWeight' type="text" className="form-control" placeholder="Spring Weight" />
                         </div>
                         <div className="form-group">
                             <input onChange={props.handleInputChange} value={props.springLube} name='springLube' type="text" className="form-control" placeholder="Spring Lube" />

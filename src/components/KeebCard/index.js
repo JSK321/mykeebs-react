@@ -4,12 +4,12 @@ import './styles.css'
 
 export default function KeebCard(props) {
     return (
-        <div className="KeebCard">
+        <div className="KeebCard" style={{marginTop:"15px"}}>
             <div className="flip-container" ontouchstart="this.classList.toggle('hover')">
                 <div className="flipper">
                     <div className="card">
                         <div className="front">
-                            <img src="https://i.imgur.com/OVqaz9t.jpg" className="card-img-top" alt="Keeb Pic" />
+                            <img src={props.keebImage} style={{width:"300px", display:"block", marginRight:"auto", marginLeft:"auto",}} />
                             <div className="card-body">
                                 <h5 className="card-title" style={{ textAlign: "center" }}>{props.maker} {props.name}</h5>
                                 <ul className="list-group" style={{ listStyleType: "none" }}>
@@ -24,7 +24,7 @@ export default function KeebCard(props) {
                             <div className="card-body">
                                 <ul className="list-group">
                                     <li className="list-group-item"><strong>Switches:</strong> {props.switches}</li>
-                                    <li className="list-group-item"><strong>Spring Weight:</strong> {props.springWeight}g</li>
+                                    <li className="list-group-item"><strong>Spring Weight:</strong> {props.springWeight}</li>
                                     <li className="list-group-item"><strong>Spring Lube:</strong> {props.springLube}</li>
                                     <li className="list-group-item"><strong>Switch Film:</strong> {props.switchFilm}</li>
                                     <li className="list-group-item"><strong>Stabilizers:</strong> {props.stabs}</li>

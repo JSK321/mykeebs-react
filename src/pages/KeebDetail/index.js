@@ -7,7 +7,8 @@ export default function KeebDetail(props) {
     const [updateKeeb, setUpdateKeeb] = useState({
         keebId: "",
         color: "",
-        plate: ""
+        plate: "",
+        keebImage: ""
     })
 
     const [updateParts, setUpdateParts] = useState({
@@ -22,6 +23,8 @@ export default function KeebDetail(props) {
     })
 
     const [userProfile, setUserProfile] = useState({})
+
+    const [loading, setLoading] = useState(false)
 
     const { id } = useParams()
 
@@ -56,7 +59,8 @@ export default function KeebDetail(props) {
             setUpdateKeeb({
                 keebId: id,
                 color: keebData.color,
-                plate: keebData.plate
+                plate: keebData.plate,
+                keebImage: keebData.keebImage
             })
 
         })
@@ -71,7 +75,6 @@ export default function KeebDetail(props) {
                 stabLube: partsData.stabLube,
                 keyset: partsData.keyset
             })
-
         })
     }
 
@@ -92,7 +95,7 @@ export default function KeebDetail(props) {
 
     const handleDeleteKeeb = event => {
         event.preventDefault()
-        let confirmAlert = window.confirm("Are you willing to delete Keeb?")
+        let confirmAlert = window.confirm("Are you certain to delete Keeb?")
         if (confirmAlert === true) {
             API.deleteKeeb(props.profile.token, id).then(data => {
                 alert("Keeb Deleted!")
@@ -101,14 +104,59 @@ export default function KeebDetail(props) {
             API.deleteParts(props.profile.token, id)
         }
     }
+    // Cloudinary Functions
+    const handleImageUploadBtn = event => {
+        event.preventDefault()
+        document.getElementById('image').click()
+    }
+
+    const handleUploadImage = async event => {
+        const files = event.target.files
+        const data = new FormData()
+        data.append('file', files[0])
+        data.append('upload_preset', 'keebs_setups')
+        setLoading(true)
+        const res = await API.uploadImage(data)
+        const file = await res.json()
+
+        setUpdateKeeb({
+            ...updateKeeb,
+            keebImage:file.secure_url
+        })
+        setLoading(false)
+    }
 
     const handleFormSubmit = event => {
         event.preventDefault()
-        API.updateKeeb({
-            color: updateKeeb.color,
-            plate: updateKeeb.plate
-        }).then(
-            API.updateParts({
+        API.updateKeeb(
+            id,
+            props.profile.token,
+            updateKeeb.color,
+            updateKeeb.plate,
+            updateKeeb.keebImage
+        ).then(updateData => {
+            setUpdateKeeb({
+                ...updateKeeb,
+                color: updateKeeb.color,
+                plate: updateKeeb.plate,
+                keebImage: updateKeeb.keebImage
+            })
+        })
+
+        API.updateParts(
+            id,
+            props.profile.token,
+            updateParts.switches,
+            updateParts.switchLube,
+            updateParts.springWeight,
+            updateParts.springLube,
+            updateParts.switchFilm,
+            updateParts.stabs,
+            updateParts.stabLube,
+            updateParts.keyset
+        ).then(updateData => {
+            setUpdateParts({
+                ...updateParts,
                 switches: updateParts.switches,
                 switchLube: updateParts.switchLube,
                 springWeight: updateParts.springWeight,
@@ -116,33 +164,9 @@ export default function KeebDetail(props) {
                 switchFilm: updateParts.switchFilm,
                 stabs: updateParts.stabs,
                 stabLube: updateParts.stabLube,
-                keysetL: updateParts.keyset
-            }))
-        // .then(data => {
-        //     const token = localStorage.getItem('token')
-        //     API.getProfile(token).then(keebData => {
-        //         if (keebData) {
-        //             setUserProfile({
-        //                 name: keebData.name,
-        //                 email: keebData.email,
-        //                 keebs: keebData.Keebs,
-        //                 parts: keebData.Parts,
-        //                 token: token,
-        //                 isLoggedIn: true
-        //             })
-        //         } else {
-        //             localStorage.removeItem("token");
-        //             setUserProfile({
-        //                 name: "",
-        //                 email: "",
-        //                 keebs: [],
-        //                 parts: [],
-        //                 token: "",
-        //                 isLoggedIn: false
-        //             })
-        //         }
-        //     })
-        // })
+                keyset: updateParts.keyset
+            })
+        }).then(alert("Keeb Updated!"), window.location.href = "/")
     }
 
     return (
@@ -152,6 +176,9 @@ export default function KeebDetail(props) {
                 handlePartsInputChange={handlePartsInputChange}
                 handleFormSubmit={handleFormSubmit}
                 handleDeleteKeeb={handleDeleteKeeb}
+                handleImageUploadBtn={handleImageUploadBtn}
+                handleUploadImage={handleUploadImage}
+                keebImage={updateKeeb.keebImage}
                 keebId={updateKeeb.keebId}
                 color={updateKeeb.color}
                 plate={updateKeeb.plate}
@@ -163,6 +190,7 @@ export default function KeebDetail(props) {
                 stabs={updateParts.stabs}
                 stabLube={updateParts.stabLube}
                 keyset={updateParts.keyset}
+                loading={loading}
             />
         </div>
     )

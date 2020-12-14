@@ -22,13 +22,14 @@ export default function Home(props) {
     }, [])
 
     return (
-        <div className="container">
+        <div className="container" style={{marginTop:"0px"}}>
             <div className="row">
                 {keebInfo != undefined ?
                     keebInfo.keebs.map(keebObj => (
-                        <div className="col-md-auto">
+                        <div className="col-md-4">
                             <KeebCard
                                 // Front side of Card
+                                keebImage={keebObj.keebImage}
                                 name={keebObj.name}
                                 size={keebObj.size}
                                 maker={keebObj.maker}

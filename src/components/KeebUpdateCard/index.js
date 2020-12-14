@@ -7,7 +7,16 @@ export default function KeebUpdateCard(props) {
             <div className="card">
                 <h5 className="card-title">Update Keeb Specs</h5>
                 <form onSubmit={props.handleFormSubmit}>
-                    <img src="https://i.imgur.com/OVqaz9t.jpg" className="card-img-top" alt="Keeb Pic" />
+                    {/* Image Preview */}
+                    {/* {props.previewSource && (
+                        <img src={props.previewSource} alt="image" id="imagePreview" />
+                    )} */}
+                    {props.loading ? (
+                        <h3>Loading Image...</h3> 
+                    ):
+                    (
+                        <img src = {props.keebImage} style={{width: '300px'}} />
+                    )}
                     <div className="form-row">
                         <div className="col-6 p-1">
                             <label className="input-group-prepend input-group-text">{props.color}</label>
@@ -29,8 +38,8 @@ export default function KeebUpdateCard(props) {
                             <input className="updateKeebInput" onChange={props.handlePartsInputChange} type="text" name="switchLube" placeholder="Switch Lube"></input>
                         </div>
                         <div className="col-6 p-1">
-                            <label className="input-group-prepend input-group-text">{props.springWeight}g</label>
-                            <input className="updateKeebInput" onChange={props.handlePartsInputChange} type="number" name="springWeight" placeholder="Spring Weight"></input>
+                            <label className="input-group-prepend input-group-text">{props.springWeight}</label>
+                            <input className="updateKeebInput" onChange={props.handlePartsInputChange} type="text" name="springWeight" placeholder="Spring Weight"></input>
                         </div>
                         <div className="col-6 p-1">
                             <label className="input-group-prepend input-group-text">{props.springLube}</label>
@@ -57,7 +66,18 @@ export default function KeebUpdateCard(props) {
                         </div>
                     </div>
                 </form>
+                <input type="button" id="loadFileXml" value="Upload Image" onClick={props.handleImageUploadBtn} className="fileInput list-group-item list-group-item-action active" />
+                <input type="file" onChange={props.handleUploadImage} style={{ display: "none" }} id="image" name="keebImage" />
+                
+                {/* Upload Image Button */}
+                {/* <input type="button" id="loadFileXml" value="Upload Image" onClick={props.handleImageUploadBtn} className="fileInput list-group-item list-group-item-action active" />
+                <input type="file" onChange={props.handleFileInputChange} style={{ display: "none" }} id="file" name="image" /> */}
+                {/* Delete Button */}
                 <input className="list-group-item list-group-item-action active deleteBtn" onClick={props.handleDeleteKeeb} type="submit" value="Delete Keeb"></input>
+                {/* Image Preview */}
+                {/* {props.previewSource && (
+                        <img src={props.previewSource} alt="image" id="imagePreview"/>
+                    )} */}
             </div>
         </div >
     )

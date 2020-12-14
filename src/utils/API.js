@@ -62,8 +62,22 @@ const API = {
             body: JSON.stringify(partsData)
         }).then(res => res.json()).catch(err => null)
     },
+    // Upload Image function
+    uploadImage: function (data) {
+        return fetch(`https://api.cloudinary.com/v1_1/jsk321/image/upload`,
+            {
+                method: 'POST',
+                body: data
+            }
+        )
+    },
+    // Load Image function
+    // loadImage: function () {
+    //     return fetch(`${URL_PREFIX}/api/users/images`, {
+    //     }).then(res => res.json()).catch(err => null)
+    // },
     // Update Keeb function
-    updateKeeb: function (id, token, color, plate) {
+    updateKeeb: function (id, token, color, plate, keebImage) {
         return fetch(`${URL_PREFIX}/api/keebs/${id}`, {
             method: "PUT",
             headers: {
@@ -72,7 +86,8 @@ const API = {
             },
             body: JSON.stringify({
                 color: color,
-                plate: plate
+                plate: plate,
+                keebImage: keebImage
             })
         }).then(res => res.json()).catch(err => null)
     },

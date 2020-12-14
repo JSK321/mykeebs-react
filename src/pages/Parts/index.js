@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import AddPartsForm from '../../components/AddPartsForm'
 import API from '../../utils/API'
 
+
 export default function Parts(props) {
     const [partsFormState, setPartsFormState] = useState({
         keeb: "",
@@ -29,7 +30,6 @@ export default function Parts(props) {
                     name: keebData.name,
                     email: keebData.email,
                     keebs: keebData.Keebs,
-                    parts: keebData.Parts,
                     token: token,
                     isLoggedIn: true
                 })
@@ -39,7 +39,6 @@ export default function Parts(props) {
                     name: "",
                     email: "",
                     keebs: [],
-                    parts: [],
                     token: "",
                     isLoggedIn: false
                 })
