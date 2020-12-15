@@ -71,11 +71,7 @@ const API = {
             }
         )
     },
-    // Load Image function
-    // loadImage: function () {
-    //     return fetch(`${URL_PREFIX}/api/users/images`, {
-    //     }).then(res => res.json()).catch(err => null)
-    // },
+ 
     // Update Keeb function
     updateKeeb: function (id, token, color, plate, keebImage) {
         return fetch(`${URL_PREFIX}/api/keebs/${id}`, {

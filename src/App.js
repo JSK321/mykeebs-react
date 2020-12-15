@@ -4,6 +4,7 @@ import API from './utils/API'
 // Components
 import NavBar from './components/NavBar'
 import Jumbotron from './components/Jumbotron'
+import Footer from './components/Footer'
 // Pages
 import Home from './pages/Home'
 import Keebs from './pages/Keebs'
@@ -113,7 +114,7 @@ function App() {
         isLoggedIn={profileState.isLoggedIn}
       />
       <Route exact path="/">
-        <Jumbotron />
+        {/* <Jumbotron /> */}
         <Home
           profile={profileState}
         />
@@ -134,19 +135,9 @@ function App() {
           profile={profileState}
         />
       </Route>
+      <Footer />
     </Router>
   );
 }
 
 export default App;
-
-
-{/* {profileState.isLoggedIn ? profileState.keebs.map(keebObj =>
-          <KeebCard
-            name={keebObj.name}
-            size={keebObj.size}
-            maker={keebObj.maker}
-            case={keebObj.case}
-            color={keebObj.color}
-            plate={keebObj.plate}
-          />) : <h2>Login to see your Keebs!</h2>} */}

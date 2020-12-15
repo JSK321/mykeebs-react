@@ -22,11 +22,11 @@ export default function Home(props) {
     }, [])
 
     return (
-        <div className="container" style={{marginTop:"0px"}}>
+        <div className="container" style={{marginBottom:"75px"}}>
             <div className="row">
                 {keebInfo != undefined ?
                     keebInfo.keebs.map(keebObj => (
-                        <div className="col-md-4">
+                        <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <KeebCard
                                 // Front side of Card
                                 keebImage={keebObj.keebImage}

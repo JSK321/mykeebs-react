@@ -4,12 +4,12 @@ import './styles.css'
 
 export default function KeebCard(props) {
     return (
-        <div className="KeebCard" style={{marginTop:"15px"}}>
+        <div className="KeebCard" style={{marginTop:"15px",}}>
             <div className="flip-container" ontouchstart="this.classList.toggle('hover')">
                 <div className="flipper">
                     <div className="card">
                         <div className="front">
-                            <img src={props.keebImage} style={{width:"300px", display:"block", marginRight:"auto", marginLeft:"auto",}} />
+                            <img src={props.keebImage} style={{width:"300px", display:"block", marginRight:"auto", marginLeft:"auto",}}/>
                             <div className="card-body">
                                 <h5 className="card-title" style={{ textAlign: "center" }}>{props.maker} {props.name}</h5>
                                 <ul className="list-group" style={{ listStyleType: "none" }}>
