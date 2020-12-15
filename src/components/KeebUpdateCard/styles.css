@@ -1,5 +1,5 @@
 .KeebUpdateCard {
-    width: 400px;
+    width: 22rem;
     text-align: center;
     margin: 0 auto;
     float: none;
@@ -9,18 +9,22 @@
 .updateKeebInput {
     width: 100%;
     text-align: center;
-    /* margin-left: 10px;
-    margin-right: 5px; */
-}
-
-.deleteBtn{
-    margin-top:4px;
-    width: 100%
+    background-color: mintcream;
 }
 
 .fileInput {
     margin-top:4px;
     width: 100%;
+    background-color: midnightblue;
+}
+
+.fileInput:active, 
+.fileInput:hover, 
+.fileInput:focus, 
+.fileInput:visited,
+.fileInput:link
+{
+    background-color: midnightblue;
 }
 
 #imagePreview {
@@ -29,3 +33,12 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+.input-group-prepend {
+    background-color: lightsteelblue;
+}
+
+.input-group-text {
+    color: midnightblue
+}
+

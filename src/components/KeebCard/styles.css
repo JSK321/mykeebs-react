@@ -9,7 +9,7 @@
 
 .flip-container, .front, .back {
 	width: 21rem;
-    height: 29rem;
+    height: 30rem;
 }
 
 /* flip speed goes here */
@@ -33,14 +33,23 @@
 	/* for firefox 31 */
     transform: rotateY(0deg);
     margin: auto;
-	border: 2px solid black;
-	box-shadow: 5px 5px 5px grey
+	border: 2px solid slateblue;
+	box-shadow: 5px 5px 5px mediumslateblue
 }
 
 /* back, initially hidden pane */
 .back {
     transform: rotateY(180deg);
     margin: auto;
-	border: 2px solid black;
-	box-shadow: 5px 5px 5px grey
+	border: 2px solid slateblue;
+	box-shadow: 5px 5px 5px mediumslateblue
+}
+
+.KeebCard {
+	background-color: honeydew;
+}
+
+.list-group-item {
+	background-color: mintcream;
+	color:midnightblue
 }

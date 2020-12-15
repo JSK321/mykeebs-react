@@ -4,8 +4,24 @@
     margin: 0 auto;
     float: none;
     margin-top: 10px;
+    border: 2px solid slateblue;
+	box-shadow: 5px 5px 5px mediumslateblue
 }
 
 .addKeebBtn {
     width: 100%;
+    background-color: midnightblue;
+}
+
+.addKeebBtn:active,
+.addKeebBtn:hover,
+.addKeebBtn:focus,
+.addKeebBtn:visited,
+.addKeebBtn:link
+{
+    background-color: midnightblue;
+}
+
+.form-control {
+    background-color: mintcream;
 }

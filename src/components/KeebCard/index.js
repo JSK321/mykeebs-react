@@ -4,14 +4,17 @@ import './styles.css'
 
 export default function KeebCard(props) {
     return (
-        <div className="KeebCard" style={{marginTop:"15px",}}>
+        <div className="KeebCard" style={{ marginBottom: "20px", }}>
             <div className="flip-container" ontouchstart="this.classList.toggle('hover')">
                 <div className="flipper">
                     <div className="card">
                         <div className="front">
-                            <img src={props.keebImage} style={{width:"300px", display:"block", marginRight:"auto", marginLeft:"auto",}}/>
+                            <img
+                                src={props.keebImage}
+                                style={{ width: "300px", display: "block", marginRight: "auto", marginLeft: "auto", }}
+                            />
                             <div className="card-body">
-                                <h5 className="card-title" style={{ textAlign: "center" }}>{props.maker} {props.name}</h5>
+                                <h5 className="card-title" style={{ textAlign: "center", color:"midnightblue" }}>{props.maker} {props.name}</h5>
                                 <ul className="list-group" style={{ listStyleType: "none" }}>
                                     <li className="list-group-item"><strong>Keeb Size:</strong> {props.size}%</li>
                                     <li className="list-group-item"><strong>Case:</strong> {props.case}</li>
@@ -30,9 +33,18 @@ export default function KeebCard(props) {
                                     <li className="list-group-item"><strong>Stabilizers:</strong> {props.stabs}</li>
                                     <li className="list-group-item"><strong>Stabilizers Lube:</strong> {props.stabLube}</li>
                                     <li className="list-group-item"><strong>Keyset:</strong> {props.keyset}</li>
-                                    {props.isLoggedIn ? <li className="list-group-item"  style={{ textAlign: "center" }}><Link to={`/updatekeeb/${props.id}`}><strong>Update Keeb</strong></Link></li> 
-                                    : 
-                                    null}
+                                    {props.isLoggedIn ?
+                                        <li
+                                            className="list-group-item"
+                                            style={{ textAlign: "center" }}>
+                                            <Link to={`/updatekeeb/${props.id}`}>
+                                                <strong style={{ color: "midnightblue" }}>
+                                                    Update Keeb
+                                                </strong>
+                                            </Link>
+                                        </li>
+                                        :
+                                        null}
                                 </ul>
                             </div>
                         </div>

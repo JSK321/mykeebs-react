@@ -115,6 +115,7 @@ function App() {
       />
       <Route exact path="/">
         {/* <Jumbotron /> */}
+        <h1 style={{textAlign:"center", color:"midnightblue"}}>My Keebs!</h1>
         <Home
           profile={profileState}
         />

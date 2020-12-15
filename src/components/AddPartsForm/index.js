@@ -4,8 +4,8 @@ export default function AddPartsForm(props) {
     return (
         <div className="addKeebForm">
             <div className="card addKeeb">
-                <h5 className="card-header">Add Keeb Parts!</h5>
-                <div className="card-body">
+                <h5 className="card-header" style={{backgroundColor:"lightsteelblue"}}>Add Keeb Parts!</h5>
+                <div className="card-body" style={{backgroundColor:"honeydew"}}>
                     <form onSubmit={props.handleFormSubmit}>
                         <div className="form-group">
                             <select className="form-control" onChange={props.handleSelectKeeb} value={props.keeb}>
