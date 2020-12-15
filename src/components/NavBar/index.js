@@ -44,6 +44,7 @@ export default function NavBar(props) {
                                                 name='email'
                                                 placeholder='Email'
                                                 style={{ backgroundColor: "honeydew", color: "midnightblue" }}
+                                                required
                                             />
                                             <br></br>
                                             <input
@@ -53,6 +54,7 @@ export default function NavBar(props) {
                                                 name='password'
                                                 placeholder='Password'
                                                 style={{ backgroundColor: "honeydew", color: "midnightblue" }}
+                                                required
                                             />
                                             <br></br>
                                             <input

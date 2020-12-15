@@ -1,9 +1,9 @@
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, } from "react-router-dom";
 import React, { useState, useEffect } from 'react'
 import API from './utils/API'
 // Components
 import NavBar from './components/NavBar'
-import Jumbotron from './components/Jumbotron'
+// import Jumbotron from './components/Jumbotron'
 import Footer from './components/Footer'
 // Pages
 import Home from './pages/Home'
@@ -69,25 +69,24 @@ function App() {
       alert("Incorrect email/password, please try again")
     } else {
       API.login(loginFormState).then(newToken => {
-        localStorage.setItem("token", newToken.token)
-        API.getProfile(newToken.token).then(profileData => {
-          setProfileState({
-            name: profileData.name,
-            email: profileData.email,
-            keebs: profileData.Keebs,
-            id: profileData.id,
-            isLoggedIn: true
+        if (newToken === null) {
+          alert("Incorrect email/password, please try again")
+        } else {
+          localStorage.setItem("token", newToken.token)
+          API.getProfile(newToken.token).then(profileData => {
+            setProfileState({
+              name: profileData.name,
+              email: profileData.email,
+              keebs: profileData.Keebs,
+              id: profileData.id,
+              isLoggedIn: true
+            })
           })
-        })
+        }
+      }).then(res => {
+        window.location.reload(false)
       })
-      refreshPage()
     }
-  }
-
-  function refreshPage() {
-    setInterval(function () {
-      window.location.reload(false)
-    }, 10)
   }
 
   const handleLogOut = event => {
@@ -100,7 +99,7 @@ function App() {
       token: "",
       isLoggedIn: false
     })
-    refreshPage()
+    window.location.reload(false)
   }
 
   return (
@@ -115,7 +114,13 @@ function App() {
       />
       <Route exact path="/">
         {/* <Jumbotron /> */}
-        <h1 style={{textAlign:"center", color:"midnightblue"}}>My Keebs!</h1>
+        <h1
+          style={{
+            textAlign: "center",
+            color: "midnightblue",
+          }}>
+          My Keebs!
+          </h1>
         <Home
           profile={profileState}
         />

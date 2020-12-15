@@ -107,6 +107,7 @@ const API = {
             })
         }).then(res => res.json()).catch(err => null)
     },
+    // Delete Keeb function
     deleteKeeb: function (token, keebId) {
         return fetch(`${URL_PREFIX}/api/keebs/${keebId}`, {
             method: "DELETE",
@@ -115,6 +116,7 @@ const API = {
             },
         }).then(res => res.json()).catch(err => null)
     },
+    // Delete Parts function
     deleteParts: function (token, partsId) {
         fetch(`${URL_PREFIX}/api/parts/${partsId}`, {
             method: "DELETE",
