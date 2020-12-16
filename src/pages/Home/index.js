@@ -29,10 +29,22 @@ export default function Home(props) {
         event.preventDefault()
         let keyword = event.target.value
         let filtered = keebInfo.keebs.filter(keebObj => {
-            return (keebObj.size.toString().indexOf(keyword) > -1)
+            return (
+                keebObj.size.toString().indexOf(keyword) > -1 ||
+                keebObj.maker.toLowerCase().indexOf(keyword) > -1 ||
+                keebObj.name.toLowerCase().indexOf(keyword) > -1 ||
+                keebObj.case.toLowerCase().indexOf(keyword) > -1 ||
+                keebObj.plate.toLowerCase().indexOf(keyword) > -1 ||
+                keebObj.color.toLowerCase().indexOf(keyword) > -1 ||
+                keebObj.Parts[0].switches.toLowerCase().indexOf(keyword) > -1 ||
+                keebObj.Parts[0].springWeight.toString().indexOf(keyword) > -1 ||
+                keebObj.Parts[0].springLube.toLowerCase().indexOf(keyword) > -1 ||
+                keebObj.Parts[0].switchFilm.toLowerCase().indexOf(keyword) > -1 ||
+                keebObj.Parts[0].stabs.toLowerCase().indexOf(keyword) > -1 ||
+                keebObj.Parts[0].stabLube.toLowerCase().indexOf(keyword) > -1
+            )
         })
         if (keyword === "") {
-            filtered = [];
             loadKeebInfo()
         }
         setKeebInfo({
@@ -48,15 +60,16 @@ export default function Home(props) {
             <input
                 className="form-control"
                 type="search"
-                placeholder="Search by Keeb Size"
+                placeholder="Search"
                 onChange={handleSearchInput}
-                style={{ 
-                    width: "250px", 
-                    marginLeft: "auto", 
-                    marginRight: "auto", 
+                style={{
+                    width: "250px",
+                    marginLeft: "auto",
+                    marginRight: "auto",
                     marginBottom: "10px",
                     borderRadius: "10px",
-                    border:"2px solid slateblue"
+                    border: "2px solid slateblue",
+                    color: "midnightblue"
                 }}
             />
             <div className="row">
