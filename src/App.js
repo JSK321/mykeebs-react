@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react'
 import API from './utils/API'
 // Components
 import NavBar from './components/NavBar'
-// import Jumbotron from './components/Jumbotron'
 import Footer from './components/Footer'
 // Pages
 import Home from './pages/Home'
@@ -108,13 +107,11 @@ function App() {
         handleInputChange={handleInputChange}
         handleFormSubmit={handleFormSubmit}
         handleLogOut={handleLogOut}
-        // handleSearchInput={handleSearchInput}
         email={loginFormState.email}
         password={loginFormState.password}
         isLoggedIn={profileState.isLoggedIn}
       />
       <Route exact path="/">
-        {/* <Jumbotron /> */}
         <h1
           style={{
             textAlign: "center",

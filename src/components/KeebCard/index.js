@@ -14,7 +14,7 @@ export default function KeebCard(props) {
                                 style={{ width: "300px", display: "block", marginRight: "auto", marginLeft: "auto", }}
                             />
                             <div className="card-body">
-                                <h5 className="card-title" style={{ textAlign: "center", color:"midnightblue" }}>{props.maker} {props.name}</h5>
+                                <h5 className="card-title" style={{ textAlign: "center", color: "midnightblue" }}>{props.maker} {props.name}</h5>
                                 <ul className="list-group" style={{ listStyleType: "none" }}>
                                     <li className="list-group-item"><strong>Keeb Size:</strong> {props.size}%</li>
                                     <li className="list-group-item"><strong>Case:</strong> {props.case}</li>
@@ -33,6 +33,14 @@ export default function KeebCard(props) {
                                     <li className="list-group-item"><strong>Stabilizers:</strong> {props.stabs}</li>
                                     <li className="list-group-item"><strong>Stabilizers Lube:</strong> {props.stabLube}</li>
                                     <li className="list-group-item"><strong>Keyset:</strong> {props.keyset}</li>
+                                    {/* Buttons */}
+                                    {/* <li
+                                        className="list-group-item"
+                                        style={{ textAlign: "center" }}>
+                                        <Link to='/' style={{ color: "midnightblue" }}>
+                                            <strong>Sound Test</strong>
+                                        </Link>
+                                    </li> */}
                                     {props.isLoggedIn ?
                                         <li
                                             className="list-group-item"

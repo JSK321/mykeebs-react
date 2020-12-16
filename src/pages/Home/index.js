@@ -41,7 +41,8 @@ export default function Home(props) {
                 keebObj.Parts[0].springLube.toLowerCase().indexOf(keyword) > -1 ||
                 keebObj.Parts[0].switchFilm.toLowerCase().indexOf(keyword) > -1 ||
                 keebObj.Parts[0].stabs.toLowerCase().indexOf(keyword) > -1 ||
-                keebObj.Parts[0].stabLube.toLowerCase().indexOf(keyword) > -1
+                keebObj.Parts[0].stabLube.toLowerCase().indexOf(keyword) > -1 ||
+                keebObj.Parts[0].keyset.toLowerCase().indexOf(keyword) > -1
             )
         })
         if (keyword === "") {
@@ -76,10 +77,9 @@ export default function Home(props) {
                 {keebInfo !== undefined ?
                     keebInfo.keebs
                         .map(keebObj => (
-                            <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-12"  key={keebObj.id}>
                                 <KeebCard
                                     // Front side of Card
-                                    key={keebObj.id}
                                     keebImage={keebObj.keebImage}
                                     name={keebObj.name}
                                     size={keebObj.size}
