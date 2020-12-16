@@ -108,6 +108,7 @@ function App() {
         handleInputChange={handleInputChange}
         handleFormSubmit={handleFormSubmit}
         handleLogOut={handleLogOut}
+        // handleSearchInput={handleSearchInput}
         email={loginFormState.email}
         password={loginFormState.password}
         isLoggedIn={profileState.isLoggedIn}

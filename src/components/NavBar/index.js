@@ -77,7 +77,7 @@ export default function NavBar(props) {
                         <button
                             onClick={props.handleLogOut}
                             className="signOutBtn btn btn-link"
-                            style={{color:"mintcream"}}
+                            style={{ color: "mintcream" }}
                         >
                             Log Out
                         </button>
