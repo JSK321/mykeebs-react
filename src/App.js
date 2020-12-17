@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React, { useState, useEffect } from 'react'
 import API from './utils/API'
 // Components
@@ -10,6 +10,7 @@ import Keebs from './pages/Keebs'
 import KeebDetail from './pages/KeebDetail'
 import Parts from './pages/Parts'
 import Register from './pages/Register'
+import NoMatch from './pages/NoMatch'
 
 
 function App() {
@@ -117,37 +118,42 @@ function App() {
         password={loginFormState.password}
         isLoggedIn={profileState.isLoggedIn}
       />
-      <Route exact path="/">
-        <h1
-          style={{
-            textAlign: "center",
-            color: "midnightblue",
-          }}>
-          My Keebs!
+      <Switch>
+        <Route exact path="/">
+          <h1
+            style={{
+              textAlign: "center",
+              color: "midnightblue",
+            }}>
+            My Keebs!
           </h1>
-        <Home
-          profile={profileState}
-        />
-      </Route>
-      <Route exact path="/addkeebform">
-        <Keebs
-          profile={profileState}
-        />
-      </Route>
-      <Route exact path="/updatekeeb/:id">
-        <KeebDetail
-          profile={profileState}
-          fetchData={fetchUserData}
-        />
-      </Route>
-      <Route exact path="/addpartsform">
-        <Parts
-          profile={profileState}
-        />
-      </Route>
-      <Route exact path="/register">
+          <Home
+            profile={profileState}
+          />
+        </Route>
+        <Route exact path="/addkeebform">
+          <Keebs
+            profile={profileState}
+          />
+        </Route>
+        <Route exact path="/updatekeeb/:id">
+          <KeebDetail
+            profile={profileState}
+            fetchData={fetchUserData}
+          />
+        </Route>
+        <Route exact path="/addpartsform">
+          <Parts
+            profile={profileState}
+          />
+        </Route>
+        <Route exact path="/register">
           <Register />
-      </Route>
+        </Route>
+        <Route path="*">
+          <NoMatch />
+        </Route>
+      </Switch>
       <Footer />
     </Router>
   );
