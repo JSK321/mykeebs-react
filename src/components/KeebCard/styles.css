@@ -8,8 +8,8 @@
 }
 
 .flip-container, .front, .back {
-	width: 21rem;
-    height: 30rem; /*Change to 33 when adding more buttons on back side of card */
+	width: 24rem;
+    height: 33rem; /*Change to 35 when adding more buttons on back side of card */
 }
 
 /* flip speed goes here */

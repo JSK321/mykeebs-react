@@ -11,7 +11,7 @@ export default function KeebCard(props) {
                         <div className="front">
                             <img
                                 src={props.keebImage}
-                                style={{ width: "300px", height:"200px", display: "block", marginRight: "auto", marginLeft: "auto", marginTop:"10px" }}
+                                style={{ width: "350px", height:"250px", display: "block", marginRight: "auto", marginLeft: "auto", marginTop:"10px" }}
                             />
                             <div className="card-body">
                                 <h5 className="card-title" style={{ textAlign: "center", color: "midnightblue" }}>{props.maker} {props.name}</h5>
@@ -27,9 +27,10 @@ export default function KeebCard(props) {
                             <div className="card-body">
                                 <ul className="list-group">
                                     <li className="list-group-item"><strong>Switches:</strong> {props.switches}</li>
+                                    <li className="list-group-item"><strong>Switch Lube:</strong> {props.switchLube}</li>
+                                    <li className="list-group-item"><strong>Switch Film:</strong> {props.switchFilm}</li>
                                     <li className="list-group-item"><strong>Spring Weight:</strong> {props.springWeight}</li>
                                     <li className="list-group-item"><strong>Spring Lube:</strong> {props.springLube}</li>
-                                    <li className="list-group-item"><strong>Switch Film:</strong> {props.switchFilm}</li>
                                     <li className="list-group-item"><strong>Stabilizers:</strong> {props.stabs}</li>
                                     <li className="list-group-item"><strong>Stabilizers Lube:</strong> {props.stabLube}</li>
                                     <li className="list-group-item"><strong>Keyset:</strong> {props.keyset}</li>

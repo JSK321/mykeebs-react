@@ -89,6 +89,7 @@ export default function Home(props) {
                                     plate={keebObj.plate}
                                     // Back side of Card
                                     switches={keebObj.Parts[0].switches}
+                                    switchLube={keebObj.Parts[0].switchLube}
                                     springWeight={keebObj.Parts[0].springWeight}
                                     springLube={keebObj.Parts[0].springLube}
                                     switchFilm={keebObj.Parts[0].switchFilm}
