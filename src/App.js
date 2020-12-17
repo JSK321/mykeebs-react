@@ -9,6 +9,7 @@ import Home from './pages/Home'
 import Keebs from './pages/Keebs'
 import KeebDetail from './pages/KeebDetail'
 import Parts from './pages/Parts'
+import Register from './pages/Register'
 
 
 function App() {
@@ -143,6 +144,9 @@ function App() {
         <Parts
           profile={profileState}
         />
+      </Route>
+      <Route exact path="/register">
+          <Register />
       </Route>
       <Footer />
     </Router>

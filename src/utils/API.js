@@ -1,5 +1,5 @@
-// const URL_PREFIX = "http://localhost:8080"
-const URL_PREFIX = "https://mykeebs-api.herokuapp.com"
+const URL_PREFIX = "http://localhost:8080"
+// const URL_PREFIX = "https://mykeebs-api.herokuapp.com"
 
 const API = {
     // Log In function
@@ -11,6 +11,27 @@ const API = {
             },
             body: JSON.stringify(userData)
         }).then(res => res.json()).catch(err => null)
+    },
+    // Create new User function
+    createUser: function (userData) {
+        return fetch(`${URL_PREFIX}/api/users`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        }).then(res => {
+            if (res.ok) {
+                alert("You are ready to share your keebs!")
+                window.location.href="/"
+                return res.json()
+            } else {
+                alert("Email already exists!")
+                throw new Error("Something went wrong")
+            }
+        }).catch(err =>
+            console.log(err),
+        )
     },
     // Profile function
     getProfile: function (token) {
@@ -71,7 +92,7 @@ const API = {
             }
         )
     },
- 
+
     // Update Keeb function
     updateKeeb: function (id, token, color, plate, keebImage) {
         return fetch(`${URL_PREFIX}/api/keebs/${id}`, {

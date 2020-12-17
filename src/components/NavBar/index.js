@@ -61,7 +61,7 @@ export default function NavBar(props) {
                                                 type='submit'
                                                 className="btn btn-primary"
                                                 value="Log In"
-                                                style={{ width: "185px", backgroundColor: "midnightblue" }}
+                                                style={{ width: "188px", backgroundColor: "midnightblue" }}
                                             />
                                         </form>
                                     </div>
@@ -77,13 +77,19 @@ export default function NavBar(props) {
                         <button
                             onClick={props.handleLogOut}
                             className="signOutBtn btn btn-link"
-                            style={{ color: "mintcream" }}
-                        >
+                            style={{ color: "mintcream" }}>
                             Log Out
                         </button>
                     </li> :
 
-                    null
+                    <li>
+                        <Link to='/register'
+                            // onClick={props.handleLogOut}
+                             className="nav-link"
+                            style={{ color: "mintcream" }}>
+                            Register
+                        </Link>
+                    </li>
                 }
             </ul>
         </nav>
