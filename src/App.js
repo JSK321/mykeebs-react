@@ -26,32 +26,36 @@ function App() {
     isLoggedIn: false
   })
 
-  useEffect(() => { fetchUserData() }, [])
+  useEffect(() => {
+    fetchUserData()
+  }, [])
 
   function fetchUserData() {
     const token = localStorage.getItem('token')
-    API.getProfile(token).then(profileData => {
-      if (profileData) {
-        setProfileState({
-          name: profileData.name,
-          email: profileData.email,
-          keebs: profileData.Keebs,
-          token: token,
-          id: profileData.id,
-          isLoggedIn: true
-        })
-      } else {
-        localStorage.removeItem("token");
-        setProfileState({
-          name: "",
-          email: "",
-          keebs: [],
-          token: "",
-          id: "",
-          isLoggedIn: false
-        })
-      }
-    })
+    if (localStorage.getItem('token') !== null) {
+      API.getProfile(token).then(profileData => {
+        if (profileData) {
+          setProfileState({
+            name: profileData.name,
+            email: profileData.email,
+            keebs: profileData.Keebs,
+            token: token,
+            id: profileData.id,
+            isLoggedIn: true
+          })
+        } else {
+          localStorage.removeItem("token");
+          setProfileState({
+            name: "",
+            email: "",
+            keebs: [],
+            token: "",
+            id: "",
+            isLoggedIn: false
+          })
+        }
+      })
+    }
   }
 
   const handleInputChange = event => {
@@ -82,9 +86,10 @@ function App() {
             })
           })
         }
-      }).then(res => {
-        window.location.reload(false)
       })
+        .then(res => {
+          window.location.reload(false)
+        })
     }
   }
 
