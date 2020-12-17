@@ -74,7 +74,7 @@ export default function Home(props) {
                 }}
             />
             <div className="row">
-                {keebInfo !== undefined ?
+                {keebInfo !== null ?
                     keebInfo.keebs
                         .map(keebObj => (
                             <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-12"  key={keebObj.id}>
