@@ -23,15 +23,13 @@ const API = {
         }).then(res => {
             if (res.ok) {
                 alert("You are ready to share your keebs!")
-                window.location.href="/"
+                window.location.href = "/"
                 return res.json()
             } else {
                 alert("Email already exists!")
                 throw new Error("Something went wrong")
             }
-        }).catch(err =>
-            console.log(err),
-        )
+        }).catch(err => null)
     },
     // Profile function
     getProfile: function (token) {
@@ -70,7 +68,15 @@ const API = {
                 'authorization': `Bearer ${token}`
             },
             body: JSON.stringify(keebData)
-        }).then(res => res.json()).catch(err => null)
+        }).then(res => {
+            if(res.ok){
+                alert("Keeb added!")
+                return res.json()
+            } else {
+                alert("Log in to add keeb!")
+                throw new Error("Something went wrong")
+            }
+        }).catch(err => null)
     },
     // Create Parts function
     createParts: function (token, partsData) {
@@ -81,16 +87,22 @@ const API = {
                 'authorization': `Bearer ${token}`
             },
             body: JSON.stringify(partsData)
-        }).then(res => res.json()).catch(err => null)
+        }).then(res => {
+            if(res.ok){
+                alert("Parts added!")
+                return res.json()
+            } else {
+                alert("Log in to add parts!")
+                throw new Error("Something went wrong")
+            }
+        }).catch(err => null)
     },
     // Upload Image function
-    uploadImage: function (data) {
-        return fetch(`https://api.cloudinary.com/v1_1/jsk321/image/upload`,
-            {
-                method: 'POST',
-                body: data
-            }
-        )
+    uploadImage: function (imgData) {
+        return fetch(`https://api.cloudinary.com/v1_1/jsk321/image/upload`, {
+            method: 'POST',
+            body: imgData
+        })
     },
 
     // Update Keeb function
@@ -106,7 +118,16 @@ const API = {
                 plate: plate,
                 keebImage: keebImage
             })
-        }).then(res => res.json()).catch(err => null)
+        }).then(res => {
+            if (res.ok) {
+                alert("Keeb updated!")
+                window.location.href = "/"
+                return res.json()
+            } else {
+                alert("Log in to update keeb!")
+                throw new Error("Something went wrong")
+            }
+        }).catch(err => null)
     },
     // Update Parts function
     updateParts: function (id, token, switches, switchLube, springWeight, springLube, switchFilm, stabs, stabLube, keyset) {
@@ -126,7 +147,13 @@ const API = {
                 stabLube: stabLube,
                 keyset: keyset
             })
-        }).then(res => res.json()).catch(err => null)
+        }).then(res => {
+            if (res.ok) {
+                return res.json()
+            } else {
+                throw new Error("Something went wrong")
+            }
+        }).catch(err => null)
     },
     // Delete Keeb function
     deleteKeeb: function (token, keebId) {
@@ -135,7 +162,15 @@ const API = {
             headers: {
                 'authorization': `Bearer ${token}`
             },
-        }).then(res => res.json()).catch(err => null)
+        }).then(res => {
+            if(res.ok){
+                alert("Keeb Deleted!")
+                window.location.href = "/"
+            } else {
+                alert("Log in to delete keeb!")
+                throw new Error("Something went wrong")
+            }
+        }).catch(err => null)
     },
     // Delete Parts function
     deleteParts: function (token, partsId) {

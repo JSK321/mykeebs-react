@@ -84,6 +84,9 @@ export default function KeebDetail(props) {
             ...updateKeeb,
             [name]: value
         })
+        if (value === "") {
+            loadKeeb()
+        }
     }
     const handlePartsInputChange = event => {
         const { name, value } = event.target
@@ -91,17 +94,17 @@ export default function KeebDetail(props) {
             ...updateParts,
             [name]: value
         })
+        if (value === "") {
+            loadKeeb()
+        }
     }
 
     const handleDeleteKeeb = event => {
         event.preventDefault()
         let confirmAlert = window.confirm("Are you certain to delete Keeb?")
         if (confirmAlert === true) {
-            API.deleteKeeb(props.profile.token, id).then(data => {
-                alert("Keeb Deleted!")
-                window.location.href = "/"
-            })
             API.deleteParts(props.profile.token, id)
+            API.deleteKeeb(props.profile.token, id)
         }
     }
     // Cloudinary Functions
@@ -118,12 +121,12 @@ export default function KeebDetail(props) {
         setLoading(true)
         const res = await API.uploadImage(data)
         const file = await res.json()
-
         setUpdateKeeb({
             ...updateKeeb,
-            keebImage:file.secure_url
+            keebImage: file.secure_url
         })
         setLoading(false)
+
     }
 
     const handleFormSubmit = event => {
@@ -166,7 +169,7 @@ export default function KeebDetail(props) {
                 stabLube: updateParts.stabLube,
                 keyset: updateParts.keyset
             })
-        }).then(alert("Keeb Updated!"), window.location.href = "/")
+        })
     }
 
     return (

@@ -75,6 +75,7 @@ export default function Keebs(props) {
                         token: token,
                         isLoggedIn: true
                     })
+                    window.location.href="/addpartsform"
                 } else {
                     localStorage.removeItem("token");
                     setUserProfile({
@@ -86,7 +87,7 @@ export default function Keebs(props) {
                         isLoggedIn: false
                     })
                 }
-            }).then(alert("Keeb Added!"), window.location.href = "/addpartsform")
+            })
         })
     }
 

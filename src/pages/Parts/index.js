@@ -94,6 +94,7 @@ export default function Parts(props) {
                         token: token,
                         isLoggedIn: true
                     })
+                    window.location.href="/"
                 } else {
                     localStorage.removeItem("token");
                     setUserProfile({
@@ -105,7 +106,7 @@ export default function Parts(props) {
                         isLoggedIn: false
                     })
                 }
-            }).then(alert("Parts Added!"), window.location.href="/")
+            })
         })
     }
 

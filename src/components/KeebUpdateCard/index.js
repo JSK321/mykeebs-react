@@ -9,10 +9,10 @@ export default function KeebUpdateCard(props) {
                 <form onSubmit={props.handleFormSubmit}>
                     {/* Image Preview */}
                     {props.loading ? (
-                        <h3 style={{color:"midnightblue"}}>Loading Image...</h3>
+                        <h3 style={{ color: "midnightblue" }}>Loading Image...</h3>
                     ) :
                         (
-                            <img src={props.keebImage ? (props.keebImage) : null} style={{ width: '300px', height: '200px'}} />
+                            <img src={props.keebImage ? (props.keebImage) : null} style={props.keebImage ? ({ width: '300px', height: '200px'}):null} />
                         )}
                     {/* Update Form */}
                     <div className="form-row">
@@ -69,7 +69,7 @@ export default function KeebUpdateCard(props) {
                     type="button"
                     id="loadFileXml"
                     value="Upload Image"
-                    onClick={props.handleImageUploadBtn} 
+                    onClick={props.handleImageUploadBtn}
                     className="fileInput btn btn-primary"
                 />
                 <input
