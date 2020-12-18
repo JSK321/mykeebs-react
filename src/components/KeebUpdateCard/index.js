@@ -12,7 +12,7 @@ export default function KeebUpdateCard(props) {
                         <h3 style={{ color: "midnightblue" }}>Loading Image...</h3>
                     ) :
                         (
-                            <img src={props.keebImage ? (props.keebImage) : null} style={props.keebImage ? ({ width: '300px', height: '200px', marginBottom:'12px'}):null} />
+                            <img src={props.keebImage ? (props.keebImage) : null} style={props.keebImage ? ({ maxWidth: '100%', height: 'auto', marginBottom:'12px'}):null} />
                         )}
                     {/* Update Form */}
                     <div className="form-row" style={{display:""}}>

@@ -130,6 +130,7 @@ function App() {
           <Home
             profile={profileState}
           />
+          <Footer />
         </Route>
         <Route exact path="/addkeebform">
           <Keebs
@@ -154,7 +155,6 @@ function App() {
           <NoMatch />
         </Route>
       </Switch>
-      <Footer />
     </Router>
   );
 }
