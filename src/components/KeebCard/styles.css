@@ -8,7 +8,7 @@
 }
 
 .flip-container, .front, .back {
-	width: 24rem;
+	width: 22rem;
     height: 33rem; /*Change to 35 when adding more buttons on back side of card */
 }
 
