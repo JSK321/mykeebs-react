@@ -11,7 +11,7 @@ export default function KeebCard(props) {
                         <div className="front">
                             <img
                                 src={props.keebImage}
-                                style={{ width: "100%", height: "auto", display: "block", marginRight: "auto", marginLeft: "auto",}}
+                                style={{ width: "100%", height: "auto", maxHeight:"300px", display: "block", marginRight: "auto", marginLeft: "auto",}}
                             />
                             <div className="card-body">
                                 <h5 className="card-title" style={{ textAlign: "center", color: "midnightblue" }}>{props.maker} {props.name}</h5>
