@@ -4,7 +4,7 @@ import './styles.css'
 export default function KeebUpdateCard(props) {
     return (
         <div className="KeebUpdateCard">
-            <div className="card">
+            <div className="updateCard card" style={{backgroundColor:"honeydew"}}>
                 <h5 className="card-title" style={{ backgroundColor: "lightsteelblue", color: "midnightblue" }}>Update Keeb Specs</h5>
                 <form onSubmit={props.handleFormSubmit}>
                     {/* Image Preview */}
@@ -12,51 +12,51 @@ export default function KeebUpdateCard(props) {
                         <h3 style={{ color: "midnightblue" }}>Loading Image...</h3>
                     ) :
                         (
-                            <img src={props.keebImage ? (props.keebImage) : null} style={props.keebImage ? ({ width: '300px', height: '200px'}):null} />
+                            <img src={props.keebImage ? (props.keebImage) : null} style={props.keebImage ? ({ width: '300px', height: '200px', marginBottom:'12px'}):null} />
                         )}
                     {/* Update Form */}
-                    <div className="form-row">
-                        <div className="col-6 p-1">
-                            <label className="input-group-prepend input-group-text"><strong>{props.color}</strong></label>
+                    <div className="form-row" style={{display:""}}>
+                        <div className="col-6">
+                            <label className="inputLabel"><strong>{props.color}</strong></label>
                             <input className="updateKeebInput" onChange={props.handleKeebInputChange} type="text" name="color" placeholder="Color"></input>
 
                         </div>
-                        <div className="col-6 p-1">
-                            <label className="input-group-prepend input-group-text"><strong>{props.plate}</strong></label>
+                        <div className="col-6">
+                            <label className="inputLabel"><strong>{props.plate}</strong></label>
                             <input className="updateKeebInput" onChange={props.handleKeebInputChange} type="text" name="plate" placeholder="Plate"></input>
 
                         </div>
-                        <div className="col-6 p-1">
-                            <label className="input-group-prepend input-group-text"><strong>{props.switches}</strong></label>
+                        <div className="col-6">
+                            <label className="inputLabel"><strong>{props.switches}</strong></label>
                             <input className="updateKeebInput" onChange={props.handlePartsInputChange} type="text" name="switches" placeholder="Switches"></input>
 
                         </div>
-                        <div className="col-6 p-1">
-                            <label className="input-group-prepend input-group-text"><strong>{props.switchLube}</strong></label>
+                        <div className="col-6">
+                            <label className="inputLabel"><strong>{props.switchLube}</strong></label>
                             <input className="updateKeebInput" onChange={props.handlePartsInputChange} type="text" name="switchLube" placeholder="Switch Lube"></input>
                         </div>
-                        <div className="col-6 p-1">
-                            <label className="input-group-prepend input-group-text"><strong>{props.springWeight}</strong></label>
+                        <div className="col-6">
+                            <label className="inputLabel"><strong>{props.springWeight}</strong></label>
                             <input className="updateKeebInput" onChange={props.handlePartsInputChange} type="text" name="springWeight" placeholder="Spring Weight"></input>
                         </div>
-                        <div className="col-6 p-1">
-                            <label className="input-group-prepend input-group-text"><strong>{props.springLube}</strong></label>
+                        <div className="col-6">
+                            <label className="inputLabel"><strong>{props.springLube}</strong></label>
                             <input className="updateKeebInput" onChange={props.handlePartsInputChange} type="text" name="springLube" placeholder="Spring Lube"></input>
                         </div>
-                        <div className="col-6 p-1">
-                            <label className="input-group-prepend input-group-text"><strong>{props.switchFilm}</strong></label>
+                        <div className="col-6">
+                            <label className="inputLabel"><strong>{props.switchFilm}</strong></label>
                             <input className="updateKeebInput" onChange={props.handlePartsInputChange} type="text" name="switchFilm" placeholder="Switch Film"></input>
                         </div>
-                        <div className="col-6 p-1">
-                            <label className="input-group-prepend input-group-text"><strong>{props.stabs}</strong></label>
+                        <div className="col-6">
+                            <label className="inputLabel"><strong>{props.stabs}</strong></label>
                             <input className="updateKeebInput" onChange={props.handlePartsInputChange} type="text" name="stabs" placeholder="Stabilizers"></input>
                         </div>
-                        <div className="col-6 p-1">
-                            <label className="input-group-prepend input-group-text"><strong>{props.stabLube}</strong></label>
+                        <div className="col-6">
+                            <label className="inputLabel"><strong>{props.stabLube}</strong></label>
                             <input className="updateKeebInput" onChange={props.handlePartsInputChange} type="text" name="stabLube" placeholder="Stabilizers Lube"></input>
                         </div>
-                        <div className="col-6 p-1">
-                            <label className="input-group-prepend input-group-text"><strong>{props.keyset}</strong></label>
+                        <div className="col-6">
+                            <label className="inputLabel"><strong>{props.keyset}</strong></label>
                             <input className="updateKeebInput" onChange={props.handlePartsInputChange} type="text" name="keyset" placeholder="Keyset"></input>
                         </div>
                         <div className="col-12">

@@ -1,9 +1,15 @@
 .KeebUpdateCard {
     width: 22rem;
+    height: 30rem;
     text-align: center;
     margin: 0 auto;
     float: none;
     margin-top: 10px;
+}
+
+.updateCard {
+    border: 2px solid slateblue;
+	box-shadow: 5px 5px 5px mediumslateblue
 }
 
 .updateKeebInput {
@@ -27,8 +33,10 @@
     background-color: midnightblue;
 }
 
-.input-group-prepend {
+.inputLabel {
     background-color: lightsteelblue;
+    width:100%;
+    margin-bottom: 0px;
 }
 
 .input-group-text {
