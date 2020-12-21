@@ -125,7 +125,7 @@ function App() {
               textAlign: "center",
               color: "midnightblue",
             }}>
-            My Keebs!
+            Keebs!
           </h1>
           <Home
             profile={profileState}

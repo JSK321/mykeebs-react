@@ -57,7 +57,7 @@ export default function Home(props) {
     }
 
     return (
-        <div className="container" style={{ marginBottom: "75px" }}>
+        <div className="container" style={{ marginBottom: "75px", }}>
             <input
                 className="form-control"
                 type="search"

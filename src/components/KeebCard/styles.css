@@ -52,5 +52,6 @@
 
 .list-group-item {
 	background-color: mintcream;
-	color:midnightblue
+	border: 1px solid slateblue;
+	color:midnightblue;
 }
