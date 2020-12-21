@@ -34,6 +34,7 @@ export default function Home(props) {
                 keebObj.maker.toLowerCase().indexOf(keyword) > -1 ||
                 keebObj.name.toLowerCase().indexOf(keyword) > -1 ||
                 keebObj.case.toLowerCase().indexOf(keyword) > -1 ||
+                keebObj.angle.toString().indexOf(keyword) > -1 ||
                 keebObj.plate.toLowerCase().indexOf(keyword) > -1 ||
                 keebObj.color.toLowerCase().indexOf(keyword) > -1 ||
                 keebObj.Parts[0].switches.toLowerCase().indexOf(keyword) > -1 ||
@@ -85,6 +86,7 @@ export default function Home(props) {
                                     size={keebObj.size}
                                     maker={keebObj.maker}
                                     case={keebObj.case}
+                                    angle={keebObj.angle}
                                     color={keebObj.color}
                                     plate={keebObj.plate}
                                     // Back side of Card

@@ -29,6 +29,9 @@ export default function AddKeebForm(props) {
                             <input onChange={props.handleInputChange} value={props.case} name='case' type="text" className="form-control" placeholder="Case" required/>
                         </div>
                         <div className="form-group">
+                            <input onChange={props.handleInputChange} value={props.angle} name='angle' type="text" className="form-control" placeholder="Angle" required/>
+                        </div>
+                        <div className="form-group">
                             <input onChange={props.handleInputChange} value={props.color} name='color' type="text" className="form-control" placeholder="Color" required/>
                         </div>
                         <div className="form-group">

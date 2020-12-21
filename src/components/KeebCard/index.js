@@ -17,6 +17,7 @@ export default function KeebCard(props) {
                                 <h5 className="card-title" style={{ textAlign: "center", color: "midnightblue" }}>{props.maker} {props.name}</h5>
                                 <ul className="list-group" style={{ listStyleType: "none" }}>
                                     <li className="list-group-item"><strong>Keeb Size:</strong> {props.size}%</li>
+                                    <li className="list-group-item"><strong>Angle:</strong> {props.angle}</li>
                                     <li className="list-group-item"><strong>Case:</strong> {props.case}</li>
                                     <li className="list-group-item"><strong>Color:</strong> {props.color}</li>
                                     <li className="list-group-item"><strong>Plate:</strong> {props.plate}</li>

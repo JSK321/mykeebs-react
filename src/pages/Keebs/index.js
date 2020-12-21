@@ -9,6 +9,7 @@ export default function Keebs(props) {
         size: "",
         maker: "",
         case: "",
+        angle: "",
         color: "",
         plate: ""
     })
@@ -100,6 +101,7 @@ export default function Keebs(props) {
             size={keebFormState.size}
             maker={keebFormState.maker}
             case={keebFormState.case}
+            angle={keebFormState.angle}
             color={keebFormState.color}
             plate={keebFormState.plate}
         />

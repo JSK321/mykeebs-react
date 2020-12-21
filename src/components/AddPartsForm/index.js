@@ -10,7 +10,7 @@ export default function AddPartsForm(props) {
                         <div className="form-group">
                             <select className="form-control" onChange={props.handleSelectKeeb} value={props.keeb} required>
                                 <option selected disabled value="">Select Keeb...</option>
-                                {props.Keeb != undefined ? (
+                                {props.Keeb !== undefined ? (
                                     props.Keeb.map(keebObj => <option key={keebObj.id}>{keebObj.name}</option>)
                                 ) : null}
                             </select>
