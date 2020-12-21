@@ -38,7 +38,7 @@ export default function Home(props) {
                 keebObj.plate.toLowerCase().indexOf(keyword) > -1 ||
                 keebObj.color.toLowerCase().indexOf(keyword) > -1 ||
                 keebObj.Parts[0].switches.toLowerCase().indexOf(keyword) > -1 ||
-                keebObj.parts[0].switchLube.toLowerCase().indexOf(keyword) >-1 ||
+                keebObj.Parts[0].switchLube.toLowerCase().indexOf(keyword) > -1 ||
                 keebObj.Parts[0].springWeight.toString().indexOf(keyword) > -1 ||
                 keebObj.Parts[0].springLube.toLowerCase().indexOf(keyword) > -1 ||
                 keebObj.Parts[0].switchFilm.toLowerCase().indexOf(keyword) > -1 ||
