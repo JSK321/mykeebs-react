@@ -6,6 +6,8 @@ import KeebUpdateCard from '../../components/KeebUpdateCard'
 export default function KeebDetail(props) {
     const [updateKeeb, setUpdateKeeb] = useState({
         keebId: "",
+        name:"",
+        maker:"",
         color: "",
         plate: "",
         keebImage: ""
@@ -58,6 +60,8 @@ export default function KeebDetail(props) {
         API.getOneKeeb(id).then(keebData => {
             setUpdateKeeb({
                 keebId: id,
+                name: keebData.name,
+                maker: keebData.maker,
                 color: keebData.color,
                 plate: keebData.plate,
                 keebImage: keebData.keebImage
@@ -183,6 +187,8 @@ export default function KeebDetail(props) {
                 handleUploadImage={handleUploadImage}
                 keebImage={updateKeeb.keebImage}
                 keebId={updateKeeb.keebId}
+                name={updateKeeb.name}
+                maker={updateKeeb.maker}
                 color={updateKeeb.color}
                 plate={updateKeeb.plate}
                 switches={updateParts.switches}
