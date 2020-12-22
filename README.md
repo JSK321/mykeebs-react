@@ -3,7 +3,10 @@
 [![GPLv3 license](https://img.shields.io/badge/License-MIT-blue.svg)](http://perso.crans.org/besson/LICENSE.html)
 
 ## Description
-A react application that is a display of one of my hobbies, custom mechanical keyboards. This application has full CRUD functionality. A user is able to register to upload keyboards (keebs) with its custom specifications.
+A react application that is a display of a hobby, custom mechanical keyboards. This application has full CRUD functionality and has PWA support. A user is able to register to upload keyboards (keebs) with its custom specifications.
+
+## React-Application
+View the application at https://mykeebs-react.herokuapp.com
         
 ## Table of Contents
 - [Installation](#installation)
@@ -25,7 +28,7 @@ NPM packages react, react-dom- react-router, react-router-dom, sequelize, jquery
 NPM packages cloudinary, bcrypt, cors, dotenv, express, jsonwebtoken, mysql2, and sequelize are required in the back-end.
 
 ## Usage
-A user is able to view custom mechanical keyboards. If a user registers, then they are able to add a new keeb to the home page. Only the owner of the keeb has full CRUD functionality which are only available if the user is logged in.
+A user is able to view custom mechanical keyboards, the search bar filters the custom keyboards based on the keyboards characteristics. If a user registers, then they are able to add a new keeb to the home page. Only the owner of the keeb has full CRUD functionality which are only available if the user is logged in.
         
 ## License
 This project uses MIT
