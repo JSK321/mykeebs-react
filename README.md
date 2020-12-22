@@ -6,7 +6,7 @@
 A react application that is a display of a hobby, custom mechanical keyboards. This application has full CRUD functionality and has PWA support. A user is able to register to upload keyboards (keebs) with its custom specifications.
 
 ## React-Application
-View the application at https://mykeebs-react.herokuapp.com
+View the application at: https://mykeebs-react.herokuapp.com
         
 ## Table of Contents
 - [Installation](#installation)
@@ -31,18 +31,18 @@ NPM packages cloudinary, bcrypt, cors, dotenv, express, jsonwebtoken, mysql2, an
 A user is able to view custom mechanical keyboards, the search bar filters the custom keyboards based on the keyboards characteristics. If a user registers, then they are able to add a new keeb to the home page. Only the owner of the keeb has full CRUD functionality which are only available if the user is logged in.
         
 ## Back-end
-The back-end server side is required to run the application locally, it is found here at https://github.com/JSK321/keebs-backend
+The back-end server side is required to run the application locally, it is found here at: https://github.com/JSK321/keebs-backend
 
 ## License
 This project uses MIT
 
 ## Contributors
-JSK321
+[JSK321](https://github.com/JSK321)
+
+CSS for the card flip [animation](https://davidwalsh.name/css-flip)
 
 ## Questions
-View my other projects!
-
-https://github.com/JSK321
+View my other [projects!](https://github.com/JSK321?tab=repositories)
 
 Have any questions?
 
