@@ -5,7 +5,7 @@ export default function KeebUpdateCard(props) {
     return (
         <div className="KeebUpdateCard">
             <div className="updateCard card" style={{backgroundColor:"honeydew"}}>
-                <h5 className="card-title" style={{ backgroundColor: "lightsteelblue", color: "midnightblue" }}>Update {props.maker} {props.name}</h5>
+                <h5 className="card-title" style={{ backgroundColor: "lightsteelblue", color: "midnightblue" }}><strong>Update {props.maker} {props.name}</strong></h5>
                 <form onSubmit={props.handleFormSubmit}>
                     {/* Image Preview */}
                     {props.loading ? (
