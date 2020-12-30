@@ -6,6 +6,7 @@ import NavBar from './components/NavBar'
 import Footer from './components/Footer'
 // Pages
 import Home from './pages/Home'
+import Profile from './pages/Profile'
 import Keebs from './pages/Keebs'
 import KeebDetail from './pages/KeebDetail'
 import Parts from './pages/Parts'
@@ -131,6 +132,11 @@ function App() {
             profile={profileState}
           />
           <Footer />
+        </Route>
+        <Route exact path="/profile/:id">
+          <Profile
+            profile={profileState}
+          />
         </Route>
         <Route exact path="/addkeebform">
           <Keebs
