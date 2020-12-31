@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function NavBar(props) {
     return (
-        <nav className="navbar" style={{ backgroundColor: "midnightblue",}}>
+        <nav className="navbar" style={{ backgroundColor: "midnightblue", }}>
             <ul className="nav">
                 <li className="nav-item">
                     <Link className="nav-link" to="/" style={{ color: "mintcream" }}>Home</Link>
@@ -74,18 +74,31 @@ export default function NavBar(props) {
             <ul className="nav">
                 {props.isLoggedIn ?
                     <li>
+                        <Link to="/profile"
+                            className="nav-link"
+                            style={{ color: "mintcream" }}>
+                            Profile
+                        </Link>
+                    </li>
+                    :
+                    null
+                }
+
+                {props.isLoggedIn ?
+                    <li>
                         <button
                             onClick={props.handleLogOut}
                             className="signOutBtn btn btn-link"
                             style={{ color: "mintcream" }}>
                             Log Out
                         </button>
-                    </li> :
+                    </li>
+
+                    :
 
                     <li>
                         <Link to='/register'
-                            // onClick={props.handleLogOut}
-                             className="nav-link"
+                            className="nav-link"
                             style={{ color: "mintcream" }}>
                             Register
                         </Link>

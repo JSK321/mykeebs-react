@@ -13,10 +13,10 @@ export default function UserProfile(props) {
                     <div className="col-md-8">
                         <div className="card-body">
                             <ul class="list-group">
-                                <h5 class="card-title" style={{textAlign:"center", color:"midnightblue"}}>Profile Information</h5>
+                                <h5 class="card-title" style={{ textAlign: "center", color: "midnightblue" }}><strong>Profile Information</strong></h5>
                                 <li class="list-group-item"><strong>Name:</strong> {props.name}</li>
                                 <li class="list-group-item"><strong>Email:</strong> {props.email}</li>
-                                <li class="list-group-item"><strong><Link to={`/updateprofile/${props.id}`}>Update Profile</Link></strong></li>
+                                <li class="list-group-item" style={{ textAlign: "center", }}><strong><Link to={`/updateprofile/${props.id}`} style={{ color: "midnightblue" }}>Update Profile</Link></strong></li>
                             </ul>
                         </div>
                     </div>

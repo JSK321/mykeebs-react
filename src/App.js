@@ -118,6 +118,7 @@ function App() {
         email={loginFormState.email}
         password={loginFormState.password}
         isLoggedIn={profileState.isLoggedIn}
+        id={profileState.id}
       />
       <Switch>
         <Route exact path="/">
@@ -133,7 +134,7 @@ function App() {
           />
           <Footer />
         </Route>
-        <Route exact path="/profile/:id">
+        <Route exact path="/profile">
           <Profile
             profile={profileState}
           />

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
 import UserProfile from '../../components/UserProfile'
+import ViewKeebs from '../../components/ViewKeebs'
 import API from '../../utils/API'
 
 export default function Profile(props) {
@@ -8,9 +8,8 @@ export default function Profile(props) {
         email: "",
         name: "",
         password: "",
+        id:""
     })
-
-    const { id } = useParams()
 
     useEffect(() => {
         const token = localStorage.getItem('token')
@@ -21,6 +20,7 @@ export default function Profile(props) {
                     email: keebData.email,
                     keebs: keebData.Keebs,
                     token: token,
+                    id: keebData.id,
                     isLoggedIn: true
                 })
             } else {
@@ -30,6 +30,7 @@ export default function Profile(props) {
                     email: "",
                     keebs: [],
                     token: "",
+                    id: "",
                     isLoggedIn: false
                 })
             }
@@ -37,10 +38,32 @@ export default function Profile(props) {
     }, [])
 
     return (
-        <UserProfile
-            name={userProfile.name}
-            email={userProfile.email}
-            id={props.profile.id}
-        />
+        <div>
+            <UserProfile
+                name={userProfile.name}
+                email={userProfile.email}
+                id={userProfile.id}
+            />
+            
+            <h5 style={{textAlign:"center", color:"midnightblue", marginTop:"15px"}}><strong>Keebs</strong></h5>
+            
+            <div className="container">
+                <div className="row">
+                    {props.profile.keebs !== null ?
+                        props.profile.keebs
+                            .map(keebs =>
+                                <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <ViewKeebs
+                                        key={keebs.id}
+                                        maker={keebs.maker}
+                                        name={keebs.name}
+                                        id={keebs.id}
+                                    />
+                                </div>
+                            )
+                        : null}
+                </div>
+            </div>
+        </div>
     )
 }

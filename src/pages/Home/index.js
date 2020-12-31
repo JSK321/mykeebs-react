@@ -79,9 +79,10 @@ export default function Home(props) {
                 {keebInfo.keebs !== null ?
                     keebInfo.keebs
                         .map(keebObj => (
-                            <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-12"  key={keebObj.id}>
+                            <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <KeebCard
                                     // Front side of Card
+                                    key={keebObj.id}
                                     keebImage={keebObj.keebImage}
                                     name={keebObj.name}
                                     size={keebObj.size}
