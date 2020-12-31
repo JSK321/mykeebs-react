@@ -7,6 +7,7 @@ import Footer from './components/Footer'
 // Pages
 import Home from './pages/Home'
 import Profile from './pages/Profile'
+import UpdateProfile from './pages/UpdateProfile'
 import Keebs from './pages/Keebs'
 import KeebDetail from './pages/KeebDetail'
 import Parts from './pages/Parts'
@@ -138,6 +139,9 @@ function App() {
           <Profile
             profile={profileState}
           />
+        </Route>
+        <Route exact path="/updateprofile">
+          <UpdateProfile />
         </Route>
         <Route exact path="/addkeebform">
           <Keebs

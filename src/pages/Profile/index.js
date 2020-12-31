@@ -8,6 +8,7 @@ export default function Profile(props) {
         email: "",
         name: "",
         password: "",
+        profileImage:"",
         id:""
     })
 
@@ -43,6 +44,7 @@ export default function Profile(props) {
                 name={userProfile.name}
                 email={userProfile.email}
                 id={userProfile.id}
+                imageProfile={userProfile.imageProfile}
             />
             
             <h5 style={{textAlign:"center", color:"midnightblue", marginTop:"15px"}}><strong>Keebs</strong></h5>

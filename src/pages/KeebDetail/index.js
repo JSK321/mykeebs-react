@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import API from "../../utils/API"
 import KeebUpdateCard from '../../components/KeebUpdateCard'
+import API from "../../utils/API"
 
 export default function KeebDetail(props) {
     const [updateKeeb, setUpdateKeeb] = useState({
@@ -130,7 +130,6 @@ export default function KeebDetail(props) {
             keebImage: file.secure_url
         })
         setLoading(false)
-
     }
 
     const handleFormSubmit = event => {

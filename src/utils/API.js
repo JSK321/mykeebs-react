@@ -105,6 +105,30 @@ const API = {
         })
     },
 
+    // Update User Function
+    updateUser: function (id, token, name, email, password) {
+        return fetch (`${URL_PREFIX}/api/users/${id}`, {
+            method:"PUT",
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+               name: name,
+               email: email,
+               password: password
+            })
+        }).then(res => {
+            if(res.ok){
+                alert("Profile updated!")
+                return res.json()
+            } else {
+                alert("Log in to update profile!")
+                throw new Error("Something went wrong")
+            }
+        }).catch(err => null)
+    },
+
     // Update Keeb function
     updateKeeb: function (id, token, color, plate, keebImage) {
         return fetch(`${URL_PREFIX}/api/keebs/${id}`, {
