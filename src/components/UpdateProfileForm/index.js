@@ -19,7 +19,7 @@ export default function UpdateProfileForm(props) {
                             <h3 style={{ color: "midnightblue" }}><strong>Loading Image...</strong></h3>
                         ) :
                             (
-                                <img src={props.keebImage ? (props.keebImage) : null} style={props.keebImage ? ({ maxWidth: '100%', height: 'auto', maxHeight: "300px", marginBottom: '12px' }) : null} />
+                                <img src={props.profileImage ? (props.profileImage) : null} style={props.profileImage ? ({ maxWidth: '100%', height: 'auto', maxHeight: "300px", marginBottom: '12px' }) : null} />
                             )}
                         <div className="form-group">
                             <input
@@ -37,7 +37,6 @@ export default function UpdateProfileForm(props) {
                                 type="email"
                                 name="email"
                                 placeholder={props.email !== "" ? props.email : "Email"}
-                                required
                             />
                         </div>
                         <div className="form-group">
@@ -48,7 +47,6 @@ export default function UpdateProfileForm(props) {
                                 name="password"
                                 placeholder="Password"
                                 aria-describedby="passwordHelpBlock"
-                                required
                             />
                             <small id="passwordHelpBlock" className="form-text text-muted">
                                 Password must be at least 8 characters long.

@@ -14,14 +14,15 @@ export default function Profile(props) {
 
     useEffect(() => {
         const token = localStorage.getItem('token')
-        API.getProfile(token).then(keebData => {
-            if (keebData) {
+        API.getProfile(token).then(profileData => {
+            if (profileData) {
                 setUserProfile({
-                    name: keebData.name,
-                    email: keebData.email,
-                    keebs: keebData.Keebs,
+                    name: profileData.name,
+                    email: profileData.email,
+                    keebs: profileData.Keebs,
                     token: token,
-                    id: keebData.id,
+                    id: profileData.id,
+                    profileImage: profileData.profileImage,
                     isLoggedIn: true
                 })
             } else {
@@ -32,6 +33,7 @@ export default function Profile(props) {
                     keebs: [],
                     token: "",
                     id: "",
+                    profileImage: "",
                     isLoggedIn: false
                 })
             }
@@ -44,7 +46,7 @@ export default function Profile(props) {
                 name={userProfile.name}
                 email={userProfile.email}
                 id={userProfile.id}
-                imageProfile={userProfile.imageProfile}
+                profileImage={userProfile.profileImage}
             />
             
             <h5 style={{textAlign:"center", color:"midnightblue", marginTop:"15px"}}><strong>Keebs</strong></h5>

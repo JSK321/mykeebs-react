@@ -26,6 +26,7 @@ function App() {
     email: "",
     keebs: [],
     token: "",
+    profileImage: "",
     id: "",
     isLoggedIn: false
   })
@@ -44,6 +45,7 @@ function App() {
             email: profileData.email,
             keebs: profileData.Keebs,
             token: token,
+            profileImage: profileData.profileImage,
             id: profileData.id,
             isLoggedIn: true
           })
@@ -54,6 +56,7 @@ function App() {
             email: "",
             keebs: [],
             token: "",
+            profileImage: "",
             id: "",
             isLoggedIn: false
           })

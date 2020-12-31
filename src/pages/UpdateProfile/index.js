@@ -16,13 +16,14 @@ export default function UpdateProfile() {
 
     useEffect(() => {
         const token = localStorage.getItem('token')
-        API.getProfile(token).then(keebData => {
-            if (keebData) {
+        API.getProfile(token).then(profileData => {
+            if (profileData) {
                 setUserProfile({
-                    name: keebData.name,
-                    email: keebData.email,
+                    name: profileData.name,
+                    email: profileData.email,
                     token: token,
-                    id: keebData.id,
+                    id: profileData.id,
+                    profileImage: profileData.profileImage,
                     isLoggedIn: true
                 })
             } else {
@@ -32,6 +33,7 @@ export default function UpdateProfile() {
                     email: "",
                     token: "",
                     id: "",
+                    profileImage: "",
                     isLoggedIn: false
                 })
             }
@@ -74,13 +76,15 @@ export default function UpdateProfile() {
             userProfile.token,
             userProfile.name,
             userProfile.email,
-            userProfile.password
+            userProfile.password,
+            userProfile.profileImage
         ).then(userData => {
             setUserProfile({
                 ...userProfile,
-                name: userData.name,
-                email: userData.email,
-                password: userData.password
+                name: userProfile.name,
+                email: userProfile.email,
+                password: userProfile.password,
+                profileImage: userProfile.profileImage
             })
         })
 
@@ -95,6 +99,8 @@ export default function UpdateProfile() {
                 handleFormSubmit={handleFormSubmit}
                 name={userProfile.name}
                 email={userProfile.email}
+                profileImage={userProfile.profileImage}
+                loading={loading}
             />
         </div>
     )

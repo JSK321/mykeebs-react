@@ -8,7 +8,10 @@ export default function UserProfile(props) {
             <div className="card profileCard" style={{ maxWidth: "540px" }}>
                 <div className="row no-gutters">
                     <div className="col-md-4">
-                        <img src={props.imageProfile} />
+                        <img 
+                        src={props.profileImage} 
+                        style={{ width: "100%", height: "auto", maxHeight:"300px", display: "block", marginRight: "auto", marginLeft: "auto",}}
+                        />
                     </div>
                     <div className="col-md-8">
                         <div className="card-body">

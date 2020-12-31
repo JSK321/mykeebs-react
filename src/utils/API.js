@@ -106,7 +106,7 @@ const API = {
     },
 
     // Update User Function
-    updateUser: function (id, token, name, email, password) {
+    updateUser: function (id, token, name, email, password, profileImage) {
         return fetch (`${URL_PREFIX}/api/users/${id}`, {
             method:"PUT",
             headers: {
@@ -116,7 +116,8 @@ const API = {
             body: JSON.stringify({
                name: name,
                email: email,
-               password: password
+               password: password,
+               profileImage: profileImage
             })
         }).then(res => {
             if(res.ok){
