@@ -43,7 +43,7 @@ export default function KeebCard(props) {
                                             <strong>Sound Test</strong>
                                         </Link>
                                     </li> */}
-                                    {props.isLoggedIn ?
+                                    {/* {props.isLoggedIn ?
                                         <li
                                             className="list-group-item"
                                             style={{ textAlign: "center" }}>
@@ -54,7 +54,7 @@ export default function KeebCard(props) {
                                             </Link>
                                         </li>
                                         :
-                                        null}
+                                        null} */}
                                 </ul>
                             </div>
                         </div>
