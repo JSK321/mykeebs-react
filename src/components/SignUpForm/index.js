@@ -10,7 +10,7 @@ export default function SignUpForm(props) {
                         backgroundColor: "lightsteelblue",
                         color: "midnightblue"
                     }}>
-                    Register
+                    <strong>Register</strong>
                 </h5>
                 <div className="card-body" style={{ backgroundColor: "honeydew" }}>
                     <form onSubmit={props.handleFormSubmit}>
@@ -44,7 +44,7 @@ export default function SignUpForm(props) {
                                 required
                             />
                             <small id="passwordHelpBlock" className="form-text text-muted">
-                                Password must be at least 8 characters long.
+                                Password must be at least 8 characters.
                         </small>
                         </div>
                         <div className="form-group">

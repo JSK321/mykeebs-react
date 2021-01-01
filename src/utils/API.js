@@ -122,6 +122,7 @@ const API = {
         }).then(res => {
             if(res.ok){
                 alert("Profile updated!")
+                window.location.href = "/profile"
                 return res.json()
             } else {
                 alert("Log in to update profile!")
@@ -180,6 +181,25 @@ const API = {
             }
         }).catch(err => null)
     },
+
+    // Delete user function
+    deleteUser: function (token, userId) {
+        return fetch(`${URL_PREFIX}/api/users/${userId}`, {
+            method: "DELETE",
+            headers: {
+                'authorization': `Bearer ${token}`
+            },
+        }).then(res => {
+            if(res.ok){
+                alert("Profile deleted!")
+                window.location.href = "/"
+            } else {
+                alert("Log in to delete profile!")
+                throw new Error("Something went wrong")
+            }
+        }).catch(err => null)
+    },
+
     // Delete Keeb function
     deleteKeeb: function (token, keebId) {
         return fetch(`${URL_PREFIX}/api/keebs/${keebId}`, {
@@ -189,7 +209,7 @@ const API = {
             },
         }).then(res => {
             if(res.ok){
-                alert("Keeb Deleted!")
+                alert("Keeb deleted!")
                 window.location.href = "/"
             } else {
                 alert("Log in to delete keeb!")

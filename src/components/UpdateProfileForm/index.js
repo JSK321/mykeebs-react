@@ -10,8 +10,8 @@ export default function UpdateProfileForm(props) {
                         backgroundColor: "lightsteelblue",
                         color: "midnightblue"
                     }}>
-                    Update Profile
-            </h5>
+                    <strong>Update Profile</strong>
+                </h5>
                 <div className="card-body" style={{ backgroundColor: "honeydew" }}>
                     <form onSubmit={props.handleFormSubmit}>
                         {/* Image Preview */}
@@ -49,26 +49,33 @@ export default function UpdateProfileForm(props) {
                                 aria-describedby="passwordHelpBlock"
                             />
                             <small id="passwordHelpBlock" className="form-text text-muted">
-                                Password must be at least 8 characters long.
-                    </small>
+                                Password must be at least 8 characters.
+                            </small>
                         </div>
-                        <div className="form-group">
-                            <input type="submit" className="addKeebBtn btn btn-primary" value="Submit" />
+                        <div>
+                            <input type="submit" className="addKeebBtn btn btn-primary" value="Update Profile" />
                         </div>
-                        {/* Upload Image Button */}
-                        <input
-                            type="button"
-                            id="loadFileXml"
-                            value="Upload Image"
-                            onClick={props.handleImageUploadBtn}
-                            className="fileInput btn btn-primary"
-                        />
-                        <input
-                            type="file" onChange={props.handleUploadImage}
-                            style={{ display: "none", }}
-                            id="image"
-                            name="profileImage" />
                     </form>
+                    {/* Upload Image Button */}
+                    <input
+                        type="button"
+                        id="loadFileXml"
+                        value="Upload Image"
+                        onClick={props.handleImageUploadBtn}
+                        className="fileInput btn btn-primary"
+                    />
+                    <input
+                        type="file" onChange={props.handleUploadImage}
+                        style={{ display: "none", }}
+                        id="image"
+                        name="profileImage" />
+                    {/* Delete Button */}
+                    <input
+                        className="fileInput btn btn-primary"
+                        onClick={props.handleDeleteProfile}
+                        type="submit"
+                        value="Delete Profile">
+                    </input>
                 </div>
             </div>
         </div>

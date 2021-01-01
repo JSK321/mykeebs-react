@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
 import UpdateProfileForm from '../../components/UpdateProfileForm'
 import API from '../../utils/API'
 
@@ -46,6 +45,14 @@ export default function UpdateProfile() {
             ...userProfile,
             [name]: value
         })
+    }
+
+    const handleDeleteProfile = event => {
+        event.preventDefault()
+        let confirmAlert = window.confirm("Are you certain to delete profile?")
+        if(confirmAlert === true){
+            API.deleteUser(userProfile.token, userProfile.id)
+        }
     }
 
     // Cloudinary Functions
@@ -96,6 +103,7 @@ export default function UpdateProfile() {
                 handleInputChange={handleInputChange}
                 handleImageUploadBtn={handleImageUploadBtn}
                 handleUploadImage={handleUploadImage}
+                handleDeleteProfile={handleDeleteProfile}
                 handleFormSubmit={handleFormSubmit}
                 name={userProfile.name}
                 email={userProfile.email}

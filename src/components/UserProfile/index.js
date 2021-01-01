@@ -9,8 +9,9 @@ export default function UserProfile(props) {
                 <div className="row no-gutters">
                     <div className="col-md-4">
                         <img 
-                        src={props.profileImage} 
-                        style={{ width: "100%", height: "auto", maxHeight:"300px", display: "block", marginRight: "auto", marginLeft: "auto",}}
+                        src={props.profileImage ? props.profileImage : null} 
+                        style={{ width: "100%", height:"100%"}}
+                        
                         />
                     </div>
                     <div className="col-md-8">
