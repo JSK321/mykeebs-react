@@ -1,11 +1,11 @@
-.KeebUpdateCard {
+/* .KeebUpdateCard {
     width: 22rem;
     height: 30rem;
     text-align: center;
     margin: 0 auto;
     float: none;
     margin-top: 10px;
-}
+} */
 
 .updateCard {
     border: 2px solid slateblue;
@@ -34,6 +34,7 @@
 }
 
 .inputLabel {
+    text-align: center;
     background-color: lightsteelblue;
     width:100%;
     margin-bottom: 0px;
