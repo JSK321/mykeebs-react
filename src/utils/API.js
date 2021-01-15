@@ -1,5 +1,5 @@
-// const URL_PREFIX = "http://localhost:8080"
-const URL_PREFIX = "https://mykeebs-api.herokuapp.com"
+const URL_PREFIX = "http://localhost:8080"
+// const URL_PREFIX = "https://mykeebs-api.herokuapp.com"
 
 const API = {
     // Log In function
@@ -59,6 +59,11 @@ const API = {
         return fetch(`${URL_PREFIX}/api/parts/${partId}`, {
         }).then(res => res.json()).catch(err => null)
     },
+    // Retrieve all extra keysets
+    getAllExtraKeysets: function() {
+        return fetch(`${URL_PREFIX}/api/extras`, {      
+        }).then(res => res.json()).catch(err => null)
+    },
     //Create new Keeb function
     createKeeb: function (token, keebData) {
         return fetch(`${URL_PREFIX}/api/keebs/`, {
@@ -93,6 +98,25 @@ const API = {
                 return res.json()
             } else {
                 alert("Log in to add parts!")
+                throw new Error("Something went wrong")
+            }
+        }).catch(err => null)
+    },
+    // Create Add Extra Keysets function
+    createAddKeysets: function(token, keysetData){
+        return fetch (`${URL_PREFIX}/api/extras`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(keysetData)
+        }).then(res => {
+            if(res.ok){
+                alert("Extra keyset added!")
+                return res.json()
+            } else {
+                alert("Log in to add extra keysets!")
                 throw new Error("Something went wrong")
             }
         }).catch(err => null)

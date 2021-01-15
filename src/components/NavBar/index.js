@@ -9,18 +9,18 @@ export default function NavBar(props) {
                     <Link className="nav-link" to="/" style={{ color: "mintcream" }}>Home</Link>
                 </li>
                 {props.isLoggedIn ?
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/addkeebform" style={{ color: "mintcream" }}>Add Keeb</Link>
-                    </li>
-                    // <li className="nav-item dropdown">
-                    //     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    //         Add...
-                    // </a>
-                    //     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    //         <Link to="/addkeebform" className="dropdown-item" >Add Keeb</Link>
-                    //         <Link to="/addpartsform" className="dropdown-item" >Add Parts</Link>
-                    //     </div>
+                    // <li className="nav-item">
+                    //     <Link className="nav-link" to="/addkeebform" style={{ color: "mintcream" }}>Add Keeb</Link>
                     // </li>
+                    <li className="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" style={{ color: "mintcream" }} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Add...
+                    </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <Link to="/addkeebform" className="dropdown-item" >Keeb</Link>
+                            <Link to="/addextrakeysetform" className="dropdown-item" >Keyset</Link>
+                        </div>
+                    </li>
                     :
                     <li className="nav-item">
                         <button className="btn btn-link logInBtn" data-toggle="modal" data-target="#logInModal" style={{ color: "mintcream" }}>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import UserProfile from '../../components/UserProfile'
 import ViewKeebs from '../../components/ViewKeebs'
+import ViewKeysets from '../../components/ViewKeysets'
 import API from '../../utils/API'
 
 export default function Profile(props) {
@@ -8,8 +9,12 @@ export default function Profile(props) {
         email: "",
         name: "",
         password: "",
-        profileImage:"",
-        id:""
+        profileImage: "",
+        id: ""
+    })
+
+    const [extraKeysets, setExtraKeysets] = useState({
+        extras: []
     })
 
     useEffect(() => {
@@ -38,6 +43,12 @@ export default function Profile(props) {
                 })
             }
         })
+
+        API.getAllExtraKeysets().then(data => {
+            setExtraKeysets({
+                extras: data
+            })
+        })
     }, [])
 
     return (
@@ -48,9 +59,9 @@ export default function Profile(props) {
                 id={userProfile.id}
                 profileImage={userProfile.profileImage}
             />
-            
-            <h5 style={{textAlign:"center", color:"midnightblue", marginTop:"15px"}}><strong>Keebs</strong></h5>
-            
+
+            <h5 style={{ textAlign: "center", color: "midnightblue", marginTop: "15px" }}><strong>Keebs</strong></h5>
+
             <div className="container">
                 <div className="row">
                     {props.profile.keebs !== null ?
@@ -62,6 +73,24 @@ export default function Profile(props) {
                                         maker={keebs.maker}
                                         name={keebs.name}
                                         id={keebs.id}
+                                    />
+                                </div>
+                            )
+                        : null}
+                </div>
+
+                <h5 style={{ textAlign: "center", color: "midnightblue", marginTop: "15px" }}><strong>Keysets</strong></h5>
+                <div className="row">
+                    {extraKeysets.extras !== null ?
+                        extraKeysets.extras
+                            .map(keysets =>
+                                <div className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                    <ViewKeysets
+                                        key={keysets.id}
+                                        keyset={keysets.keyset}
+                                        kits={keysets.kits}
+                                        type={keysets.type}
+                                        profile={keysets.profile}
                                     />
                                 </div>
                             )

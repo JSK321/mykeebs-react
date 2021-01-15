@@ -11,6 +11,7 @@ import UpdateProfile from './pages/UpdateProfile'
 import Keebs from './pages/Keebs'
 import KeebDetail from './pages/KeebDetail'
 import Parts from './pages/Parts'
+import ExtraKeysets from './pages/ExtraKeysets'
 import Register from './pages/Register'
 import NoMatch from './pages/NoMatch'
 
@@ -159,6 +160,11 @@ function App() {
         </Route>
         <Route exact path="/addpartsform">
           <Parts
+            profile={profileState}
+          />
+        </Route>
+        <Route exact path="/addextrakeysetform">
+          <ExtraKeysets
             profile={profileState}
           />
         </Route>

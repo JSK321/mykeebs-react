@@ -83,7 +83,6 @@ export default function Keebs(props) {
                         name: "",
                         email: "",
                         keebs: [],
-                        parts: [],
                         token: "",
                         isLoggedIn: false
                     })
