@@ -6,8 +6,8 @@ import API from "../../utils/API"
 export default function KeebDetail(props) {
     const [updateKeeb, setUpdateKeeb] = useState({
         keebId: "",
-        name:"",
-        maker:"",
+        name: "",
+        maker: "",
         color: "",
         plate: "",
         keebImage: ""
@@ -58,27 +58,31 @@ export default function KeebDetail(props) {
 
     function loadKeeb() {
         API.getOneKeeb(id).then(keebData => {
-            setUpdateKeeb({
-                keebId: id,
-                name: keebData.name,
-                maker: keebData.maker,
-                color: keebData.color,
-                plate: keebData.plate,
-                keebImage: keebData.keebImage
-            })
+            if (keebData) {
+                setUpdateKeeb({
+                    keebId: id,
+                    name: keebData.name,
+                    maker: keebData.maker,
+                    color: keebData.color,
+                    plate: keebData.plate,
+                    keebImage: keebData.keebImage
+                })
+            }
 
         })
         API.getOneParts(id).then(partsData => {
-            setUpdateParts({
-                switches: partsData.switches,
-                switchLube: partsData.switchLube,
-                springWeight: partsData.springWeight,
-                springLube: partsData.springLube,
-                switchFilm: partsData.switchFilm,
-                stabs: partsData.stabs,
-                stabLube: partsData.stabLube,
-                keyset: partsData.keyset
-            })
+            if (partsData) {
+                setUpdateParts({
+                    switches: partsData.switches,
+                    switchLube: partsData.switchLube,
+                    springWeight: partsData.springWeight,
+                    springLube: partsData.springLube,
+                    switchFilm: partsData.switchFilm,
+                    stabs: partsData.stabs,
+                    stabLube: partsData.stabLube,
+                    keyset: partsData.keyset
+                })
+            }
         })
     }
 
