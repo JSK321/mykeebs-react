@@ -11,7 +11,9 @@ import UpdateProfile from './pages/UpdateProfile'
 import Keebs from './pages/Keebs'
 import KeebDetail from './pages/KeebDetail'
 import Parts from './pages/Parts'
+import Keysets from './pages/Keysets'
 import ExtraKeysets from './pages/ExtraKeysets'
+import UpdateKeyset from './pages/UpdateKeyset'
 import Register from './pages/Register'
 import NoMatch from './pages/NoMatch'
 
@@ -26,6 +28,7 @@ function App() {
     name: "",
     email: "",
     keebs: [],
+    keysets: [],
     token: "",
     profileImage: "",
     id: "",
@@ -45,6 +48,7 @@ function App() {
             name: profileData.name,
             email: profileData.email,
             keebs: profileData.Keebs,
+            keysets: profileData.Extras,
             token: token,
             profileImage: profileData.profileImage,
             id: profileData.id,
@@ -167,6 +171,12 @@ function App() {
           <ExtraKeysets
             profile={profileState}
           />
+        </Route>
+        <Route exact path="/keyset/:id">
+          <Keysets />
+        </Route>
+        <Route exact path="/updatekeyset/:id">
+            <UpdateKeyset />
         </Route>
         <Route exact path="/register">
           <Register />

@@ -1,0 +1,13 @@
+.KeysetCard{
+    width: 26rem;
+    height: 30rem;
+    margin: 0 auto;
+    float: none;
+    margin-top: 10px;
+}
+
+.Keyset {
+    background-color: honeydew;
+    border: 2px solid slateblue;
+    box-shadow: 5px 5px 5px mediumslateblue;
+}

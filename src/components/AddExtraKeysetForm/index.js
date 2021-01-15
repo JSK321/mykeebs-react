@@ -43,11 +43,11 @@ export default function AddExtraKeysetForm(props) {
                         <div className="form-group">
                             <input
                                 onChange={props.handleInputChange}
-                                value={props.maker}
-                                name='maker'
+                                value={props.material}
+                                name='material'
                                 type="text"
                                 className="form-control"
-                                placeholder="Maker"
+                                placeholder="Material"
                                 required
                             />
                         </div>

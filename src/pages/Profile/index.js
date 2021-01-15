@@ -88,7 +88,7 @@ export default function Profile(props) {
                                     <ViewKeysets
                                         key={keysets.id}
                                         keyset={keysets.keyset}
-                                        maker={keysets.maker}
+                                        type={keysets.type}
                                         id={keysets.id}
                                     />
                                 </div>
