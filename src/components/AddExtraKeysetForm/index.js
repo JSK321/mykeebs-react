@@ -66,7 +66,7 @@ export default function AddExtraKeysetForm(props) {
                             <input
                                 type='submit'
                                 className="addKeebBtn btn btn-primary"
-                                value="Add Keeb"
+                                value="Add Keyset"
                             />
                         </div>
                     </form>
