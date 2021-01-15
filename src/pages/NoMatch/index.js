@@ -15,7 +15,6 @@ export default function NoMatch() {
             >
                 <div className="card-body">
                     <h4 className="card-title"><strong>Error 404: No page found.</strong></h4>
-                    <img src="https://i.imgur.com/jMAUk7U.jpg?1" />
                 </div>
             </div>
         </div>

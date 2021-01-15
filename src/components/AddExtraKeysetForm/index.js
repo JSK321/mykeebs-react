@@ -6,9 +6,7 @@ export default function AddExtraKeysetForm(props) {
             <div className="card addKeeb">
                 <h5 className="card-header" style={{ backgroundColor: "lightsteelblue", color: "midnightblue" }}><strong>Add Extra Keyset!</strong></h5>
                 <div className="card-body" style={{ backgroundColor: "honeydew" }}>
-                    <form 
-                    onSubmit={props.handleFormSubmit}
-                    >
+                    <form onSubmit={props.handleFormSubmit}>
                         <div className="form-group">
                             <input
                                 onChange={props.handleInputChange}
@@ -39,6 +37,17 @@ export default function AddExtraKeysetForm(props) {
                                 type="text"
                                 className="form-control"
                                 placeholder="Type"
+                                required
+                            />
+                        </div>
+                        <div className="form-group">
+                            <input
+                                onChange={props.handleInputChange}
+                                value={props.maker}
+                                name='maker'
+                                type="text"
+                                className="form-control"
+                                placeholder="Maker"
                                 required
                             />
                         </div>

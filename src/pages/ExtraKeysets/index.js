@@ -8,6 +8,7 @@ export default function ExtraKeysets(props) {
         keyset: "",
         kits: "",
         type: "",
+        maker:"",
         profile: ""
     })
 
@@ -66,6 +67,7 @@ export default function ExtraKeysets(props) {
                 keyset={addExtraKeyetState.keyset}
                 kits={addExtraKeyetState.kits}
                 type={addExtraKeyetState.type}
+                maker={addExtraKeyetState.maker}
                 profile={addExtraKeyetState.profile}
             />
         </div>
