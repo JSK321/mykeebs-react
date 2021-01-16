@@ -16,9 +16,9 @@ export default function NavBar(props) {
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" style={{ color: "mintcream" }} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Add...
                     </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <Link to="/addkeebform" className="dropdown-item" >Keeb</Link>
-                            <Link to="/addextrakeysetform" className="dropdown-item" >Keyset</Link>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style={{ backgroundColor: "honeydew" }}>
+                            <Link to="/addkeebform" className="dropdown-item" style={{ color: "midnightblue" }}><strong>Keeb</strong></Link>
+                            <Link to="/addextrakeysetform" className="dropdown-item" style={{ color: "midnightblue" }}><strong>Keyset</strong></Link>
                         </div>
                     </li>
                     :
@@ -30,12 +30,12 @@ export default function NavBar(props) {
                             <div className="modal-dialog">
                                 <div className="modal-content" style={{ backgroundColor: "honeydew" }}>
                                     <div className="modal-header">
-                                        <h5 className="modal-title" id="staticBackdropLabel" style={{ color: "midnightblue" }}>Keeb Admin</h5>
+                                        <h5 className="modal-title" id="staticBackdropLabel" style={{ color: "midnightblue" }}><strong>Keeb User</strong></h5>
                                         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <div className="modal-body" style={{ display: "inline-blick", marginLeft: "auto", marginRight: "auto", textAlign: "center" }}>
+                                    <div className="modal-body" style={{ display: "inline-block", marginLeft: "auto", marginRight: "auto", textAlign: "center" }}>
                                         <form onSubmit={props.handleFormSubmit}>
                                             <input
                                                 onChange={props.handleInputChange}

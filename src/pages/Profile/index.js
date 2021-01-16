@@ -46,9 +46,8 @@ export default function Profile(props) {
                 profileImage={userProfile.profileImage}
             />
 
-            <h5 style={{ textAlign: "center", color: "midnightblue", marginTop: "15px" }}><strong>Keebs</strong></h5>
-
             <div className="container">
+                <h3 style={{ textAlign: "center", color: "midnightblue", marginTop: "15px" }}><strong>Keebs</strong></h3>
                 <div className="row">
                     {props.profile.keebs !== null ?
                         props.profile.keebs
@@ -65,7 +64,7 @@ export default function Profile(props) {
                         : null}
                 </div>
 
-                <h5 style={{ textAlign: "center", color: "midnightblue", marginTop: "15px" }}><strong>Keysets</strong></h5>
+                <h3 style={{ textAlign: "center", color: "midnightblue", marginTop: "15px" }}><strong>Keysets</strong></h3>
                 <div className="row">
                     {props.profile.keysets !== null ?
                         props.profile.keysets

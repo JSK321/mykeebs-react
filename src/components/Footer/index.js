@@ -5,7 +5,7 @@ export default function Footer() {
         <div className="Footer">
             <nav className="footer relative-bottom">
                 <div className="container-fluid" style={{textAlign:"center", color:"midnightblue", marginTop:"10px"}}>
-                    <p>© Copyright JSK 2020</p>
+                    <p><strong>© Copyright JSK 2020</strong></p>
                 </div>
             </nav>
         </div>

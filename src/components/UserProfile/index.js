@@ -10,7 +10,7 @@ export default function UserProfile(props) {
                     <div className="col-md-4">
                         <img 
                         src={props.profileImage ? props.profileImage : null} 
-                        style={{ width: "100%", height:"100%"}}
+                        style={{ width: "100%", height:"auto"}}
                         
                         />
                     </div>

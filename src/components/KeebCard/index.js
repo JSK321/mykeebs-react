@@ -20,7 +20,7 @@ export default function KeebCard(props) {
                                     <li className="list-group-item"><strong>Angle:</strong> {props.angle}</li>
                                     <li className="list-group-item"><strong>Case:</strong> {props.case}</li>
                                     <li className="list-group-item"><strong>Color:</strong> {props.color}</li>
-                                    <li className="list-group-item"><strong>Plate:</strong> {props.plate}</li>
+                                    <li className="list-group-item"><strong>Keyset:</strong> {props.keyset}</li>
                                 </ul>
                             </div>
                         </div>
@@ -34,7 +34,7 @@ export default function KeebCard(props) {
                                     <li className="list-group-item"><strong>Spring Lube:</strong> {props.springLube}</li>
                                     <li className="list-group-item"><strong>Stabilizers:</strong> {props.stabs}</li>
                                     <li className="list-group-item"><strong>Stabilizers Lube:</strong> {props.stabLube}</li>
-                                    <li className="list-group-item"><strong>Keyset:</strong> {props.keyset}</li>
+                                    <li className="list-group-item"><strong>Plate:</strong> {props.plate}</li>
                                     {/* Buttons */}
                                     {/* <li
                                         className="list-group-item"
