@@ -5,17 +5,7 @@ import ViewKeysets from '../../components/ViewKeysets'
 import API from '../../utils/API'
 
 export default function Profile(props) {
-    const [userProfile, setUserProfile] = useState({
-        email: "",
-        name: "",
-        password: "",
-        profileImage: "",
-        id: ""
-    })
-
-    const [extraKeysets, setExtraKeysets] = useState({
-        extras: []
-    })
+    const [userProfile, setUserProfile] = useState({})
 
     useEffect(() => {
         const token = localStorage.getItem('token')
@@ -25,6 +15,7 @@ export default function Profile(props) {
                     name: profileData.name,
                     email: profileData.email,
                     keebs: profileData.Keebs,
+                    keysets: profileData.Extras,
                     token: token,
                     id: profileData.id,
                     profileImage: profileData.profileImage,
@@ -36,18 +27,13 @@ export default function Profile(props) {
                     name: "",
                     email: "",
                     keebs: [],
+                    keysets: [],
                     token: "",
                     id: "",
                     profileImage: "",
                     isLoggedIn: false
                 })
             }
-        })
-
-        API.getAllExtraKeysets().then(data => {
-            setExtraKeysets({
-                extras: data
-            })
         })
     }, [])
 
@@ -81,8 +67,8 @@ export default function Profile(props) {
 
                 <h5 style={{ textAlign: "center", color: "midnightblue", marginTop: "15px" }}><strong>Keysets</strong></h5>
                 <div className="row">
-                    {extraKeysets.extras !== null ?
-                        extraKeysets.extras
+                    {props.profile.keysets !== null ?
+                        props.profile.keysets
                             .map(keysets =>
                                 <div className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
                                     <ViewKeysets
