@@ -90,7 +90,7 @@ export default function Home(props) {
                                     case={keebObj.case}
                                     angle={keebObj.angle}
                                     color={keebObj.color}
-                                    keyset={keebObj.Parts[0].keyset}
+                                    plate={keebObj.plate}
                                     // Back side of Card
                                     switches={keebObj.Parts[0].switches}
                                     switchLube={keebObj.Parts[0].switchLube}
@@ -99,10 +99,9 @@ export default function Home(props) {
                                     switchFilm={keebObj.Parts[0].switchFilm}
                                     stabs={keebObj.Parts[0].stabs}
                                     stabLube={keebObj.Parts[0].stabLube}
-                                    plate={keebObj.plate}
+                                    keyset={keebObj.Parts[0].keyset}
                                     id={keebObj.id}
                                     isLoggedIn={props.profile.isLoggedIn}
-
                                 />
                             </div>
                         ))
