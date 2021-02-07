@@ -15,6 +15,8 @@ View the application at: https://mykeebs-react.herokuapp.com
 
 - [Back-end](#back-end)
 
+- [Screenshot](#screenshot)
+
 - [License](#license)
 
 - [Contributors](#contributors)
@@ -32,6 +34,9 @@ A user is able to view custom mechanical keyboards, the search bar filters the c
         
 ## Back-end
 The back-end server side is required to run the application locally, it is found here at: https://github.com/JSK321/keebs-backend
+
+## Screenshot
+![Website index](https://i.imgur.com/HOzCiuP.png)
 
 ## License
 This project uses MIT
