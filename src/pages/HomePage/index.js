@@ -3,8 +3,13 @@ import React, { useState, useEffect } from 'react'
 // Context
 import { useProfile, useProfileData } from '../../contexts/ProfileContext'
 import { useKeebs, useKeebData } from '../../contexts/KeebContext'
+// Components
+import SearchKeebInput from '../../components/SearchKeebInput'
 import KeebCard from '../../components/KeebCard'
-import API from '../../utils/API'
+// Material-UI Components
+import { Container, Grid, } from '@material-ui/core'
+// Material-UI Styles
+import { makeStyles } from '@material-ui/core/styles';
 
 export default function HomePage(props) {
     // Profile 
@@ -22,17 +27,7 @@ export default function HomePage(props) {
         search: ""
     })
 
-    // function loadKeebInfo() {
-    //     API.getAllKeebs().then(res => {
-    //         setKeebInfo({
-    //             ...keebInfo,
-    //             keebs: res
-    //         })
-    //     })
-    // }
-
     useEffect(() => {
-        // loadKeebInfo()
         profileData()
         keebData()
     }, [])
@@ -71,54 +66,19 @@ export default function HomePage(props) {
     }
 
     return (
-        <div className="container" style={{ marginBottom: "75px", }}>
-            <input
-                className="form-control"
-                type="search"
-                placeholder="Search"
-                onChange={handleSearchInput}
-                style={{
-                    width: "250px",
-                    marginLeft: "auto",
-                    marginRight: "auto",
-                    marginBottom: "10px",
-                    borderRadius: "10px",
-                    border: "2px solid slateblue",
-                    color: "midnightblue"
-                }}
-            />
-            <div className="row">
-                {keebInfo.keebs !== null ?
-                    keebInfo.keebs
-                        .map(keebObj => (
-                            <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                {/* <KeebCard
-                                    // Front side of Card
-                                    key={keebObj.id}
-                                    keebImage={keebObj.keebImage}
-                                    name={keebObj.name}
-                                    size={keebObj.size}
-                                    maker={keebObj.maker}
-                                    case={keebObj.case}
-                                    angle={keebObj.angle}
-                                    color={keebObj.color}
-                                    plate={keebObj.plate}
-                                    // Back side of Card
-                                    switches={keebObj.Parts[0].switches}
-                                    switchLube={keebObj.Parts[0].switchLube}
-                                    springWeight={keebObj.Parts[0].springWeight}
-                                    springLube={keebObj.Parts[0].springLube}
-                                    switchFilm={keebObj.Parts[0].switchFilm}
-                                    stabs={keebObj.Parts[0].stabs}
-                                    stabLube={keebObj.Parts[0].stabLube}
-                                    keyset={keebObj.Parts[0].keyset}
-                                    id={keebObj.id}
-                                    isLoggedIn={props.profile.isLoggedIn}
-                                /> */}
-                            </div>
-                        ))
-                    : null}
-            </div>
-        </div>
+        <Container>
+            <SearchKeebInput />
+            <Grid container spacing={1}>
+                {keebState.keebs !== null ?
+                    keebState.keebs.map(keeb => (
+                        <Grid item xl={4} lg={3} md={6} sm={12} xs={12}>
+                            <KeebCard />
+                        </Grid>
+                    ))
+                    :
+                    null
+                }
+            </Grid>
+        </Container>
     )
 }

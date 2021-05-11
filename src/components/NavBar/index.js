@@ -113,8 +113,6 @@ export default function NavBar() {
                     <Link to='/' className="homeLink" onClick={handleDrawerClose}>
                         Keebs
                     </Link>
-                    {/* Keeb Search Input */}
-                    <SearchKeebInput />
                 </Toolbar>
             </AppBar>
             <Drawer
