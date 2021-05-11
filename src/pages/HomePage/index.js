@@ -1,8 +1,18 @@
+// React
 import React, { useState, useEffect } from 'react'
+// Context
+import { useProfile, useProfileData } from '../../contexts/ProfileContext'
+import { useKeebs, useKeebData } from '../../contexts/KeebContext'
 import KeebCard from '../../components/KeebCard'
 import API from '../../utils/API'
 
-export default function Home(props) {
+export default function HomePage(props) {
+    // Profile 
+    const profileState = useProfile()
+    const profileData = useProfileData()
+    // Keebs
+    const keebState = useKeebs()
+    const keebData = useKeebData()
 
     const [keebInfo, setKeebInfo] = useState({
         keebs: [],
@@ -12,17 +22,19 @@ export default function Home(props) {
         search: ""
     })
 
-    function loadKeebInfo() {
-        API.getAllKeebs().then(res => {
-            setKeebInfo({
-                ...keebInfo,
-                keebs: res
-            })
-        })
-    }
+    // function loadKeebInfo() {
+    //     API.getAllKeebs().then(res => {
+    //         setKeebInfo({
+    //             ...keebInfo,
+    //             keebs: res
+    //         })
+    //     })
+    // }
 
     useEffect(() => {
-        loadKeebInfo()
+        // loadKeebInfo()
+        profileData()
+        keebData()
     }, [])
 
     const handleSearchInput = event => {
@@ -48,7 +60,7 @@ export default function Home(props) {
             )
         })
         if (keyword === "") {
-            loadKeebInfo()
+            // loadKeebInfo()
         }
         setKeebInfo({
             keebs: filtered
@@ -80,7 +92,7 @@ export default function Home(props) {
                     keebInfo.keebs
                         .map(keebObj => (
                             <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <KeebCard
+                                {/* <KeebCard
                                     // Front side of Card
                                     key={keebObj.id}
                                     keebImage={keebObj.keebImage}
@@ -102,7 +114,7 @@ export default function Home(props) {
                                     keyset={keebObj.Parts[0].keyset}
                                     id={keebObj.id}
                                     isLoggedIn={props.profile.isLoggedIn}
-                                />
+                                /> */}
                             </div>
                         ))
                     : null}

@@ -1,5 +1,5 @@
 // React
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 // clsx
 import clsx from 'clsx';
@@ -81,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
 export default function NavBar() {
     const classes = useStyles();
     const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -110,7 +110,7 @@ export default function NavBar() {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Link to='/' className="homeLink">
+                    <Link to='/' className="homeLink" onClick={handleDrawerClose}>
                         Keebs
                     </Link>
                     {/* Keeb Search Input */}
@@ -137,34 +137,21 @@ export default function NavBar() {
                         <ListItemIcon>
                             <AccountCircleIcon />
                         </ListItemIcon>
-                        <ListItemText primary={
-                            <Link
-                                to='/signin'
-                                className='signInLink'
-                            >
-                                Sign in
-                            </Link>
-                        } />
+                        <ListItemText
+                            primary={
+                                <Link
+                                    to='/signin'
+                                    className='signInLink'
+                                    onClick={handleDrawerClose}
+                                >
+                                    Sign in
+                                </Link>
+                            }
+                        />
+
                     </ListItem>
                     <Divider />
                 </List>
-                {/* <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
-                <Divider />
-                <List>
-                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List> */}
             </Drawer>
             <main
                 className={clsx(classes.content, {

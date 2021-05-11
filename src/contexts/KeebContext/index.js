@@ -14,12 +14,24 @@ export function useKeebData() {
     return useContext(KeebData)
 }
 
-export function KeebProvider() {
-    const [keebState, setKeebState] = useState(null)
+export function KeebProvider({ children }) {
+    const [keebState, setKeebState] = useState({
+        keebs: []
+    })
+
+    function loadKeebInfo() {
+        API.getAllKeebs().then(res => {
+            setKeebState({
+                keebs: res
+            })
+        })
+    }
 
     return (
-        <div>
-
-        </div>
+        <KeebContext.Provider value={keebState}>
+            <KeebData.Provider value={loadKeebInfo}>
+                {children}
+            </KeebData.Provider>
+        </KeebContext.Provider>
     )
 }
