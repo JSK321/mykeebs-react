@@ -68,11 +68,28 @@ export default function HomePage(props) {
     return (
         <Container>
             <SearchKeebInput />
-            <Grid container spacing={1}>
+            <Grid container spacing={3}>
                 {keebState.keebs !== null ?
                     keebState.keebs.map(keeb => (
-                        <Grid item xl={4} lg={3} md={6} sm={12} xs={12}>
-                            <KeebCard />
+                        <Grid item xl={4} lg={4} md={4} sm={6} xs={12} key={keeb.id}>
+                            <KeebCard 
+                                name={keeb.name}
+                                maker={keeb.maker}
+                                keebImage={keeb.keebImage}
+                                color={keeb.color}
+                                case={keeb.case}
+                                angle={keeb.angle}
+                                plate={keeb.plate}
+                                // Parts
+                                keyset={keeb.Parts[0].keyset}
+                                switches={keeb.Parts[0].switches}
+                                springWeight={keeb.Parts[0].springWeight}
+                                springLube={keeb.Parts[0].springLube}
+                                switchLube={keeb.Parts[0].switchLube}
+                                switchFilm={keeb.Parts[0].switchFilm}
+                                stabs={keeb.Parts[0].stabs}
+                                stabLube={keeb.Parts[0].stabLube}
+                            />
                         </Grid>
                     ))
                     :
