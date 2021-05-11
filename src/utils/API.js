@@ -3,7 +3,7 @@ const URL_PREFIX = "http://localhost:8080"
 
 const API = {
     // Log In function
-    login: function (userData) {
+    signIn: function (userData) {
         return fetch(`${URL_PREFIX}/api/users/login`, {
             method: "POST",
             headers: {
