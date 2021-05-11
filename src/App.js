@@ -1,11 +1,16 @@
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+// React
 import React, { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+// API
 import API from './utils/API'
 // Components
 import NavBar from './components/NavBar'
 import Footer from './components/Footer'
+// Context
+import { ProfileProvider } from './contexts/ProfileContext'
 // Pages
 import Home from './pages/Home'
+import SignInPage from './pages/SignInPage'
 import Profile from './pages/Profile'
 import UpdateProfile from './pages/UpdateProfile'
 import Keebs from './pages/Keebs'
@@ -119,73 +124,78 @@ function App() {
   }
 
   return (
-    <Router>
-      <NavBar
-        handleInputChange={handleInputChange}
-        handleFormSubmit={handleFormSubmit}
-        handleLogOut={handleLogOut}
-        email={loginFormState.email}
-        password={loginFormState.password}
-        isLoggedIn={profileState.isLoggedIn}
-        id={profileState.id}
-      />
-      <Switch>
-        <Route exact path="/">
-          <h1
-            style={{
-              textAlign: "center",
-              color: "midnightblue",
-            }}>
-            Keebs!
+    <ProfileProvider>
+      <Router>
+        <NavBar
+          handleInputChange={handleInputChange}
+          handleFormSubmit={handleFormSubmit}
+          handleLogOut={handleLogOut}
+          email={loginFormState.email}
+          password={loginFormState.password}
+          isLoggedIn={profileState.isLoggedIn}
+          id={profileState.id}
+        />
+        <Switch>
+          <Route exact path="/">
+            <h1
+              style={{
+                textAlign: "center",
+                color: "midnightblue",
+              }}>
+              Keebs!
           </h1>
-          <Home
-            profile={profileState}
-          />
-          <Footer />
-        </Route>
-        <Route exact path="/profile">
-          <Profile
-            profile={profileState}
-          />
-        </Route>
-        <Route exact path="/updateprofile">
-          <UpdateProfile />
-        </Route>
-        <Route exact path="/addkeebform">
-          <Keebs
-            profile={profileState}
-          />
-        </Route>
-        <Route exact path="/updatekeeb/:id">
-          <KeebDetail
-            profile={profileState}
-            fetchData={fetchUserData}
-          />
-        </Route>
-        <Route exact path="/addpartsform">
-          <Parts
-            profile={profileState}
-          />
-        </Route>
-        <Route exact path="/addextrakeysetform">
-          <ExtraKeysets
-            profile={profileState}
-          />
-        </Route>
-        <Route exact path="/keyset/:id">
-          <Keysets />
-        </Route>
-        <Route exact path="/updatekeyset/:id">
+            <Home
+              profile={profileState}
+            />
+            <Footer />
+          </Route>
+          <Route exact path="/profile">
+            <Profile
+              profile={profileState}
+            />
+          </Route>
+          <Route exact path="/signin">
+            <SignInPage />
+          </Route>
+          <Route exact path="/updateprofile">
+            <UpdateProfile />
+          </Route>
+          <Route exact path="/addkeebform">
+            <Keebs
+              profile={profileState}
+            />
+          </Route>
+          <Route exact path="/updatekeeb/:id">
+            <KeebDetail
+              profile={profileState}
+              fetchData={fetchUserData}
+            />
+          </Route>
+          <Route exact path="/addpartsform">
+            <Parts
+              profile={profileState}
+            />
+          </Route>
+          <Route exact path="/addextrakeysetform">
+            <ExtraKeysets
+              profile={profileState}
+            />
+          </Route>
+          <Route exact path="/keyset/:id">
+            <Keysets />
+          </Route>
+          <Route exact path="/updatekeyset/:id">
             <UpdateKeyset />
-        </Route>
-        <Route exact path="/register">
-          <Register />
-        </Route>
-        <Route path="*">
-          <NoMatch />
-        </Route>
-      </Switch>
-    </Router>
+          </Route>
+          <Route exact path="/register">
+            <Register />
+          </Route>
+          <Route path="*">
+            <NoMatch />
+          </Route>
+        </Switch>
+      </Router>
+    </ProfileProvider>
   );
 }
 

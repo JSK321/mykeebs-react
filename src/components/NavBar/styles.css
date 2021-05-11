@@ -1,0 +1,13 @@
+.signInLink, .signInLink:hover {
+    text-decoration: none;
+    color: inherit
+}
+
+.homeLink, .homeLink:hover {
+    text-decoration: none;
+    color:inherit;
+    font-size: 22px;
+    display: flex;
+    flex-grow: 1;
+  
+}

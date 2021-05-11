@@ -1,5 +1,5 @@
 // React
-import { useContext, useState, } from 'react'
+import React, { useContext, useState, } from 'react'
 // API
 import API from '../../utils/API'
 
@@ -18,7 +18,7 @@ export function ProfileProvider({ children }) {
     const [profileState, setProfileState] = useState(null)
 
     function fetchProfileData() {
-        const token = uselocatStorage.getItem('token')
+        const token = localStorage.getItem('token')
         if (token !== null) {
             API.getProfile(token).then(profileData => {
                 if (profileData) {

@@ -1,110 +1,179 @@
+// React
 import React from 'react'
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
+// clsx
+import clsx from 'clsx';
+// Components
+import SearchKeebInput from '../SearchKeebInput'
+// Material-UI Components
+import { Drawer, CssBaseline, AppBar, Toolbar, List, Typography, Divider, IconButton, ListItem, ListItemIcon, ListItemText, } from '@material-ui/core'
+// Materiaul-UI Icons
+import MenuIcon from '@material-ui/icons/Menu'
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
+import ChevronRightIcon from '@material-ui/icons/ChevronRight'
+import InboxIcon from '@material-ui/icons/MoveToInbox'
+import MailIcon from '@material-ui/icons/Mail'
+// Material-UI Styles
+import { makeStyles, useTheme } from '@material-ui/core/styles'
+// CSS
+import './styles.css'
 
-export default function NavBar(props) {
+const drawerWidth = 240;
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        display: 'flex',
+    },
+    appBar: {
+        transition: theme.transitions.create(['margin', 'width'], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
+    },
+    appBarShift: {
+        width: `calc(100% - ${drawerWidth}px)`,
+        marginLeft: drawerWidth,
+        transition: theme.transitions.create(['margin', 'width'], {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+    },
+    menuButton: {
+        marginRight: theme.spacing(2),
+    },
+    hide: {
+        display: 'none',
+    },
+    drawer: {
+        width: drawerWidth,
+        flexShrink: 0,
+    },
+    drawerPaper: {
+        width: drawerWidth,
+    },
+    drawerHeader: {
+        display: 'flex',
+        alignItems: 'center',
+        padding: theme.spacing(0, 1),
+        // necessary for content to be below app bar
+        ...theme.mixins.toolbar,
+        justifyContent: 'flex-end',
+    },
+    content: {
+        flexGrow: 1,
+        padding: theme.spacing(3),
+        transition: theme.transitions.create('margin', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
+        marginLeft: -drawerWidth,
+    },
+    contentShift: {
+        transition: theme.transitions.create('margin', {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+        marginLeft: 0,
+    },
+}));
+
+export default function NavBar() {
+    const classes = useStyles();
+    const theme = useTheme();
+    const [open, setOpen] = React.useState(false);
+
+    const handleDrawerOpen = () => {
+        setOpen(true);
+    };
+
+    const handleDrawerClose = () => {
+        setOpen(false);
+    };
+
     return (
-        <nav className="navbar" style={{ backgroundColor: "midnightblue", }}>
-            <ul className="nav">
-                <li className="nav-item">
-                    <Link className="nav-link" to="/" style={{ color: "mintcream" }}>Home</Link>
-                </li>
-                {props.isLoggedIn ?
-                    // <li className="nav-item">
-                    //     <Link className="nav-link" to="/addkeebform" style={{ color: "mintcream" }}>Add Keeb</Link>
-                    // </li>
-                    <li className="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" style={{ color: "mintcream" }} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Add...
-                    </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style={{ backgroundColor: "honeydew" }}>
-                            <Link to="/addkeebform" className="dropdown-item" style={{ color: "midnightblue" }}><strong>Keeb</strong></Link>
-                            <Link to="/addextrakeysetform" className="dropdown-item" style={{ color: "midnightblue" }}><strong>Keyset</strong></Link>
-                        </div>
-                    </li>
-                    :
-                    <li className="nav-item">
-                        <button className="btn btn-link logInBtn" data-toggle="modal" data-target="#logInModal" style={{ color: "mintcream" }}>
-                            Log In
-                        </button>
-                        <div className="modal fade" id="logInModal" tabindex="-1" aria-labelledby="logInModalLabel" aria-hidden="true">
-                            <div className="modal-dialog">
-                                <div className="modal-content" style={{ backgroundColor: "honeydew" }}>
-                                    <div className="modal-header">
-                                        <h5 className="modal-title" id="staticBackdropLabel" style={{ color: "midnightblue" }}><strong>Keeb User</strong></h5>
-                                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div className="modal-body" style={{ display: "inline-block", marginLeft: "auto", marginRight: "auto", textAlign: "center" }}>
-                                        <form onSubmit={props.handleFormSubmit}>
-                                            <input
-                                                onChange={props.handleInputChange}
-                                                value={props.email}
-                                                type='text'
-                                                name='email'
-                                                placeholder='Email'
-                                                style={{ backgroundColor: "honeydew", color: "midnightblue" }}
-                                                required
-                                            />
-                                            <br></br>
-                                            <input
-                                                onChange={props.handleInputChange}
-                                                value={props.password}
-                                                type='password'
-                                                name='password'
-                                                placeholder='Password'
-                                                style={{ backgroundColor: "honeydew", color: "midnightblue" }}
-                                                required
-                                            />
-                                            <br></br>
-                                            <input
-                                                type='submit'
-                                                className="btn btn-primary"
-                                                value="Log In"
-                                                style={{ width: "188px", backgroundColor: "midnightblue" }}
-                                            />
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                }
-            </ul>
-            <ul className="nav">
-                {props.isLoggedIn ?
-                    <li>
-                        <Link to="/profile"
-                            className="nav-link"
-                            style={{ color: "mintcream" }}>
-                            Profile
-                        </Link>
-                    </li>
-                    :
-                    null
-                }
+        <div className={classes.root}>
+            <CssBaseline />
+            <AppBar
+                position="fixed"
+                className={clsx(classes.appBar, {
+                    [classes.appBarShift]: open,
+                })}
+            >
+                <Toolbar>
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        onClick={handleDrawerOpen}
+                        edge="start"
+                        className={clsx(classes.menuButton, open && classes.hide)}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    <Link to='/' className="homeLink">
+                        Keebs
+                    </Link>
+                    {/* Keeb Search Input */}
+                    <SearchKeebInput />
+                </Toolbar>
+            </AppBar>
+            <Drawer
+                className={classes.drawer}
+                variant="persistent"
+                anchor="left"
+                open={open}
+                classes={{
+                    paper: classes.drawerPaper,
+                }}
+            >
+                <div className={classes.drawerHeader}>
+                    <IconButton onClick={handleDrawerClose}>
+                        {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                    </IconButton>
+                </div>
+                <Divider />
+                <List>
+                    <ListItem key="userSignIn">
+                        <ListItemIcon>
+                            <AccountCircleIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={
+                            <Link
+                                to='/signin'
+                                className='signInLink'
+                            >
+                                Sign in
+                            </Link>
+                        } />
+                    </ListItem>
+                    <Divider />
+                </List>
+                {/* <List>
+                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                        <ListItem button key={text}>
+                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                            <ListItemText primary={text} />
+                        </ListItem>
+                    ))}
+                </List>
+                <Divider />
+                <List>
+                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
+                        <ListItem button key={text}>
+                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                            <ListItemText primary={text} />
+                        </ListItem>
+                    ))}
+                </List> */}
+            </Drawer>
+            <main
+                className={clsx(classes.content, {
+                    [classes.contentShift]: open,
+                })}
+            >
+                <div className={classes.drawerHeader} />
 
-                {props.isLoggedIn ?
-                    <li>
-                        <button
-                            onClick={props.handleLogOut}
-                            className="signOutBtn btn btn-link"
-                            style={{ color: "mintcream" }}>
-                            Log Out
-                        </button>
-                    </li>
-
-                    :
-
-                    <li>
-                        <Link to='/register'
-                            className="nav-link"
-                            style={{ color: "mintcream" }}>
-                            Register
-                        </Link>
-                    </li>
-                }
-            </ul>
-        </nav>
-    )
+            </main>
+        </div>
+    );
 }
