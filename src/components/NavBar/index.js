@@ -2,12 +2,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 // Material-UI Components
-import { AppBar, Toolbar, IconButton, MenuItem, Menu, ListItem, ListItemIcon, ListItemText, Button, Typography } from '@material-ui/core';
+import { AppBar, Toolbar, IconButton, MenuItem, Menu } from '@material-ui/core';
 // Material-UI Icons
-import KeyboardIcon from '@material-ui/icons/Keyboard';
-import SendIcon from '@material-ui/icons/Send';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MenuIcon from '@material-ui/icons/Menu';
 // Materiaul-UI Styles
 import { makeStyles } from '@material-ui/core/styles';
@@ -32,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
         marginRight: '1.3rem'
     },
     menuItem: {
-        // padding: 0,
         display: 'flex',
         justifyContent: 'center'
     },

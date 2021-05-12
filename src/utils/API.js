@@ -22,11 +22,8 @@ const API = {
             body: JSON.stringify(userData)
         }).then(res => {
             if (res.ok) {
-                alert("You are ready to share your keebs!")
-                window.location.href = "/"
                 return res.json()
             } else {
-                alert("Email already exists!")
                 throw new Error("Something went wrong")
             }
         }).catch(err => null)
@@ -218,11 +215,9 @@ const API = {
             })
         }).then(res => {
             if (res.ok) {
-                alert("Keyset updated!")
                 window.location.href = `/keyset/${id}`
                 return res.json()
             } else {
-                alert("Log in to update keyset!")
                 throw new Error("Something went wrong")
             }
         }).catch(err => null)
@@ -236,10 +231,8 @@ const API = {
             },
         }).then(res => {
             if (res.ok) {
-                alert("Profile deleted!")
                 window.location.href = "/"
             } else {
-                alert("Log in to delete profile!")
                 throw new Error("Something went wrong")
             }
         }).catch(err => null)
@@ -253,10 +246,8 @@ const API = {
             },
         }).then(res => {
             if (res.ok) {
-                alert("Keeb deleted!")
                 window.location.href = "/"
             } else {
-                alert("Log in to delete keeb!")
                 throw new Error("Something went wrong")
             }
         }).catch(err => null)
@@ -279,10 +270,8 @@ const API = {
             },
         }).then(res => {
             if(res.ok){
-                alert("Keyset deleted")
                 window.location.href = "/profile"
             } else {
-                alert("Log in to delete keyset!")
                 throw new Error("Something went wrong")
             }
         }).catch(err => null)

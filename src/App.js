@@ -18,7 +18,7 @@ import AddPartsPage from './pages/AddPartsPage'
 import Keysets from './pages/Keysets'
 import ExtraKeysets from './pages/ExtraKeysets'
 import UpdateKeyset from './pages/UpdateKeyset'
-import Register from './pages/Register'
+import RegisterPage from './pages/RegisterPage'
 import NoMatch from './pages/NoMatch'
 
 
@@ -75,7 +75,7 @@ function App() {
               <UpdateKeyset />
             </Route>
             <Route exact path="/register">
-              <Register />
+              <RegisterPage />
             </Route>
             <Route path="*">
               <NoMatch />

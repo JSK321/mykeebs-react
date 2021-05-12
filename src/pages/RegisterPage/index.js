@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import SignUpForm from '../../components/SignUpForm'
 import API from '../../utils/API'
 
-export default function Register() {
+export default function RegisterPage() {
     const [userState, setUserState] = useState({
         email: "",
         password: "",
@@ -19,11 +19,21 @@ export default function Register() {
 
     const handleFormSubmit = event => {
         event.preventDefault()
-        try {
-            API.createUser(userState).then(userData => {})
-        } catch (error) {
-            console.log(error)
-        }
+        userCreateandSignIn()
+    }
+
+    function userSignIn() {
+        API.signIn(userState).then(newToken => {
+            localStorage.setItem('token', newToken.token)
+            API.getProfile(newToken.token).then(res => {
+                window.location.href = '/'
+            })
+        })
+    }
+
+    async function userCreateandSignIn() {
+        const createUser = await API.createUser(userState)
+        await userSignIn(createUser)
     }
 
     return (

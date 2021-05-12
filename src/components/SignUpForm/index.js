@@ -1,58 +1,94 @@
+// React
 import React from 'react'
+// Material-UI Components
+import { Container, TextField, Grid, Button } from '@material-ui/core'
+// Material-UI Icons
+import AccountBoxIcon from '@material-ui/icons/AccountBox'
+import EmailIcon from '@material-ui/icons/Email'
+import VpnKeyIcon from '@material-ui/icons/VpnKey'
+import AddIcon from '@material-ui/icons/Add';
+// Material-UI Styles
+import { makeStyles } from '@material-ui/core/styles'
 
-export default function SignUpForm(props) {
+const useStyles = makeStyles((theme) => ({
+    margin: {
+        margin: theme.spacing(1),
+    },
+    signInContainer: {
+        display: 'flex',
+        justifyContent: 'center'
+    },
+    signInBtn: {
+        marginTop: '1rem',
+        textAlign: 'center'
+    }
+}));
+
+
+export default function SignInForm(props) {
+    const classes = useStyles();
+
     return (
-        <div className="signUpForm">
-            <div className="card addKeeb">
-                <h5
-                    className="card-header"
-                    style={{
-                        backgroundColor: "lightsteelblue",
-                        color: "midnightblue"
-                    }}>
-                    <strong>Register</strong>
-                </h5>
-                <div className="card-body" style={{ backgroundColor: "honeydew" }}>
-                    <form onSubmit={props.handleFormSubmit}>
-                        <div className="form-group">
-                            <input
-                                onChange={props.handleInputChange}
-                                className="form-control"
-                                type="text"
-                                name="name"
-                                placeholder="Name"
-                            />
-                        </div>
-                        <div className="form-group">
-                            <input
-                                onChange={props.handleInputChange}
-                                className="form-control"
-                                type="email"
-                                name="email"
-                                placeholder="Email"
-                                required
-                            />
-                        </div>
-                        <div className="form-group">
-                            <input
-                                onChange={props.handleInputChange}
-                                className="form-control"
-                                type="password"
-                                name="password"
-                                placeholder="Password"
-                                aria-describedby="passwordHelpBlock"
-                                required
-                            />
-                            <small id="passwordHelpBlock" className="form-text text-muted">
-                                Password must be at least 8 characters.
-                        </small>
-                        </div>
-                        <div className="form-group">
-                            <input type="submit" className="addKeebBtn btn btn-primary" value="Submit" />
-                        </div>
-                    </form>
-                </div>
+        <Container className={classes.signInContainer}>
+            <div className={classes.signInForm}>
+                <h2 style={{ textAlign: 'center' }}>Register</h2>
+                <form noValidate autoComplete='off' onSubmit={props.handleFormSubmit}>
+                    <div className={classes.margin}>
+                        <Grid container spacing={1} alignItems="flex-end">
+                            <Grid item>
+                                <AccountBoxIcon />
+                            </Grid>
+                            <Grid item>
+                                <TextField
+                                    label="Profile"
+                                    name='name'
+                                    onChange={props.handleInputChange}
+                                    fullWidth
+                                />
+                            </Grid>
+                        </Grid>
+
+                        <Grid container spacing={1} alignItems="flex-end">
+                            <Grid item>
+                                <EmailIcon />
+                            </Grid>
+                            <Grid item>
+                                <TextField
+                                    label="Email"
+                                    name='email'
+                                    onChange={props.handleInputChange}
+                                    fullWidth
+                                />
+                            </Grid>
+                        </Grid>
+
+                        <Grid container spacing={1} alignItems="flex-end">
+                            <Grid item>
+                                <VpnKeyIcon />
+                            </Grid>
+                            <Grid item>
+                                <TextField
+                                    label="Password"
+                                    name='password'
+                                    type="password"
+                                    onChange={props.handleInputChange}
+                                    fullWidth
+                                />
+                            </Grid>
+                        </Grid>
+                    </div>
+                    <div className={classes.signInBtn}>
+                        <Button
+                            variant='outlined'
+                            color="primary"
+                            endIcon={<AddIcon />}
+                            type='submit'
+                        >
+                            Create
+                        </Button>
+                    </div>
+                </form>
             </div>
-        </div>
+        </Container >
     )
 }
