@@ -1,181 +1,163 @@
 // React
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-// clsx
-import clsx from 'clsx';
-// Components
-import SearchKeebInput from '../SearchKeebInput'
 // Material-UI Components
-import { Drawer, CssBaseline, AppBar, Toolbar, List, Typography, Divider, IconButton, ListItem, ListItemIcon, ListItemText, } from '@material-ui/core'
-// Materiaul-UI Icons
-import MenuIcon from '@material-ui/icons/Menu'
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
-import ChevronRightIcon from '@material-ui/icons/ChevronRight'
-import InboxIcon from '@material-ui/icons/MoveToInbox'
-import MailIcon from '@material-ui/icons/Mail'
-// Material-UI Styles
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { AppBar, Toolbar, IconButton, MenuItem, Menu, ListItem, ListItemIcon, ListItemText, Button, Typography } from '@material-ui/core';
+// Material-UI Icons
+import KeyboardIcon from '@material-ui/icons/Keyboard';
+import SendIcon from '@material-ui/icons/Send';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import MenuIcon from '@material-ui/icons/Menu';
+// Materiaul-UI Styles
+import { makeStyles } from '@material-ui/core/styles';
 // CSS
 import './styles.css'
 
-const drawerWidth = 240;
-
 const useStyles = makeStyles((theme) => ({
     root: {
-        display: 'flex',
-    },
-    appBar: {
-        transition: theme.transitions.create(['margin', 'width'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-    },
-    appBarShift: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
-        transition: theme.transitions.create(['margin', 'width'], {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
+        flexGrow: 1,
+        marginBottom: '4rem'
     },
     menuButton: {
         marginRight: theme.spacing(2),
     },
-    hide: {
-        display: 'none',
-    },
-    drawer: {
-        width: drawerWidth,
-        flexShrink: 0,
-    },
-    drawerPaper: {
-        width: drawerWidth,
-    },
-    drawerHeader: {
-        display: 'flex',
-        alignItems: 'center',
-        padding: theme.spacing(0, 1),
-        // necessary for content to be below app bar
-        ...theme.mixins.toolbar,
-        justifyContent: 'flex-end',
-    },
-    content: {
+    title: {
         flexGrow: 1,
-        padding: theme.spacing(3),
-        transition: theme.transitions.create('margin', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-        marginLeft: -drawerWidth,
     },
-    contentShift: {
-        transition: theme.transitions.create('margin', {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-        marginLeft: 0,
+    iconBtn: {
+        position: "absolute",
+        right: 0,
+        top: '5px',
+        marginRight: '1.3rem'
     },
+    menuItem: {
+        // padding: 0,
+        display: 'flex',
+        justifyContent: 'center'
+    },
+    menuIcon: {
+        position: 'absolute',
+        right: '35px',
+        top: '13px'
+    }
 }));
 
-export default function NavBar() {
+export default function MenuAppBar() {
     const classes = useStyles();
-    const theme = useTheme();
-    const [open, setOpen] = useState(false);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const [auth, setAuth] = useState(false);
 
-    const handleDrawerOpen = () => {
-        setOpen(true);
+    useEffect(() => {
+        const token = localStorage.getItem('token')
+        if (token !== null) {
+            setAuth(true)
+        }
+    }, [])
+
+    const handleMenu = (event) => {
+        setAnchorEl(event.currentTarget);
     };
 
-    const handleDrawerClose = () => {
-        setOpen(false);
+    const handleClose = () => {
+        setAnchorEl(null);
     };
+
+    const handleLogOut = event => {
+        event.preventDefault();
+        localStorage.removeItem('token')
+        setAuth(false)
+        setAnchorEl(null);
+    }
 
     return (
         <div className={classes.root}>
-            <CssBaseline />
-            <AppBar
-                position="fixed"
-                className={clsx(classes.appBar, {
-                    [classes.appBarShift]: open,
-                })}
-            >
+            <AppBar position="absolute">
                 <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={handleDrawerOpen}
-                        edge="start"
-                        className={clsx(classes.menuButton, open && classes.hide)}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Link to='/' className="homeLink" onClick={handleDrawerClose}>
+                    <Link to='/' className="homeLink">
                         Keebs
                     </Link>
+                    <div>
+                        <IconButton
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            onClick={handleMenu}
+                            color="inherit"
+                            className={classes.iconBtn}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Menu
+                            id="menu-appbar"
+                            anchorEl={anchorEl}
+                            anchorOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            open={open}
+                            onClose={handleClose}
+                        >
+                            {auth === true ?
+                                <MenuItem onClick={handleClose} className={classes.menuItem}>
+                                    <Link
+                                        to='/profile'
+                                        className='appBarLink'
+                                    >
+                                        Profile
+                                </Link>
+                                </MenuItem>
+                                :
+                                null
+                            }
+                            {auth === true ?
+                                <MenuItem onClick={handleClose} className={classes.menuItem}>
+                                    <Link
+                                        to='/addkeebform'
+                                        className='appBarLink'
+                                    >
+                                        Add keeb
+                                </Link>
+                                </MenuItem>
+                                :
+                                null
+                            }
+                            {auth === false ?
+                                <MenuItem onClick={handleClose} className={classes.menuItem}>
+                                    <Link
+                                        to='/signin'
+                                        className='appBarLink'
+                                    >
+                                        Sign in
+                                    </Link>
+                                </MenuItem>
+                                :
+                                <MenuItem onClick={handleLogOut} className={classes.menuItem}>
+                                    Sign out
+                                </MenuItem>
+                            }
+                            {auth === false ?
+                                <MenuItem onClick={handleClose} className={classes.menuItem}>
+                                    <Link
+                                        to='/register'
+                                        className='appBarLink'
+                                    >
+                                        Register
+                                    </Link>
+                                </MenuItem>
+                                :
+                                null
+                            }
+                        </Menu>
+                    </div>
                 </Toolbar>
             </AppBar>
-            <Drawer
-                className={classes.drawer}
-                variant="persistent"
-                anchor="left"
-                open={open}
-                classes={{
-                    paper: classes.drawerPaper,
-                }}
-            >
-                <div className={classes.drawerHeader}>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                    </IconButton>
-                </div>
-                <Divider />
-                <List>
-                    <ListItem key="userSignIn">
-                        <ListItemIcon>
-                            <AccountCircleIcon />
-                        </ListItemIcon>
-                        <ListItemText
-                            primary={
-                                <Link
-                                    to='/signin'
-                                    className='appDrawerLink'
-                                    onClick={handleDrawerClose}
-                                >
-                                    Sign in
-                                </Link>
-                            }
-                        />
-
-                    </ListItem>
-                    <Divider />
-                    <ListItem key="userSignIn">
-                        <ListItemIcon>
-                            <AccountCircleIcon />
-                        </ListItemIcon>
-                        <ListItemText
-                            primary={
-                                <Link
-                                    to='/addkeebform'
-                                    className='appDrawerLink'
-                                    onClick={handleDrawerClose}
-                                >
-                                    Add keeb
-                                </Link>
-                            }
-                        />
-
-                    </ListItem>
-                </List>
-            </Drawer>
-            <main
-                className={clsx(classes.content, {
-                    [classes.contentShift]: open,
-                })}
-            >
-                <div className={classes.drawerHeader} />
-
-            </main>
-        </div>
+        </div >
     );
 }

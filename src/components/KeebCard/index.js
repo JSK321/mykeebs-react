@@ -105,12 +105,16 @@ export default function KeebCard(props) {
                     onClick={handleExpandClick}
                     aria-expanded={expanded}
                     aria-label="show more"
+                    // removes border
+                    // style={{
+                    //     border:"none",
+                    //     outline:"none"
+                    //    }}
                 >
                     <ExpandMoreIcon />
                 </IconButton>
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
-
                 <ListItem divider>
                     <ListItemText
                         primary={

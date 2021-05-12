@@ -24,11 +24,11 @@ export default function SignInPage() {
     const handleFormSubmit = event => {
         event.preventDefault();
         if (!signInState.email || !signInState.password) {
-            alert("Incorrect email/password, please try again.");
+            // alert("Incorrect email/password, please try again.");
         } else {
             API.signIn(signInState).then(newToken => {
                 if (newToken === null) {
-                    alert("Incorrect email/password, please try again.");
+                    // alert("Incorrect email/password, please try again.");
                 } else {
                     localStorage.setItem("token", newToken.token);
                     API.getProfile(newToken.token).then(window.location.href = '/')
