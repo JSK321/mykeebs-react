@@ -151,7 +151,7 @@ export default function KeebCard(props) {
                     <ListItemText
                         primary={
                             <Typography variant="p">
-                                <strong>Spring Weight: </strong>{props.springWeight}
+                                <strong>Spring Force: </strong>{props.springWeight}
                             </Typography>
                         }
                     />

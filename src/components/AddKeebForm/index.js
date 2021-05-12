@@ -2,7 +2,7 @@
 import React from 'react'
 
 // Material-UI Components
-import { Card, CardHeader, CardContent, TextField, NativeSelect, FormControl, InputLabel, Button } from '@material-ui/core'
+import { Card, CardHeader, CardContent, TextField, Button } from '@material-ui/core'
 // Material-UI Icons
 import AddIcon from '@material-ui/icons/Add';
 // Material-UI Styles
@@ -88,7 +88,7 @@ export default function AddKeebForm(props) {
                         color="primary"
                         endIcon={<AddIcon />}
                     >
-                        Add keeb
+                        ADD PARTS
                     </Button>
                 </form>
             </CardContent>

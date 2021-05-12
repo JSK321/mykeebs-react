@@ -12,9 +12,9 @@ import HomePage from './pages/HomePage'
 import SignInPage from './pages/SignInPage'
 import Profile from './pages/Profile'
 import UpdateProfile from './pages/UpdateProfile'
-import Keebs from './pages/Keebs'
+import AddKeebPage from './pages/AddKeebPage'
 import KeebDetail from './pages/KeebDetail'
-import Parts from './pages/Parts'
+import AddPartsPage from './pages/AddPartsPage'
 import Keysets from './pages/Keysets'
 import ExtraKeysets from './pages/ExtraKeysets'
 import UpdateKeyset from './pages/UpdateKeyset'
@@ -57,13 +57,13 @@ function App() {
               <UpdateProfile />
             </Route>
             <Route exact path="/addkeebform">
-              <Keebs />
+              <AddKeebPage />
             </Route>
             <Route exact path="/updatekeeb/:id">
               <KeebDetail />
             </Route>
             <Route exact path="/addpartsform/:id">
-              <Parts />
+              <AddPartsPage />
             </Route>
             <Route exact path="/addextrakeysetform">
               <ExtraKeysets />

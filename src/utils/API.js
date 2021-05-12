@@ -80,10 +80,8 @@ const API = {
             body: JSON.stringify(keebData)
         }).then(res => {
             if (res.ok) {
-                alert("Keeb added!")
                 return res.json()
             } else {
-                alert("Log in to add keeb!")
                 throw new Error("Something went wrong")
             }
         }).catch(err => null)
@@ -99,10 +97,8 @@ const API = {
             body: JSON.stringify(partsData)
         }).then(res => {
             if (res.ok) {
-                alert("Parts added!")
                 return res.json()
             } else {
-                alert("Log in to add parts!")
                 throw new Error("Something went wrong")
             }
         }).catch(err => null)
@@ -118,10 +114,8 @@ const API = {
             body: JSON.stringify(keysetData)
         }).then(res => {
             if (res.ok) {
-                alert("Extra keyset added!")
                 return res.json()
             } else {
-                alert("Log in to add extra keysets!")
                 throw new Error("Something went wrong")
             }
         }).catch(err => null)
@@ -150,11 +144,9 @@ const API = {
             })
         }).then(res => {
             if (res.ok) {
-                alert("Profile updated!")
                 window.location.href = "/profile"
                 return res.json()
             } else {
-                alert("Log in to update profile!")
                 throw new Error("Something went wrong")
             }
         }).catch(err => null)
@@ -175,11 +167,9 @@ const API = {
             })
         }).then(res => {
             if (res.ok) {
-                alert("Keeb updated!")
                 window.location.href = "/"
                 return res.json()
             } else {
-                alert("Log in to update keeb!")
                 throw new Error("Something went wrong")
             }
         }).catch(err => null)
