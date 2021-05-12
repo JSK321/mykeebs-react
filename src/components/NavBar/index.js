@@ -139,7 +139,7 @@ export default function NavBar() {
                             primary={
                                 <Link
                                     to='/signin'
-                                    className='signInLink'
+                                    className='appDrawerLink'
                                     onClick={handleDrawerClose}
                                 >
                                     Sign in
@@ -149,6 +149,23 @@ export default function NavBar() {
 
                     </ListItem>
                     <Divider />
+                    <ListItem key="userSignIn">
+                        <ListItemIcon>
+                            <AccountCircleIcon />
+                        </ListItemIcon>
+                        <ListItemText
+                            primary={
+                                <Link
+                                    to='/addkeebform'
+                                    className='appDrawerLink'
+                                    onClick={handleDrawerClose}
+                                >
+                                    Add keeb
+                                </Link>
+                            }
+                        />
+
+                    </ListItem>
                 </List>
             </Drawer>
             <main

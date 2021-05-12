@@ -62,7 +62,7 @@ function App() {
             <Route exact path="/updatekeeb/:id">
               <KeebDetail />
             </Route>
-            <Route exact path="/addpartsform">
+            <Route exact path="/addpartsform/:id">
               <Parts />
             </Route>
             <Route exact path="/addextrakeysetform">

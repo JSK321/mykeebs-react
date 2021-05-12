@@ -1,48 +1,30 @@
+// React
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import AddKeebForm from '../../components/AddKeebForm'
+// API
 import API from '../../utils/API'
+// Context
+import { useProfile, useProfileData } from '../../contexts/ProfileContext'
+// Components
+import AddKeebForm from '../../components/AddKeebForm'
 
-export default function Keebs(props) {
+export default function Keebs() {
+    // Keeb Form State
     const [keebFormState, setKeebFormState] = useState({
         name: "",
-        size: "",
         maker: "",
         case: "",
         angle: "",
         color: "",
         plate: ""
     })
-
-    const [userProfile, setUserProfile] = useState({})
-
-    const { id } = useParams()
+    // Profile Context
+    const profileState = useProfile()
+    const profileData = useProfileData()
 
     useEffect(() => {
-        const token = localStorage.getItem('token')
-        API.getProfile(token).then(keebData => {
-            if (keebData) {
-                setUserProfile({
-                    name: keebData.name,
-                    email: keebData.email,
-                    keebs: keebData.Keebs,
-                    token: token,
-                    isLoggedIn: true
-                })
-            } else {
-                localStorage.removeItem("token");
-                setUserProfile({
-                    name: "",
-                    email: "",
-                    keebs: [],
-                    parts: [],
-                    token: "",
-                    isLoggedIn: false
-                })
-            }
-        })
+        profileData()
     }, [])
-
 
     const handleInputChange = event => {
         const { name, value } = event.target
@@ -52,41 +34,12 @@ export default function Keebs(props) {
         })
     }
 
-    const handleSelectSize = event => {
-        let size = event.target.value
-        setKeebFormState({
-            ...keebFormState,
-            size: size
-        })
-    }
-
     const handleFormSubmit = event => {
         event.preventDefault();
-        API.createKeeb(props.profile.token, {
-            ...keebFormState,
-            UserId: id
-        }).then(data => {
-            const token = localStorage.getItem('token')
-            API.getProfile(token).then(keebData => {
-                if (keebData) {
-                    setUserProfile({
-                        name: keebData.name,
-                        email: keebData.email,
-                        keebs: keebData.Keebs,
-                        token: token,
-                        isLoggedIn: true
-                    })
-                    window.location.href="/addpartsform"
-                } else {
-                    localStorage.removeItem("token");
-                    setUserProfile({
-                        name: "",
-                        email: "",
-                        keebs: [],
-                        token: "",
-                        isLoggedIn: false
-                    })
-                }
+        API.createKeeb(profileState.token, keebFormState).then(res => {
+            API.getAllKeebs().then(res => {
+                let keebId = res.slice(-1)[0].id
+                window.location.href = `/addpartsform/${keebId}`
             })
         })
     }
@@ -94,10 +47,8 @@ export default function Keebs(props) {
     return (
         <AddKeebForm
             handleInputChange={handleInputChange}
-            handleSelectSize={handleSelectSize}
             handleFormSubmit={handleFormSubmit}
             name={keebFormState.name}
-            size={keebFormState.size}
             maker={keebFormState.maker}
             case={keebFormState.case}
             angle={keebFormState.angle}

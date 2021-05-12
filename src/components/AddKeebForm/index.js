@@ -1,48 +1,97 @@
+// React
 import React from 'react'
-import './styles.css'
+
+// Material-UI Components
+import { Card, CardHeader, CardContent, TextField, NativeSelect, FormControl, InputLabel, Button } from '@material-ui/core'
+// Material-UI Icons
+import AddIcon from '@material-ui/icons/Add';
+// Material-UI Styles
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+    keebCard: {
+        width: '22rem',
+        textAlign: 'center',
+        marginLeft: 'auto',
+        marginRight: 'auto'
+    },
+    sizeSelect: {
+        width: '100%'
+    }
+}));
 
 export default function AddKeebForm(props) {
+    const classes = useStyles();
     return (
-        <div classNameName="addKeebForm">
-            <div className="card addKeeb">
-                <h5 className="card-header" style={{backgroundColor:"lightsteelblue", color:"midnightblue"}}><strong>Add New Keeb!</strong></h5>
-                <div className="card-body" style={{backgroundColor:"honeydew"}}>
-                    <form onSubmit={props.handleFormSubmit}>
-                        <div className="form-group">
-                            <input onChange={props.handleInputChange} value={props.name} name='name' type="text" className="form-control" placeholder="Name" required/>
-                        </div>
-                        <div className="form-group">
-                            <select className="form-control" onChange={props.handleSelectSize} value={props.size} required>
-                                <option selected disabled value="">Select Keeb Size...</option>
-                                <option>100</option>
-                                <option>96</option>
-                                <option>80</option>
-                                <option>75</option>
-                                <option>65</option>
-                                <option>60</option>
-                            </select>
-                        </div>
-                        <div className="form-group">
-                            <input onChange={props.handleInputChange} value={props.maker} name='maker' type="text" className="form-control" placeholder="Maker" required/>
-                        </div>
-                        <div className="form-group">
-                            <input onChange={props.handleInputChange} value={props.case} name='case' type="text" className="form-control" placeholder="Case" required/>
-                        </div>
-                        <div className="form-group">
-                            <input onChange={props.handleInputChange} value={props.angle} name='angle' type="text" className="form-control" placeholder="Angle" required/>
-                        </div>
-                        <div className="form-group">
-                            <input onChange={props.handleInputChange} value={props.color} name='color' type="text" className="form-control" placeholder="Color" required/>
-                        </div>
-                        <div className="form-group">
-                            <input onChange={props.handleInputChange} value={props.plate} name='plate' type="text" className="form-control" placeholder="Plate" required/>
-                        </div>
-                        <div className="form-group">
-                        <input type='submit' className="addKeebBtn btn btn-primary"  value="Add Keeb"/>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        <Card className={classes.keebCard}>
+            <CardHeader
+                title="Add Keeb"
+            />
+            <CardContent>
+                <form autoComplete='off' onSubmit={props.handleFormSubmit}>
+                    <TextField
+                        label="Name"
+                        name="name"
+                        placeholder="Keeb name"
+                        fullWidth
+                        margin="normal"
+                        onChange={props.handleInputChange}
+                        required
+                    />
+                    <TextField
+                        label="Maker"
+                        name="maker"
+                        placeholder="Keeb designer"
+                        fullWidth
+                        margin="normal"
+                        onChange={props.handleInputChange}
+                        required
+                    />
+                    <TextField
+                        label="Angle"
+                        name="angle"
+                        placeholder="Keeb angle"
+                        fullWidth
+                        margin="normal"
+                        onChange={props.handleInputChange}
+                        required
+                    />
+                    <TextField
+                        label="Case"
+                        name="case"
+                        placeholder="Case material"
+                        fullWidth
+                        margin="normal"
+                        onChange={props.handleInputChange}
+                        required
+                    />
+                    <TextField
+                        label="Color"
+                        name="color"
+                        placeholder="Case Color"
+                        fullWidth
+                        margin="normal"
+                        onChange={props.handleInputChange}
+                        required
+                    />
+                    <TextField
+                        label="Plate"
+                        name="plate"
+                        placeholder="Plate material"
+                        fullWidth
+                        margin="normal"
+                        onChange={props.handleInputChange}
+                        required
+                    />
+                    <Button
+                        type='submit'
+                        color="primary"
+                        endIcon={<AddIcon />}
+                    >
+                        Add keeb
+                    </Button>
+                </form>
+            </CardContent>
+        </Card>
     )
 }
