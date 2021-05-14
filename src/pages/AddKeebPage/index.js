@@ -32,6 +32,13 @@ export default function Keebs() {
             ...keebFormState,
             [name]: value
         })
+        
+        if(event.target.name === 'angle') {
+            setKeebFormState({
+                ...keebFormState,
+                angle: `${value}°`
+            })
+        }
     }
 
     const handleFormSubmit = event => {

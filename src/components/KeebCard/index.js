@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 // clsx
 import clsx from 'clsx';
 // Material-UI Components
-import { Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, IconButton, Typography, List, ListItem, ListItemText } from '@material-ui/core'
+import { Card, CardHeader, CardMedia, CardActions, Collapse, IconButton, Typography, List, ListItem, ListItemText } from '@material-ui/core'
 // Material-UI Icons
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 // Material-UI Styles
@@ -11,7 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: 345,
+        maxWidth: 400,
     },
     media: {
         height: 0,
@@ -51,46 +51,44 @@ export default function KeebCard(props) {
                 image={props.keebImage}
                 title={props.name}
             />
-            <CardContent>
-                <List>
-                    <ListItem divider>
-                        <ListItemText
-                            primary={
-                                <Typography variant="p">
-                                    <strong>Angle: </strong>{props.angle}
-                                </Typography>
-                            }
-                        />
-                    </ListItem>
-                    <ListItem divider>
-                        <ListItemText
-                            primary={
-                                <Typography variant="p">
-                                    <strong>Case: </strong>{props.case}
-                                </Typography>
-                            }
-                        />
-                    </ListItem>
-                    <ListItem divider>
-                        <ListItemText
-                            primary={
-                                <Typography variant="p">
-                                    <strong>Color: </strong>{props.color}
-                                </Typography>
-                            }
-                        />
-                    </ListItem>
-                    <ListItem divider>
-                        <ListItemText
-                            primary={
-                                <Typography variant="p">
-                                    <strong>Keyset: </strong>{props.keyset}
-                                </Typography>
-                            }
-                        />
-                    </ListItem>
-                </List>
-            </CardContent>
+            <List>
+                <ListItem divider>
+                    <ListItemText
+                        primary={
+                            <Typography variant="p">
+                                <strong>Angle: </strong>{props.angle}
+                            </Typography>
+                        }
+                    />
+                </ListItem>
+                <ListItem divider>
+                    <ListItemText
+                        primary={
+                            <Typography variant="p">
+                                <strong>Case: </strong>{props.case}
+                            </Typography>
+                        }
+                    />
+                </ListItem>
+                <ListItem divider>
+                    <ListItemText
+                        primary={
+                            <Typography variant="p">
+                                <strong>Color: </strong>{props.color}
+                            </Typography>
+                        }
+                    />
+                </ListItem>
+                <ListItem divider>
+                    <ListItemText
+                        primary={
+                            <Typography variant="p">
+                                <strong>Keyset: </strong>{props.keyset}
+                            </Typography>
+                        }
+                    />
+                </ListItem>
+            </List>
             <CardActions disableSpacing>
                 {/* <IconButton aria-label="add to favorites">
                     <FavoriteIcon />
@@ -105,11 +103,11 @@ export default function KeebCard(props) {
                     onClick={handleExpandClick}
                     aria-expanded={expanded}
                     aria-label="show more"
-                    // removes border
-                    // style={{
-                    //     border:"none",
-                    //     outline:"none"
-                    //    }}
+                // removes border
+                // style={{
+                //     border:"none",
+                //     outline:"none"
+                //    }}
                 >
                     <ExpandMoreIcon />
                 </IconButton>

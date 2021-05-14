@@ -13,7 +13,7 @@ import SignInPage from './pages/SignInPage'
 import Profile from './pages/Profile'
 import UpdateProfile from './pages/UpdateProfile'
 import AddKeebPage from './pages/AddKeebPage'
-import KeebDetail from './pages/KeebDetail'
+import KeebUpdatePage from './pages/KeebUpdatePage'
 import AddPartsPage from './pages/AddPartsPage'
 import Keysets from './pages/Keysets'
 import ExtraKeysets from './pages/ExtraKeysets'
@@ -23,20 +23,6 @@ import NoMatch from './pages/NoMatch'
 
 
 function App() {
-
-  // const handleLogOut = event => {
-  //   localStorage.removeItem("token");
-  //   setProfileState({
-  //     name: "",
-  //     email: "",
-  //     keebs: [],
-  //     parts: [],
-  //     token: "",
-  //     isLoggedIn: false
-  //   })
-  //   window.location.reload(false)
-  // }
-
   return (
     <ProfileProvider>
       <KeebProvider>
@@ -60,7 +46,7 @@ function App() {
               <AddKeebPage />
             </Route>
             <Route exact path="/updatekeeb/:id">
-              <KeebDetail />
+              <KeebUpdatePage />
             </Route>
             <Route exact path="/addpartsform/:id">
               <AddPartsPage />

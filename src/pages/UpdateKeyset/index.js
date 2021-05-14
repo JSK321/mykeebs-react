@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import KeysetUpdateCard from '../../components/KeysetUpdateCard'
+import KeysetUpdateCard from '../../components/KeysetUpdateForm'
 import API from "../../utils/API"
 
 export default function UpdateKeyset(props) {

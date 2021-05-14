@@ -32,7 +32,7 @@ export default function AddPartsForm(props) {
                     <TextField
                         label="Switch"
                         name="switches"
-                        placeholder="Switch name"
+                        placeholder="Switches"
                         fullWidth
                         margin="normal"
                         onChange={props.handleInputChange}
@@ -49,7 +49,7 @@ export default function AddPartsForm(props) {
                     <TextField
                         label="Switch Lube"
                         name="switchLube"
-                        placeholder="Lube name"
+                        placeholder="Lube on switch"
                         fullWidth
                         margin="normal"
                         onChange={props.handleInputChange}
@@ -57,7 +57,7 @@ export default function AddPartsForm(props) {
                     <TextField
                         label="Spring Force"
                         name="springWeight"
-                        placeholder="Force weight"
+                        placeholder="Spring force"
                         fullWidth
                         margin="normal"
                         onChange={props.handleInputChange}
@@ -66,7 +66,7 @@ export default function AddPartsForm(props) {
                     <TextField
                         label="Spring Lube"
                         name="springLube"
-                        placeholder="Lube name"
+                        placeholder="Lube on springs"
                         fullWidth
                         margin="normal"
                         onChange={props.handleInputChange}
@@ -83,7 +83,7 @@ export default function AddPartsForm(props) {
                     <TextField
                         label="Stabilizer Lube"
                         name="stabLube"
-                        placeholder="Lube name"
+                        placeholder="Lube on stabilizers"
                         fullWidth
                         margin="normal"
                         onChange={props.handleInputChange}

@@ -122,7 +122,13 @@ const API = {
         return fetch(`https://api.cloudinary.com/v1_1/jsk321/image/upload`, {
             method: 'POST',
             body: imgData
-        })
+        }).then(res => {
+            if (res.ok) {
+                return res.json()
+            } else {
+                throw new Error("Something went wrong")
+            }
+        }).catch(err => console.log(err))
     },
 
     // Update User Function
@@ -164,7 +170,6 @@ const API = {
             })
         }).then(res => {
             if (res.ok) {
-                window.location.href = "/"
                 return res.json()
             } else {
                 throw new Error("Something went wrong")
@@ -269,7 +274,7 @@ const API = {
                 'authorization': `Bearer ${token}`
             },
         }).then(res => {
-            if(res.ok){
+            if (res.ok) {
                 window.location.href = "/profile"
             } else {
                 throw new Error("Something went wrong")
