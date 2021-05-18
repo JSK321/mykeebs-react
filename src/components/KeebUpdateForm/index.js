@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import UpdatePhotoPopover from '../../components/UpdatePhotoPopover'
 import LoadingCircle from '../../components/LoadingCircle'
 // Material-UI Components
-import { TextField, Button, Card, CardHeader, CardMedia, CardContent, CardActions, IconButton, Typography, Grid } from '@material-ui/core'
+import { TextField, Button, Card, CardHeader, CardMedia, CardContent, CardActions, IconButton, Grid } from '@material-ui/core'
 // Material-UI Icons
 import PhotoIcon from '@material-ui/icons/Photo'
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
@@ -33,6 +33,10 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'center',
         margin: '2rem'
+    },
+    updateFormBtns: {
+        display:'flex',
+        justifyContent:'center',
     }
 }));
 
@@ -219,10 +223,8 @@ export default function KeebUpdateForm(props) {
                     </Grid>
                 </form>
             </CardContent>
-            <CardActions>
+            <CardActions className={classes.updateFormBtns}>
                 <Button
-                    size="small"
-                    color="primary"
                     type="submit"
                     onClick={props.handleFormSubmit}
                     endIcon={<SystemUpdateAltIcon />}
@@ -230,8 +232,6 @@ export default function KeebUpdateForm(props) {
                     Update
                 </Button>
                 <Button
-                    size="small"
-                    color="primary"
                     onClick={props.handleDeleteKeeb}
                     endIcon={<RemoveCircleOutlineIcon />}
                 >

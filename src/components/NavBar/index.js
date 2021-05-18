@@ -66,6 +66,7 @@ export default function MenuAppBar() {
         localStorage.removeItem('token')
         setAuth(false)
         setAnchorEl(null);
+        window.location.href='/'
     }
 
     return (

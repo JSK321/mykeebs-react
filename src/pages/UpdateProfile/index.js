@@ -1,16 +1,19 @@
+// React
 import React, { useState, useEffect } from 'react'
-import UpdateProfileForm from '../../components/UpdateProfileForm'
+// API
 import API from '../../utils/API'
+// Components
+import UpdateProfileForm from '../../components/UpdateProfileForm'
 
 export default function UpdateProfile() {
     const [userProfile, setUserProfile] = useState({
+        id: "",
+        token:"",
         name: "",
         email: "",
-        token: "",
-        id: "",
-        profileImage:""
+        password: "",
+        image: ""
     })
-
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
@@ -18,22 +21,19 @@ export default function UpdateProfile() {
         API.getProfile(token).then(profileData => {
             if (profileData) {
                 setUserProfile({
+                    id: profileData.id,
+                    token: token,
                     name: profileData.name,
                     email: profileData.email,
-                    token: token,
-                    id: profileData.id,
-                    profileImage: profileData.profileImage,
-                    isLoggedIn: true
+                    image: profileData.profileImage,
                 })
             } else {
                 localStorage.removeItem("token");
                 setUserProfile({
                     name: "",
                     email: "",
-                    token: "",
-                    id: "",
-                    profileImage: "",
-                    isLoggedIn: false
+                    password: "",
+                    image: ""
                 })
             }
         })
@@ -50,7 +50,7 @@ export default function UpdateProfile() {
     const handleDeleteProfile = event => {
         event.preventDefault()
         let confirmAlert = window.confirm("Are you certain to delete profile?")
-        if(confirmAlert === true){
+        if (confirmAlert === true) {
             API.deleteUser(userProfile.token, userProfile.id)
         }
     }
@@ -58,7 +58,7 @@ export default function UpdateProfile() {
     // Cloudinary Functions
     const handleImageUploadBtn = event => {
         event.preventDefault()
-        document.getElementById('image').click()
+        document.getElementById('icon-button-file').click()
     }
 
     const handleUploadImage = async event => {
@@ -68,10 +68,10 @@ export default function UpdateProfile() {
         data.append('upload_preset', 'keebs_setups')
         setLoading(true)
         const res = await API.uploadImage(data)
-        const file = await res.json()
+        const file = await res
         setUserProfile({
             ...userProfile,
-            profileImage: file.secure_url
+            image: file.secure_url
         })
         setLoading(false)
     }
@@ -86,13 +86,7 @@ export default function UpdateProfile() {
             userProfile.password,
             userProfile.profileImage
         ).then(userData => {
-            setUserProfile({
-                ...userProfile,
-                name: userProfile.name,
-                email: userProfile.email,
-                password: userProfile.password,
-                profileImage: userProfile.profileImage
-            })
+            window.location.href='/profile'
         })
 
     }
@@ -107,7 +101,7 @@ export default function UpdateProfile() {
                 handleFormSubmit={handleFormSubmit}
                 name={userProfile.name}
                 email={userProfile.email}
-                profileImage={userProfile.profileImage}
+                image={userProfile.image}
                 loading={loading}
             />
         </div>
