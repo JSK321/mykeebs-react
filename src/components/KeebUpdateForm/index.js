@@ -19,8 +19,9 @@ const useStyles = makeStyles((theme) => ({
         // marginTop:"1rem"
     },
     media: {
-        height: 0,
-        paddingTop: '56.25%', // 16:9
+        height: '100%',
+        width: '100%',
+        objectFit: 'contain'
     },
     updateInputField: {
         margin: 0
@@ -90,6 +91,8 @@ export default function KeebUpdateForm(props) {
                 :
                 (
                     <CardMedia
+                        component="img"
+                        alt={`${props.name} photo`}
                         className={classes.media}
                         image={props.keebImage}
                         title="keeb photo"

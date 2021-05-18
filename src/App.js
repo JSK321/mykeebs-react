@@ -10,7 +10,7 @@ import { KeebProvider } from './contexts/KeebContext'
 // Pages
 import HomePage from './pages/HomePage'
 import SignInPage from './pages/SignInPage'
-import Profile from './pages/Profile'
+import ProfilePage from './pages/ProfilePage'
 import UpdateProfile from './pages/UpdateProfile'
 import AddKeebPage from './pages/AddKeebPage'
 import KeebUpdatePage from './pages/KeebUpdatePage'
@@ -34,12 +34,12 @@ function App() {
               <Footer />
             </Route>
             <Route exact path="/profile">
-              <Profile />
+              <ProfilePage />
             </Route>
             <Route exact path="/signin">
               <SignInPage />
             </Route>
-            <Route exact path="/updateprofile">
+            <Route exact path="/updateprofile/:id">
               <UpdateProfile />
             </Route>
             <Route exact path="/addkeebform">

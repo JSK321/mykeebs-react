@@ -14,8 +14,9 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: 400,
     },
     media: {
-        height: 0,
-        paddingTop: '56.25%', // 16:9
+        height: '100%',
+        width: '100%',
+        objectFit: 'contain'
     },
     expand: {
         transform: 'rotate(0deg)',
@@ -26,9 +27,6 @@ const useStyles = makeStyles((theme) => ({
     },
     expandOpen: {
         transform: 'rotate(180deg)',
-    },
-    inline: {
-        display: 'inline',
     },
 }));
 
@@ -47,6 +45,8 @@ export default function KeebCard(props) {
                 subheader={`Designed by: ${props.maker}`}
             />
             <CardMedia
+                component='img'
+                alt={`${props.name} photo`}
                 className={classes.media}
                 image={props.keebImage}
                 title={props.name}

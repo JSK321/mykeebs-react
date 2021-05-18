@@ -1,6 +1,7 @@
 .appBarLink{
     text-decoration: none;
-    color: inherit
+    color: inherit;
+    width: 100%
 }
 
 .homeLink, .homeLink:hover {

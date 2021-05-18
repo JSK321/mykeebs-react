@@ -1,6 +1,8 @@
 // React
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+// API
+import API from '../../utils/API'
 // Material-UI Components
 import { AppBar, Toolbar, IconButton, MenuItem, Menu } from '@material-ui/core';
 // Material-UI Icons
@@ -27,10 +29,6 @@ const useStyles = makeStyles((theme) => ({
         top: '5px',
         marginRight: '1.3rem'
     },
-    menuItem: {
-        display: 'flex',
-        justifyContent: 'center'
-    },
     menuIcon: {
         position: 'absolute',
         right: '35px',
@@ -46,9 +44,13 @@ export default function MenuAppBar() {
 
     useEffect(() => {
         const token = localStorage.getItem('token')
-        if (token !== null) {
-            setAuth(true)
-        }
+        API.getProfile(token).then(res => {
+            if (res !== null) {
+                setAuth(true)
+            } else {
+                setAuth(false)
+            }
+        })
     }, [])
 
     const handleMenu = (event) => {
@@ -100,7 +102,7 @@ export default function MenuAppBar() {
                             onClose={handleClose}
                         >
                             {auth === true ?
-                                <MenuItem onClick={handleClose} className={classes.menuItem}>
+                                <MenuItem onClick={handleClose}>
                                     <Link
                                         to='/profile'
                                         className='appBarLink'
@@ -112,7 +114,7 @@ export default function MenuAppBar() {
                                 null
                             }
                             {auth === true ?
-                                <MenuItem onClick={handleClose} className={classes.menuItem}>
+                                <MenuItem onClick={handleClose}>
                                     <Link
                                         to='/addkeebform'
                                         className='appBarLink'
@@ -124,7 +126,7 @@ export default function MenuAppBar() {
                                 null
                             }
                             {auth === false ?
-                                <MenuItem onClick={handleClose} className={classes.menuItem}>
+                                <MenuItem onClick={handleClose}>
                                     <Link
                                         to='/signin'
                                         className='appBarLink'
@@ -133,12 +135,12 @@ export default function MenuAppBar() {
                                     </Link>
                                 </MenuItem>
                                 :
-                                <MenuItem onClick={handleLogOut} className={classes.menuItem}>
+                                <MenuItem onClick={handleLogOut}>
                                     Sign out
                                 </MenuItem>
                             }
                             {auth === false ?
-                                <MenuItem onClick={handleClose} className={classes.menuItem}>
+                                <MenuItem onClick={handleClose}>
                                     <Link
                                         to='/register'
                                         className='appBarLink'
