@@ -41,9 +41,14 @@ const API = {
         return fetch(`${URL_PREFIX}/api/keebs`, {
         }).then(res => res.json()).catch(err => null)
     },
-    // Retrieve one Keeb
+    // Retrieve one Keeb by id
     getOneKeeb: function (keebId) {
         return fetch(`${URL_PREFIX}/api/keebs/${keebId}`, {
+        }).then(res => res.json()).catch(err => null)
+    },
+    // Retrieve one Keeb by name
+    getKeeb: function(name) {
+        return fetch(`${URL_PREFIX}/api/keebs/keeb/${name}`,{
         }).then(res => res.json()).catch(err => null)
     },
     // Retrieve all keeb parts function

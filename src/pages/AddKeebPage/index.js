@@ -32,8 +32,8 @@ export default function Keebs() {
             ...keebFormState,
             [name]: value
         })
-        
-        if(event.target.name === 'angle') {
+
+        if (event.target.name === 'angle') {
             setKeebFormState({
                 ...keebFormState,
                 angle: `${value}°`
@@ -52,15 +52,17 @@ export default function Keebs() {
     }
 
     return (
-        <AddKeebForm
-            handleInputChange={handleInputChange}
-            handleFormSubmit={handleFormSubmit}
-            name={keebFormState.name}
-            maker={keebFormState.maker}
-            case={keebFormState.case}
-            angle={keebFormState.angle}
-            color={keebFormState.color}
-            plate={keebFormState.plate}
-        />
+        <div className="content">
+            <AddKeebForm
+                handleInputChange={handleInputChange}
+                handleFormSubmit={handleFormSubmit}
+                name={keebFormState.name}
+                maker={keebFormState.maker}
+                case={keebFormState.case}
+                angle={keebFormState.angle}
+                color={keebFormState.color}
+                plate={keebFormState.plate}
+            />
+        </div>
     )
 }

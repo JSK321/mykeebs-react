@@ -1,32 +1,15 @@
 // React
-import React, { useState, useEffect } from 'react'
-// API
-import API from '../../utils/API'
+import React from 'react'
 // Components
 import ProfileCard from '../../components/ProfileCard'
 import ViewKeebList from '../../components/ViewKeebList'
-import ViewKeysets from '../../components/ViewKeysets'
 // Material-UI Components
-import { Grid, Card } from '@material-ui/core'
-// Material-UI Styles
-import { makeStyles } from '@material-ui/core/styles'
-
-const useStyles = makeStyles((theme) => ({
-    profilePage: {
-        height: '98%',
-        // width:'75%'
-        display:"flex",
-        justifyContent:"center",
-        alignItems:'center'
-    },
-}))
-
+import { Grid } from '@material-ui/core'
 
 export default function ProfilePage() {
-    const classes = useStyles()
-
+    
     return (
-        <div className={classes.profilePage}>
+        <div className="content">
             <Grid container spacing={2}>
                 <Grid item lg={3} md={4} sm={6} xs={12}>
                     <ProfileCard />

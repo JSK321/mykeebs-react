@@ -1,5 +1,5 @@
 // React
-import React, { useState } from 'react';
+import React from 'react';
 // Material-UI Components
 import {Popover, Typography} from '@material-ui/core';
 // Material-UI Styles
@@ -14,10 +14,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function UpdatePhotoPopover(props) {
+export default function UpdatePopover(props) {
     const classes = useStyles();
-    const [anchorEl, setAnchorEl] = useState(null);
-
+   
     return (
         <div>
             <Popover
@@ -39,7 +38,7 @@ export default function UpdatePhotoPopover(props) {
                 onClose={props.handlePopoverClose}
                 disableRestoreFocus
             >
-                <Typography>Update Photo</Typography>
+                <Typography>{props.name}</Typography>
             </Popover>
         </div>
     );

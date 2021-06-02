@@ -1,13 +1,12 @@
 // React
 import React, { useState } from 'react'
 // Components
-import UpdatePhotoPopover from '../../components/UpdatePhotoPopover'
 import LoadingCircle from '../../components/LoadingCircle'
 // Material-UI Components
-import { TextField, Button, Card, CardHeader, CardMedia, CardContent, CardActions, IconButton, Grid } from '@material-ui/core'
+import { TextField, Button, Card, CardHeader, CardMedia, CardContent, CardActions, IconButton, Grid, Tooltip } from '@material-ui/core'
 // Material-UI Icons
 import PhotoIcon from '@material-ui/icons/Photo'
-import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
+import CloseIcon from '@material-ui/icons/Close';
 import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
 // Material-UI Styles
 import { makeStyles } from '@material-ui/core/styles'
@@ -35,26 +34,14 @@ const useStyles = makeStyles((theme) => ({
         margin: '2rem'
     },
     updateFormBtns: {
-        display:'flex',
-        justifyContent:'center',
+        display: 'flex',
+        justifyContent: 'center',
     }
 }));
 
 
 export default function KeebUpdateForm(props) {
     const classes = useStyles();
-
-    const [anchorEl, setAnchorEl] = useState(null);
-
-    const handlePopoverOpen = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handlePopoverClose = () => {
-        setAnchorEl(null);
-    };
-
-    const open = Boolean(anchorEl);
 
     return (
         <Card className={classes.root}>
@@ -63,28 +50,20 @@ export default function KeebUpdateForm(props) {
                     <>
                         <input accept="image/*" className={classes.input} id="icon-button-file" type="file" onChange={props.handleUploadImage} />
                         <label htmlFor="icon-button-file">
-                            <IconButton
-                                aria-label="update photo"
-                                component="span"
-                                onClick={props.handleImageUploadBtn}
-                            >
-                                <PhotoIcon
-                                    aria-owns={open ? 'mouse-over-popover' : undefined}
-                                    aria-haspopup="true"
-                                    onMouseEnter={handlePopoverOpen}
-                                    onMouseLeave={handlePopoverClose}
-                                />
-                            </IconButton>
+                            <Tooltip title="Update Photo" arrow>
+                                <IconButton
+                                    aria-label="update photo"
+                                    component="span"
+                                    onClick={props.handleImageUploadBtn}
+                                >
+                                    <PhotoIcon />
+                                </IconButton>
+                            </Tooltip>
                         </label>
                     </>
                 }
                 title={props.name}
                 subheader={`Designed by ${props.maker}`}
-            />
-            <UpdatePhotoPopover
-                handlePopoverClose={handlePopoverClose}
-                open={open}
-                anchorEl={anchorEl}
             />
             {props.loading ?
                 (
@@ -167,9 +146,9 @@ export default function KeebUpdateForm(props) {
                         </Grid>
                         <Grid item xs={6}>
                             <TextField
-                                label="Spring Weight"
+                                label="Spring"
                                 name="springWeight"
-                                placeholder="Spring force"
+                                placeholder="Spring name/force"
                                 value={props.springWeight}
                                 margin="normal"
                                 onChange={props.handleInputChange}
@@ -229,11 +208,11 @@ export default function KeebUpdateForm(props) {
                     onClick={props.handleFormSubmit}
                     endIcon={<SystemUpdateAltIcon />}
                 >
-                    Update
+                    Save
                 </Button>
                 <Button
                     onClick={props.handleDeleteKeeb}
-                    endIcon={<RemoveCircleOutlineIcon />}
+                    endIcon={<CloseIcon />}
                 >
                     Delete
                 </Button>

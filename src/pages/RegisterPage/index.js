@@ -37,14 +37,16 @@ export default function RegisterPage() {
     }
 
     return (
-        <div className="Register">
-            <SignUpForm
-                handleInputChange={handleInputChange}
-                handleFormSubmit={handleFormSubmit}
-                email={userState.email}
-                password={userState.password}
-                name={userState.name}
-            />
+        <div className="content">
+            <div className="Register">
+                <SignUpForm
+                    handleInputChange={handleInputChange}
+                    handleFormSubmit={handleFormSubmit}
+                    email={userState.email}
+                    password={userState.password}
+                    name={userState.name}
+                />
+            </div>
         </div>
     )
 }

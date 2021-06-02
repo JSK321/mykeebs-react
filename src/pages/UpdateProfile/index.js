@@ -8,7 +8,7 @@ import UpdateProfileForm from '../../components/UpdateProfileForm'
 export default function UpdateProfile() {
     const [userProfile, setUserProfile] = useState({
         id: "",
-        token:"",
+        token: "",
         name: "",
         email: "",
         password: "",
@@ -86,13 +86,13 @@ export default function UpdateProfile() {
             userProfile.password,
             userProfile.profileImage
         ).then(userData => {
-            window.location.href='/profile'
+            window.location.href = '/profile'
         })
 
     }
 
     return (
-        <div>
+        <div className="content">
             <UpdateProfileForm
                 handleInputChange={handleInputChange}
                 handleImageUploadBtn={handleImageUploadBtn}

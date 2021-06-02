@@ -1,13 +1,15 @@
+// React
 import React from 'react'
+// CSS
+import './styles.css'
 
 export default function Footer() {
     return (
-        <div className="Footer">
-            <nav className="footer relative-bottom">
-                <div className="container-fluid" style={{textAlign:"center", color:"midnightblue", marginTop:"10px"}}>
-                    <p><strong>© Copyright JSK 2020</strong></p>
-                </div>
-            </nav>
+        <div className="footer">
+            Made with 💗
+            <br></br>
+            <br></br>
+            Follow me at Github
         </div>
     )
 }

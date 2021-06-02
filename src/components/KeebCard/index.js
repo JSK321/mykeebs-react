@@ -3,16 +3,17 @@ import React, { useState } from 'react'
 // clsx
 import clsx from 'clsx';
 // Material-UI Components
-import { Card, CardHeader, CardMedia, CardActions, Collapse, IconButton, Typography, List, ListItem, ListItemText } from '@material-ui/core'
+import { Card, CardHeader, CardMedia, CardActions, Collapse, IconButton, Typography, List, ListItem, ListItemText, Tooltip } from '@material-ui/core'
 // Material-UI Icons
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MusicNoteIcon from '@material-ui/icons/MusicNote';
+import FindReplaceIcon from '@material-ui/icons/FindReplace';
 // Material-UI Styles
 import { makeStyles } from '@material-ui/core/styles';
+// CSS
+import './styles.css'
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        maxWidth: 400,
-    },
     media: {
         height: '100%',
         width: '100%',
@@ -33,13 +34,15 @@ const useStyles = makeStyles((theme) => ({
 export default function KeebCard(props) {
     const classes = useStyles();
     const [expanded, setExpanded] = useState(false);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [popName, setPopName] = useState(null);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
 
     return (
-        <Card className={classes.root}>
+        <Card className='keebCard' id={props.name}>
             <CardHeader
                 title={props.name}
                 subheader={`Designed by: ${props.maker}`}
@@ -90,12 +93,22 @@ export default function KeebCard(props) {
                 </ListItem>
             </List>
             <CardActions disableSpacing>
-                {/* <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
-                </IconButton>
-                <IconButton aria-label="share">
-                    <ShareIcon />
-                </IconButton> */}
+                <Tooltip title="Sound test">
+                    <IconButton
+                        aria-label="sound test"
+                    >
+                        <MusicNoteIcon />
+                    </IconButton>
+                </Tooltip>
+                <Tooltip title="New search">
+                    <IconButton
+                        aria-label="search again"
+                        onClick={props.handleNewSearch}
+                    >
+                        <FindReplaceIcon />
+                    </IconButton>
+                </Tooltip>
+
                 <IconButton
                     className={clsx(classes.expand, {
                         [classes.expandOpen]: expanded,
@@ -103,11 +116,6 @@ export default function KeebCard(props) {
                     onClick={handleExpandClick}
                     aria-expanded={expanded}
                     aria-label="show more"
-                // removes border
-                // style={{
-                //     border:"none",
-                //     outline:"none"
-                //    }}
                 >
                     <ExpandMoreIcon />
                 </IconButton>
@@ -153,7 +161,7 @@ export default function KeebCard(props) {
                     <ListItemText
                         primary={
                             <Typography variant="p">
-                                <strong>Spring Force: </strong>{props.springWeight}
+                                <strong>Spring: </strong>{props.springWeight}
                             </Typography>
                         }
                     />

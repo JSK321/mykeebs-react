@@ -1,10 +1,9 @@
 // React
 import React, { useState } from 'react'
 // Components
-import UpdatePhotoPopover from '../../components/UpdatePhotoPopover'
 import LoadingCircle from '../../components/LoadingCircle'
 // Material-UI Components
-import { TextField, Card, CardHeader, CardMedia, CardContent, CardActions, IconButton, Button, Grid } from '@material-ui/core'
+import { TextField, Card, CardHeader, CardMedia, CardContent, CardActions, IconButton, Button, Grid, Tooltip } from '@material-ui/core'
 // Material-UI Icons
 import PhotoIcon from '@material-ui/icons/Photo'
 import SaveAltIcon from '@material-ui/icons/SaveAlt';
@@ -36,25 +35,14 @@ const useStyles = makeStyles((theme) => ({
         margin: '2rem'
     },
     updateFormBtns: {
-        display:'flex',
-        justifyContent:'center',
+        display: 'flex',
+        justifyContent: 'center',
     }
 }));
 
 export default function UpdateProfileForm(props) {
     const classes = useStyles();
-    const [anchorEl, setAnchorEl] = useState(null);
-
-    const handlePopoverOpen = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handlePopoverClose = () => {
-        setAnchorEl(null);
-    };
-
-    const open = Boolean(anchorEl);
-
+    
     return (
         <Card className={classes.root}>
             <CardHeader
@@ -62,27 +50,19 @@ export default function UpdateProfileForm(props) {
                     <>
                         <input accept="image/*" className={classes.input} id="icon-button-file" type="file" onChange={props.handleUploadImage} />
                         <label htmlFor="icon-button-file">
-                            <IconButton
-                                aria-label="update photo"
-                                component="span"
-                                onClick={props.handleImageUploadBtn}
-                            >
-                                <PhotoIcon
-                                    aria-owns={open ? 'mouse-over-popover' : undefined}
-                                    aria-haspopup="true"
-                                    onMouseEnter={handlePopoverOpen}
-                                    onMouseLeave={handlePopoverClose}
-                                />
-                            </IconButton>
+                            <Tooltip title="Update Photo" arrow>
+                                <IconButton
+                                    aria-label="update photo"
+                                    component="span"
+                                    onClick={props.handleImageUploadBtn}
+                                >
+                                    <PhotoIcon />
+                                </IconButton>
+                            </Tooltip>
                         </label>
                     </>
                 }
                 title='Update Profile'
-            />
-            <UpdatePhotoPopover
-                handlePopoverClose={handlePopoverClose}
-                open={open}
-                anchorEl={anchorEl}
             />
             {props.loading ?
                 (

@@ -7,6 +7,7 @@ import API from '../../utils/API'
 import { AppBar, Toolbar, IconButton, MenuItem, Menu } from '@material-ui/core';
 // Material-UI Icons
 import MenuIcon from '@material-ui/icons/Menu';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
 // Materiaul-UI Styles
 import { makeStyles } from '@material-ui/core/styles';
 // CSS
@@ -28,6 +29,13 @@ const useStyles = makeStyles((theme) => ({
         right: 0,
         top: '5px',
         marginRight: '1.3rem'
+    },
+    profileIcon: {
+        position: "absolute",
+        right: 0,
+        top: '5px',
+        marginRight: '3.9rem',
+        color:'white'
     },
     menuIcon: {
         position: 'absolute',
@@ -66,7 +74,7 @@ export default function MenuAppBar() {
         localStorage.removeItem('token')
         setAuth(false)
         setAnchorEl(null);
-        window.location.href='/'
+        window.location.href = '/'
     }
 
     return (
@@ -77,6 +85,19 @@ export default function MenuAppBar() {
                         Keebs
                     </Link>
                     <div>
+                        {auth === true ?
+                            <Link
+                                to='/profile'
+                            >
+                                <IconButton
+                                    className={classes.profileIcon}
+                                >
+                                    <AccountBoxIcon />
+                                </IconButton>
+                            </Link>
+                            :
+                            null
+                        }
                         <IconButton
                             aria-label="account of current user"
                             aria-controls="menu-appbar"
@@ -102,18 +123,6 @@ export default function MenuAppBar() {
                             open={open}
                             onClose={handleClose}
                         >
-                            {auth === true ?
-                                <MenuItem onClick={handleClose}>
-                                    <Link
-                                        to='/profile'
-                                        className='appBarLink'
-                                    >
-                                        Profile
-                                </Link>
-                                </MenuItem>
-                                :
-                                null
-                            }
                             {auth === true ?
                                 <MenuItem onClick={handleClose}>
                                     <Link

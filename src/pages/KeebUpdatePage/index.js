@@ -143,7 +143,7 @@ export default function KeebUpdatePage() {
     }
 
     return (
-        <>
+        <div className="content">
             <KeebUpdateForm
                 handleInputChange={handleInputChange}
                 handleFormSubmit={handleFormSubmit}
@@ -166,6 +166,6 @@ export default function KeebUpdatePage() {
                 keyset={updateKeeb.keyset}
                 loading={loading}
             />
-        </>
+        </div>
     )
 }

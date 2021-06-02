@@ -1,5 +1,5 @@
 // React
-import React, { useState,} from 'react'
+import React, { useState, } from 'react'
 // API
 import API from '../../utils/API'
 // Components
@@ -38,7 +38,7 @@ export default function SignInPage() {
     };
 
     return (
-        <div>
+        <div className="content">
             <SignInForm
                 handleInputChange={handleInputChange}
                 handleFormSubmit={handleFormSubmit}

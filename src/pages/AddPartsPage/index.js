@@ -60,18 +60,20 @@ export default function AddPartsPage(props) {
     }
 
     return (
-        <AddPartsForm
-            handleInputChange={handleInputChange}
-            handleFormSubmit={handleFormSubmit}
-            keeb={partsFormState.keeb}
-            switches={partsFormState.switches}
-            springWeight={partsFormState.springWeight}
-            springLube={partsFormState.springLube}
-            switchLube={partsFormState.switchLube}
-            switchFilm={partsFormState.switchFilm}
-            stabs={partsFormState.stabs}
-            stabLube={partsFormState.stabLube}
-            keyset={partsFormState.keyset}
-        />
+        <div className="content">
+            <AddPartsForm
+                handleInputChange={handleInputChange}
+                handleFormSubmit={handleFormSubmit}
+                keeb={partsFormState.keeb}
+                switches={partsFormState.switches}
+                springWeight={partsFormState.springWeight}
+                springLube={partsFormState.springLube}
+                switchLube={partsFormState.switchLube}
+                switchFilm={partsFormState.switchFilm}
+                stabs={partsFormState.stabs}
+                stabLube={partsFormState.stabLube}
+                keyset={partsFormState.keyset}
+            />
+        </div>
     )
 }

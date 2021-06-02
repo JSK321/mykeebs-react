@@ -55,9 +55,9 @@ export default function AddPartsForm(props) {
                         onChange={props.handleInputChange}
                     />
                     <TextField
-                        label="Spring Force"
+                        label="Spring"
                         name="springWeight"
-                        placeholder="Spring force"
+                        placeholder="Spring"
                         fullWidth
                         margin="normal"
                         onChange={props.handleInputChange}
