@@ -1,5 +1,5 @@
 // React
-import React, { useState } from 'react'
+import React from 'react'
 // Components
 import LoadingCircle from '../../components/LoadingCircle'
 // Material-UI Components
@@ -10,7 +10,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
 // Material-UI Styles
 import { makeStyles } from '@material-ui/core/styles'
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles( () => ({
     root: {
         maxWidth: 475,
         marginLeft: 'auto',
@@ -50,7 +50,7 @@ export default function KeebUpdateForm(props) {
                     <>
                         <input accept="image/*" className={classes.input} id="icon-button-file" type="file" onChange={props.handleUploadImage} />
                         <label htmlFor="icon-button-file">
-                            <Tooltip title="Update Photo" arrow>
+                            <Tooltip title="Update Cover Photo" arrow>
                                 <IconButton
                                     aria-label="update photo"
                                     component="span"
@@ -73,13 +73,17 @@ export default function KeebUpdateForm(props) {
                 )
                 :
                 (
-                    <CardMedia
-                        component="img"
-                        alt={`${props.name} photo`}
-                        className={classes.media}
-                        image={props.keebImage}
-                        title="keeb photo"
-                    />
+                    (props.keebImage !== null ? 
+                        <CardMedia
+                            component="img"
+                            alt={`${props.name} photo`}
+                            className={classes.media}
+                            image={props.keebImage}
+                            title="keeb photo"
+                        />
+                        :
+                        null
+                    )
                 )
             }
             <CardContent>
@@ -209,12 +213,6 @@ export default function KeebUpdateForm(props) {
                     endIcon={<SystemUpdateAltIcon />}
                 >
                     Save
-                </Button>
-                <Button
-                    onClick={props.handleDeleteKeeb}
-                    endIcon={<CloseIcon />}
-                >
-                    Delete
                 </Button>
             </CardActions>
         </Card>

@@ -7,7 +7,6 @@ import { useProfile, useProfileData } from '../../contexts/ProfileContext'
 // Components
 import SearchKeebInput from '../../components/SearchKeebInput'
 import KeebCard from '../../components/KeebCard'
-import Footer from '../../components/Footer'
 // Material-UI Components
 import { Container, Grid, Grow } from '@material-ui/core'
 // CSS
@@ -160,9 +159,9 @@ export default function HomePage(props) {
                             >
                                 <Grid item xl={4} lg={4} md={4} sm={6} xs={12} key={keeb.id}>
                                     <KeebCard
-                                        list={list.keebList}
                                         handleNewSearch={handleNewSearch}
                                         // Case
+                                        id={keeb.id}
                                         name={keeb.name}
                                         maker={keeb.maker}
                                         keebImage={keeb.keebImage}
@@ -170,6 +169,7 @@ export default function HomePage(props) {
                                         case={keeb.case}
                                         angle={keeb.angle}
                                         plate={keeb.plate}
+                                        photos={keeb.KeebPhotos}
                                         // Parts
                                         keyset={keeb.Parts[0].keyset}
                                         switches={keeb.Parts[0].switches}

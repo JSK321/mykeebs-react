@@ -47,8 +47,8 @@ const API = {
         }).then(res => res.json()).catch(err => null)
     },
     // Retrieve one Keeb by name
-    getKeeb: function(name) {
-        return fetch(`${URL_PREFIX}/api/keebs/keeb/${name}`,{
+    getKeeb: function (name) {
+        return fetch(`${URL_PREFIX}/api/keebs/keeb/${name}`, {
         }).then(res => res.json()).catch(err => null)
     },
     // Retrieve all keeb parts function
@@ -59,6 +59,11 @@ const API = {
     // Retrieve one Keeb Parts
     getOneParts: function (partId) {
         return fetch(`${URL_PREFIX}/api/parts/${partId}`, {
+        }).then(res => res.json()).catch(err => null)
+    },
+    // Retrieve all Keeb Photos by keeb id
+    getAllPhotos: function (KeebId) {
+        return fetch(`${URL_PREFIX}/api/keebPhotos/${KeebId}`, {
         }).then(res => res.json()).catch(err => null)
     },
     // Retrieve all extra keysets
@@ -104,6 +109,23 @@ const API = {
                 throw new Error("Something went wrong")
             }
         }).catch(err => null)
+    },
+    // Upload Keeb Photos function
+    uploadKeebPhotos: function (token, data,) {
+        return fetch(`${URL_PREFIX}/api/keebPhotos`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(data)
+        }).then(res => {
+            if (res.ok) {
+                return res.json()
+            } else {
+                throw new Error("Something went wrong")
+            }
+        }).catch(err => console.log(err))
     },
     // Create Add Extra Keysets function
     createAddKeysets: function (token, keysetData) {
@@ -152,7 +174,6 @@ const API = {
             })
         }).then(res => {
             if (res.ok) {
-                window.location.href = "/profile"
                 return res.json()
             } else {
                 throw new Error("Something went wrong")
@@ -271,6 +292,21 @@ const API = {
             },
         }).then(res => res.json()).catch(err => null)
     },
+    // Delete Photo function
+    deletePhoto: function (token, id) {
+        return fetch(`${URL_PREFIX}/api/keebPhotos/${id}`, {
+            method: "DELETE",
+            headers: {
+                'authorization': `Bearer ${token}`
+            },
+        }).then(res => {
+            if (res.ok) {
+                res.json()
+            } else {
+                throw new Error("Something went wrong")
+            }
+        }).catch(err => null)
+    },
     // Delete Keyset function
     deleteKeyset: function (token, keysetId) {
         return fetch(`${URL_PREFIX}/api/extras/${keysetId}`, {
@@ -280,7 +316,7 @@ const API = {
             },
         }).then(res => {
             if (res.ok) {
-                window.location.href = "/profile"
+                res.json()
             } else {
                 throw new Error("Something went wrong")
             }

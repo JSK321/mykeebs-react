@@ -49,7 +49,7 @@ export default function UpdateProfile() {
 
     const handleDeleteProfile = event => {
         event.preventDefault()
-        let confirmAlert = window.confirm("Are you certain to delete profile?")
+        let confirmAlert = window.confirm("Are you sure to delete profile?")
         if (confirmAlert === true) {
             API.deleteUser(userProfile.token, userProfile.id)
         }
@@ -84,7 +84,7 @@ export default function UpdateProfile() {
             userProfile.name,
             userProfile.email,
             userProfile.password,
-            userProfile.profileImage
+            userProfile.image
         ).then(userData => {
             window.location.href = '/profile'
         })

@@ -1,17 +1,19 @@
 // React
 import React, { useState } from 'react'
+// API 
+import API from '../../utils/API'
 // clsx
 import clsx from 'clsx';
+// Components
+import KeebImageStepper from '../../components/KeebImageStepper'
 // Material-UI Components
-import { Card, CardHeader, CardMedia, CardActions, Collapse, IconButton, Typography, List, ListItem, ListItemText, Tooltip } from '@material-ui/core'
+import { Card, CardHeader, CardActionArea, CardMedia, CardActions, Collapse, IconButton, Typography, List, ListItem, ListItemText, Tooltip, Popover } from '@material-ui/core'
 // Material-UI Icons
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import FindReplaceIcon from '@material-ui/icons/FindReplace';
 // Material-UI Styles
 import { makeStyles } from '@material-ui/core/styles';
-// CSS
-import './styles.css'
 
 const useStyles = makeStyles((theme) => ({
     media: {
@@ -33,13 +35,25 @@ const useStyles = makeStyles((theme) => ({
 
 export default function KeebCard(props) {
     const classes = useStyles();
-    const [expanded, setExpanded] = useState(false);
-    const [anchorEl, setAnchorEl] = useState(null);
-    const [popName, setPopName] = useState(null);
+    const [expanded, setExpanded] = useState(false)
+    const [anchorEl, setAnchorEl] = useState(null)
+
+    const handleClick = event => {
+        setAnchorEl(event.currentTarget);
+        console.log(props.photos)
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const open = Boolean(anchorEl);
+    const id = open ? 'simple-popover' : undefined;
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
+
 
     return (
         <Card className='keebCard' id={props.name}>
@@ -47,13 +61,43 @@ export default function KeebCard(props) {
                 title={props.name}
                 subheader={`Designed by: ${props.maker}`}
             />
-            <CardMedia
-                component='img'
-                alt={`${props.name} photo`}
-                className={classes.media}
-                image={props.keebImage}
-                title={props.name}
-            />
+            <CardActionArea
+                aria-describedby={id}
+                onClick={handleClick}
+                id={props.id}
+            >
+                {props.keebImage !== null ?
+                    <CardMedia
+                        component='img'
+                        alt={`${props.name} photo`}
+                        className={classes.media}
+                        image={props.keebImage}
+                        title={props.name}
+                    />
+                    :
+                    null
+                }
+            </CardActionArea>
+            <Popover
+                id={id}
+                open={open}
+                anchorEl={anchorEl}
+                onClose={handleClose}
+                anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                }}
+                transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                }}
+            >
+                <Typography>
+                    <KeebImageStepper
+                        photos={props.photos}
+                    />
+                </Typography>
+            </Popover>
             <List>
                 <ListItem divider>
                     <ListItemText

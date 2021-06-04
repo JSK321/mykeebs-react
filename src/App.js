@@ -13,6 +13,7 @@ import ProfilePage from './pages/ProfilePage'
 import UpdateProfile from './pages/UpdateProfile'
 import AddKeebPage from './pages/AddKeebPage'
 import KeebUpdatePage from './pages/KeebUpdatePage'
+import KeebPhotosUpdatePage from './pages/KeebPhotosUpdatePage'
 import AddPartsPage from './pages/AddPartsPage'
 import RegisterPage from './pages/RegisterPage'
 import NoMatch from './pages/NoMatch'
@@ -41,6 +42,9 @@ function App() {
           </Route>
           <Route exact path="/updatekeeb/:id">
             <KeebUpdatePage />
+          </Route>
+          <Route exact path="/updatekeeb/photos/:id">
+            <KeebPhotosUpdatePage />
           </Route>
           <Route exact path="/addpartsform/:id">
             <AddPartsPage />
