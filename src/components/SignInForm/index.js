@@ -1,5 +1,7 @@
 // React
 import React from 'react'
+// Components
+import SnackbarAlert from '../../components/SnackbarAlert'
 // Material-UI Components
 import { Container, TextField, Grid, Button } from '@material-ui/core'
 // Material-UI Icons
@@ -73,6 +75,10 @@ export default function SignInForm(props) {
                         </Button>
                     </div>
                 </form>
+                <SnackbarAlert
+                    open={props.open}
+                    handleClose={props.handleClose}
+                />
             </div>
         </Container >
     )

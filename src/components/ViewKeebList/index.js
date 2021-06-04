@@ -1,22 +1,23 @@
 // React
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom"
 // API
 import API from '../../utils/API'
+// Components
+import LoadingCircle from '../../components/LoadingCircle'
 // Contexts
 import { useProfile, useProfileData } from '../../contexts/ProfileContext'
 // Material-UI Components
 import { Avatar, Card, List, ListItem, ListItemAvatar, ListItemText, ListItemSecondaryAction, IconButton, Tooltip, Typography } from '@material-ui/core'
 // Material-UI Icons
 import KeyboardIcon from '@material-ui/icons/Keyboard';
-import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 // Material-UI Styles
 import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles({
     updateKeebLink: {
         textDecoration: "none",
-        color: "black"
+        color: "black",
     },
     keebListDiv: {
         dispaly: 'flex',
@@ -30,29 +31,40 @@ const useStyles = makeStyles({
     },
     keebIcon: {
         color: 'white'
-    }
+    },
+    input: {
+        display: 'none'
+    },
 })
 
-// Keeb list in profile
 export default function ViewKeebList(props) {
     const classes = useStyles()
     const profile = useProfile()
     const profileData = useProfileData()
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         profileData()
     }, [])
 
-    const handleRemoveKeeb = event => {
+    const handleUploadSoundBtn = event => {
         event.preventDefault()
         let id = event.currentTarget.id
-        let name = event.currentTarget.getAttribute('name')
-        let confirmAlert = window.confirm(`Are you sure to delete ${name}`)
-        if (confirmAlert === true) {
-            API.deleteKeeb(profile.token, id).then(res => {
-                window.location.reload()
-            })
-        }
+        document.getElementById(`sound${id}`).click()
+    }
+
+    const handleSoundTest = async event => {
+        event.preventDefault()
+        let id = event.currentTarget.id.slice(5)
+        const files = event.target.files[0]
+        const audio = new FormData()
+        setLoading(true)
+        audio.append('file', files)
+        audio.append('upload_preset', 'keebs_setups')
+        const res = await API.uploadAudio(audio)
+        const file = await res
+        API.updateSound(profile.token, id, file.secure_url)
+        setLoading(false)
     }
 
     return (
@@ -76,25 +88,38 @@ export default function ViewKeebList(props) {
                             </ListItemAvatar>
                             <ListItemText
                                 primary={
-                                    <Tooltip title={`Update ${res.maker} ${res.name} parts`} arrow>
-                                        <Link to={`/updatekeeb/${res.id}`} className={classes.updateKeebLink}>
-                                            <strong>Update: {res.maker} {res.name}</strong>
-                                        </Link>
-                                    </Tooltip>
+                                    <>
+                                        <Tooltip title={`Update ${res.maker} ${res.name} parts`} arrow>
+                                            <Link to={`/updatekeeb/${res.id}`} className={classes.updateKeebLink}>
+                                                <strong>{res.maker} {res.name}</strong>
+                                            </Link>
+                                        </Tooltip>
+                                    </>
                                 }
                             />
                             <ListItemSecondaryAction>
-                                <Tooltip title={`Delete ${res.maker} ${res.name}`} arrow>
-                                    <IconButton
-                                        edge="end"
-                                        aria-label="remove"
-                                        name={`${res.maker} ${res.name}`}
-                                        id={res.id}
-                                        onClick={handleRemoveKeeb}
-                                    >
-                                        <RemoveCircleOutlineIcon />
-                                    </IconButton>
-                                </Tooltip>
+                                <input
+                                    type="file"
+                                    className={classes.input}
+                                    id={`sound${res.id}`}
+                                    onChange={handleSoundTest}
+                                />
+                                {loading ?
+                                    <LoadingCircle />
+                                    :
+                                    <label htmlFor={`sound${res.id}`}>
+                                        <Tooltip title={`Upload sound test`} arrow>
+                                            <IconButton
+                                                edge="end"
+                                                aria-label="sound test"
+                                                id={res.id}
+                                                onClick={handleUploadSoundBtn}
+                                            >
+                                                <MusicNoteIcon />
+                                            </IconButton>
+                                        </Tooltip>
+                                    </label>
+                                }
                             </ListItemSecondaryAction>
                         </ListItem>
                     ))

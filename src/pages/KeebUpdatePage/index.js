@@ -70,6 +70,14 @@ export default function KeebUpdatePage() {
         })
     }
 
+    const handleDeleteKeeb = event => {
+        event.preventDefault()
+        let confirmAlert = window.confirm(`Are you sure to delete ${updateKeeb.name}`)
+        if (confirmAlert === true) {
+            API.deleteParts(profile.token, id)
+            API.deleteKeeb(profile.token, id)
+        }
+    }
     // Cloudinary Functions
     const handleImageUploadBtn = event => {
         event.preventDefault()
@@ -141,6 +149,7 @@ export default function KeebUpdatePage() {
             <KeebUpdateForm
                 handleInputChange={handleInputChange}
                 handleFormSubmit={handleFormSubmit}
+                handleDeleteKeeb={handleDeleteKeeb}
                 handleImageUploadBtn={handleImageUploadBtn}
                 handleUploadImage={handleUploadImage}
                 keebImage={updateKeeb.keebImage}

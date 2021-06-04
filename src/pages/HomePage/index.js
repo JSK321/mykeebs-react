@@ -170,6 +170,7 @@ export default function HomePage(props) {
                                         angle={keeb.angle}
                                         plate={keeb.plate}
                                         photos={keeb.KeebPhotos}
+                                        keebSound={keeb.keebSoundTest}
                                         // Parts
                                         keyset={keeb.Parts[0].keyset}
                                         switches={keeb.Parts[0].switches}

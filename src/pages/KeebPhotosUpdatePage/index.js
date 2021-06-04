@@ -61,7 +61,6 @@ export default function KeebPhotosUpdatePage() {
         event.preventDefault()
         let id = event.currentTarget.id
         API.deletePhoto(profile.token, id).then(res => {
-            console.log(res)
             window.location.reload()
         })
     }

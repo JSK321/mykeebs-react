@@ -1,7 +1,5 @@
 // React
 import React, { useState } from 'react'
-// API 
-import API from '../../utils/API'
 // clsx
 import clsx from 'clsx';
 // Components
@@ -14,6 +12,8 @@ import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import FindReplaceIcon from '@material-ui/icons/FindReplace';
 // Material-UI Styles
 import { makeStyles } from '@material-ui/core/styles';
+// CSS 
+import './styles.css'
 
 const useStyles = makeStyles((theme) => ({
     media: {
@@ -37,17 +37,25 @@ export default function KeebCard(props) {
     const classes = useStyles();
     const [expanded, setExpanded] = useState(false)
     const [anchorEl, setAnchorEl] = useState(null)
+    const [audio, setAudio] = useState(null)
 
     const handleClick = event => {
-        setAnchorEl(event.currentTarget);
-        console.log(props.photos)
+        if(parseInt(event.currentTarget.id) === props.id) {
+            setAnchorEl(event.currentTarget);
+        }
+        if(event.currentTarget.id === 'keebSoundTest') {
+            setAudio(event.currentTarget)
+        }
     };
 
     const handleClose = () => {
         setAnchorEl(null);
+        setAudio(null)
     };
 
     const open = Boolean(anchorEl);
+    const show = Boolean(audio)
+
     const id = open ? 'simple-popover' : undefined;
 
     const handleExpandClick = () => {
@@ -92,11 +100,9 @@ export default function KeebCard(props) {
                     horizontal: 'left',
                 }}
             >
-                <Typography>
-                    <KeebImageStepper
-                        photos={props.photos}
-                    />
-                </Typography>
+                <KeebImageStepper
+                    photos={props.photos}
+                />
             </Popover>
             <List>
                 <ListItem divider>
@@ -140,6 +146,8 @@ export default function KeebCard(props) {
                 <Tooltip title="Sound test">
                     <IconButton
                         aria-label="sound test"
+                        id='keebSoundTest'
+                        onClick={handleClick}
                     >
                         <MusicNoteIcon />
                     </IconButton>
@@ -152,6 +160,25 @@ export default function KeebCard(props) {
                         <FindReplaceIcon />
                     </IconButton>
                 </Tooltip>
+
+                <Popover
+                    id='keebSoundTestPopover'
+                    open={show}
+                    anchorEl={audio}
+                    onClose={handleClose}
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                    }}
+                >
+                    <audio id="audio" controls style={{backgroundColor:'floralwhite'}}>
+                        <source src={props.keebSound} id="keebAudioSrc" />
+                    </audio>
+                </Popover>
 
                 <IconButton
                     className={clsx(classes.expand, {

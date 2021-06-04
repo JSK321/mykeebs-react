@@ -42,13 +42,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function UpdateProfileForm(props) {
     const classes = useStyles();
-    
+
     return (
         <Card className={classes.root}>
             <CardHeader
                 action={
                     <>
-                        <input accept="image/*" className={classes.input} id="icon-button-file" type="file" onChange={props.handleUploadImage} />
+                        <input
+                            accept="image/*"
+                            className={classes.input}
+                            id="icon-button-file"
+                            type="file"
+                            onChange={props.handleUploadImage}
+                        />
                         <label htmlFor="icon-button-file">
                             <Tooltip title="Update Photo" arrow>
                                 <IconButton

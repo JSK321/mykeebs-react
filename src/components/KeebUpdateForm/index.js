@@ -214,6 +214,12 @@ export default function KeebUpdateForm(props) {
                 >
                     Save
                 </Button>
+                <Button
+                    onClick={props.handleDeleteKeeb}
+                    endIcon={<CloseIcon />}
+                >
+                    Delete
+                </Button>
             </CardActions>
         </Card>
     )

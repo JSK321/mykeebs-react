@@ -157,7 +157,19 @@ const API = {
             }
         }).catch(err => console.log(err))
     },
-
+    // Upload Audio function
+    uploadAudio: function(audioFile) {
+        return fetch(`https://api.cloudinary.com/v1_1/jsk321/raw/upload`, {
+            method: "POST",
+            body: audioFile
+        }).then(res => {
+            if(res.ok) {
+                return res.json()
+            } else {
+                throw new Error ("Something went wrong")
+            }
+        }).catch(err => console.log(err))
+    },
     // Update User Function
     updateUser: function (id, token, name, email, password, profileImage) {
         return fetch(`${URL_PREFIX}/api/users/${id}`, {
@@ -182,7 +194,7 @@ const API = {
     },
 
     // Update Keeb function
-    updateKeeb: function (id, token, color, plate, keebImage) {
+    updateKeeb: function (id, token, color, plate, keebImage,) {
         return fetch(`${URL_PREFIX}/api/keebs/${id}`, {
             method: "PUT",
             headers: {
@@ -193,6 +205,25 @@ const API = {
                 color: color,
                 plate: plate,
                 keebImage: keebImage
+            })
+        }).then(res => {
+            if (res.ok) {
+                return res.json()
+            } else {
+                throw new Error("Something went wrong")
+            }
+        }).catch(err => null)
+    },
+    // Update Keeb Sound Test
+    updateSound: function (token, id, keebSoundTest) {
+        return fetch(`${URL_PREFIX}/api/keebs/sound/${id}`, {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                keebSoundTest
             })
         }).then(res => {
             if (res.ok) {
