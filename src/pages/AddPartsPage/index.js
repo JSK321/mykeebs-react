@@ -7,6 +7,7 @@ import API from '../../utils/API'
 import { useProfile, useProfileData } from '../../contexts/ProfileContext'
 // Components
 import AddPartsForm from '../../components/AddPartsForm'
+import SnackbarAlert from '../../components/SnackbarAlert'
 
 
 export default function AddPartsPage(props) {
@@ -29,6 +30,10 @@ export default function AddPartsPage(props) {
     // Keeb Id using params
     const { id } = useParams()
 
+    const [open, setOpen] = useState({
+        keebParts: false
+    });
+
     useEffect(() => {
         getKeebName()
         profileData()
@@ -44,6 +49,19 @@ export default function AddPartsPage(props) {
         })
     }
 
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            setOpen({
+                keebParts: false
+            });
+            window.location.href = '/'
+        }
+        setOpen({
+            keebParts: false
+        });
+        window.location.href = '/'
+    };
+
     const handleInputChange = event => {
         const { name, value } = event.target
         setPartsFormState({
@@ -55,7 +73,7 @@ export default function AddPartsPage(props) {
     const handleFormSubmit = event => {
         event.preventDefault()
         API.createParts(profileState.token, partsFormState).then(res => {
-            window.location.href = '/'
+            setOpen({ keebParts: true })
         })
     }
 
@@ -73,6 +91,10 @@ export default function AddPartsPage(props) {
                 stabs={partsFormState.stabs}
                 stabLube={partsFormState.stabLube}
                 keyset={partsFormState.keyset}
+            />
+            <SnackbarAlert
+                open={open}
+                handleClose={handleClose}
             />
         </div>
     )

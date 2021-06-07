@@ -1,12 +1,12 @@
 // React
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
 // API
 import API from '../../utils/API'
 // Context
 import { useProfile, useProfileData } from '../../contexts/ProfileContext'
 // Components
 import AddKeebForm from '../../components/AddKeebForm'
+import SnackbarAlert from '../../components/SnackbarAlert'
 
 export default function Keebs() {
     // Keeb Form State
@@ -21,10 +21,34 @@ export default function Keebs() {
     // Profile Context
     const profileState = useProfile()
     const profileData = useProfileData()
+    
+    const [open, setOpen] = useState({
+        keeb: false
+    });
+
 
     useEffect(() => {
         profileData()
     }, [])
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            setOpen({
+                keeb: false
+            });
+            API.getAllKeebs().then(res => {
+                let keebId = res.slice(-1)[0].id
+                window.location.href = `/addpartsform/${keebId}`
+            })
+        }
+        setOpen({
+            keeb: false
+        });
+        API.getAllKeebs().then(res => {
+            let keebId = res.slice(-1)[0].id
+            window.location.href = `/addpartsform/${keebId}`
+        })
+    };
 
     const handleInputChange = event => {
         const { name, value } = event.target
@@ -44,10 +68,7 @@ export default function Keebs() {
     const handleFormSubmit = event => {
         event.preventDefault();
         API.createKeeb(profileState.token, keebFormState).then(res => {
-            API.getAllKeebs().then(res => {
-                let keebId = res.slice(-1)[0].id
-                window.location.href = `/addpartsform/${keebId}`
-            })
+            setOpen({ keeb: true })
         })
     }
 
@@ -62,6 +83,10 @@ export default function Keebs() {
                 angle={keebFormState.angle}
                 color={keebFormState.color}
                 plate={keebFormState.plate}
+            />
+            <SnackbarAlert
+                open={open}
+                handleClose={handleClose}
             />
         </div>
     )

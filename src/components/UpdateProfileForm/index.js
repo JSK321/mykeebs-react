@@ -5,7 +5,7 @@ import LoadingCircle from '../../components/LoadingCircle'
 // Material-UI Components
 import { TextField, Card, CardHeader, CardMedia, CardContent, CardActions, IconButton, Button, Grid, Tooltip } from '@material-ui/core'
 // Material-UI Icons
-import PhotoIcon from '@material-ui/icons/Photo'
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import SaveAltIcon from '@material-ui/icons/SaveAlt';
 import CloseIcon from '@material-ui/icons/Close';
 // Material-UI Styles
@@ -62,7 +62,7 @@ export default function UpdateProfileForm(props) {
                                     component="span"
                                     onClick={props.handleImageUploadBtn}
                                 >
-                                    <PhotoIcon />
+                                    <AddAPhotoIcon />
                                 </IconButton>
                             </Tooltip>
                         </label>

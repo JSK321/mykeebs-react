@@ -9,6 +9,7 @@ import { Card, CardHeader, CardActionArea, CardMedia, CardActions, Collapse, Ico
 // Material-UI Icons
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
+import MusicOffIcon from '@material-ui/icons/MusicOff'
 import FindReplaceIcon from '@material-ui/icons/FindReplace';
 // Material-UI Styles
 import { makeStyles } from '@material-ui/core/styles';
@@ -40,10 +41,10 @@ export default function KeebCard(props) {
     const [audio, setAudio] = useState(null)
 
     const handleClick = event => {
-        if(parseInt(event.currentTarget.id) === props.id) {
+        if (parseInt(event.currentTarget.id) === props.id) {
             setAnchorEl(event.currentTarget);
         }
-        if(event.currentTarget.id === 'keebSoundTest') {
+        if (event.currentTarget.id === 'keebSoundTest') {
             setAudio(event.currentTarget)
         }
     };
@@ -143,15 +144,25 @@ export default function KeebCard(props) {
                 </ListItem>
             </List>
             <CardActions disableSpacing>
-                <Tooltip title="Sound test">
+                {!props.keebSound ?
                     <IconButton
-                        aria-label="sound test"
-                        id='keebSoundTest'
-                        onClick={handleClick}
+                        aria-label="no sound test"
+                        disabled
                     >
-                        <MusicNoteIcon />
+                        <MusicOffIcon />
                     </IconButton>
-                </Tooltip>
+                    :
+                    <Tooltip title="Sound test" arrow>
+                        <IconButton
+                            aria-label="sound test"
+                            id='keebSoundTest'
+                            onClick={handleClick}
+                        >
+                            <MusicNoteIcon />
+                        </IconButton>
+                    </Tooltip>
+                }
+
                 <Tooltip title="New search">
                     <IconButton
                         aria-label="search again"
@@ -175,7 +186,7 @@ export default function KeebCard(props) {
                         horizontal: 'left',
                     }}
                 >
-                    <audio id="audio" controls style={{backgroundColor:'floralwhite'}}>
+                    <audio id="audio" controls style={{ backgroundColor: 'floralwhite' }}>
                         <source src={props.keebSound} id="keebAudioSrc" />
                     </audio>
                 </Popover>

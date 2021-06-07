@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import API from '../../utils/API'
 // Components
 import UpdateProfileForm from '../../components/UpdateProfileForm'
+import SnackbarAlert from '../../components/SnackbarAlert'
 
 export default function UpdateProfile() {
     const [userProfile, setUserProfile] = useState({
@@ -15,6 +16,10 @@ export default function UpdateProfile() {
         image: ""
     })
     const [loading, setLoading] = useState(false)
+    const [open, setOpen] = useState({
+        profile: false,
+        profileConfirm: false
+    });
 
     useEffect(() => {
         const token = localStorage.getItem('token')
@@ -39,6 +44,44 @@ export default function UpdateProfile() {
         })
     }, [])
 
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            setOpen({
+                profile: false,
+                profileConfirm: false
+            });
+            window.location.href = '/profile'
+        }
+        setOpen({
+            profile: false,
+            profileConfirm: false
+        });
+        window.location.href = '/profile'
+    };
+
+    const handleConfirm = event => {
+        event.preventDefault()
+        API.deleteUser(userProfile.token, userProfile.id).then(res => {
+            setOpen({
+                ...open,
+                profileConfirm: false,
+            })
+        })
+    }
+
+    const handleCloseConfirm = (event, reason) => {
+        if (reason === 'clickaway') {
+            setOpen({
+                ...open,
+                profileConfirm: false,
+            })
+        }
+        setOpen({
+            ...open,
+            profileConfirm: false,
+        })
+    }
+
     const handleInputChange = event => {
         const { name, value } = event.target
         setUserProfile({
@@ -49,10 +92,10 @@ export default function UpdateProfile() {
 
     const handleDeleteProfile = event => {
         event.preventDefault()
-        let confirmAlert = window.confirm("Are you sure to delete profile?")
-        if (confirmAlert === true) {
-            API.deleteUser(userProfile.token, userProfile.id)
-        }
+        setOpen({
+            ...open,
+            profileConfirm: true
+        })
     }
 
     // Cloudinary Functions
@@ -86,7 +129,7 @@ export default function UpdateProfile() {
             userProfile.password,
             userProfile.image
         ).then(userData => {
-            window.location.href = '/profile'
+            setOpen({ profile: true })
         })
 
     }
@@ -103,6 +146,12 @@ export default function UpdateProfile() {
                 email={userProfile.email}
                 image={userProfile.image}
                 loading={loading}
+            />
+            <SnackbarAlert
+                open={open}
+                handleClose={handleClose}
+                handleConfirm={handleConfirm}
+                handleCloseConfirm={handleCloseConfirm}
             />
         </div>
     )

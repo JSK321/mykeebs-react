@@ -5,8 +5,10 @@ import { useParams } from 'react-router-dom'
 import API from "../../utils/API"
 // Components
 import KeebUpdateForm from '../../components/KeebUpdateForm'
+import SnackbarAlert from '../../components/SnackbarAlert'
 // Context
 import { useProfile, useProfileData } from '../../contexts/ProfileContext'
+import { Snackbar } from '@material-ui/core'
 
 export default function KeebUpdatePage() {
     // Profile Context
@@ -29,8 +31,13 @@ export default function KeebUpdatePage() {
         stabLube: "",
         keyset: ""
     })
-
     const [loading, setLoading] = useState(false)
+
+    const [open, setOpen] = useState({
+        parts: false,
+        confirm: false,
+        deleted: false,
+    });
 
     const { id } = useParams()
 
@@ -70,13 +77,58 @@ export default function KeebUpdatePage() {
         })
     }
 
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            setOpen({
+                ...open,
+                parts: false,
+                confirm: false,
+                deleted: false,
+            });
+            window.location.href = '/profile'
+        }
+        setOpen({
+            ...open,
+            parts: false,
+            confirm: false,
+            deleted: false,
+        });
+        window.location.href = '/profile'
+    };
+
+    const handleConfirm = event => {
+        event.preventDefault()
+        API.deleteParts(profile.token, id)
+        API.deleteKeeb(profile.token, id).then(res => {
+            setOpen({
+                ...open,
+                parts: false,
+                confirm: false,
+                deleted: false,
+            })
+            window.location.href = '/profile'
+        })
+    }
+
+    const handleCloseConfirm = (event, reason) => {
+        if (reason === 'clickaway') {
+            setOpen({
+                ...open,
+                confirm: false,
+            })
+        }
+        setOpen({
+            ...open,
+            confirm: false,
+        })
+    }
+
     const handleDeleteKeeb = event => {
         event.preventDefault()
-        let confirmAlert = window.confirm(`Are you sure to delete ${updateKeeb.name}`)
-        if (confirmAlert === true) {
-            API.deleteParts(profile.token, id)
-            API.deleteKeeb(profile.token, id)
-        }
+        setOpen({
+            ...open,
+            confirm: true
+        })
     }
     // Cloudinary Functions
     const handleImageUploadBtn = event => {
@@ -140,7 +192,10 @@ export default function KeebUpdatePage() {
                 keyset: updateKeeb.keyset
             })
         }).then(res => {
-            window.location.href='/profile'
+            setOpen({
+                ...open,
+                parts: true
+            })
         })
     }
 
@@ -167,6 +222,13 @@ export default function KeebUpdatePage() {
                 stabLube={updateKeeb.stabLube}
                 keyset={updateKeeb.keyset}
                 loading={loading}
+            />
+            <SnackbarAlert
+                open={open}
+                keeb={updateKeeb.name}
+                handleClose={handleClose}
+                handleConfirm={handleConfirm}
+                handleCloseConfirm={handleCloseConfirm}
             />
         </div>
     )

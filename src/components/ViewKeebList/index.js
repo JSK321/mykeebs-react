@@ -5,13 +5,14 @@ import { Link } from "react-router-dom"
 import API from '../../utils/API'
 // Components
 import LoadingCircle from '../../components/LoadingCircle'
+import SnackbarAlert from '../../components/SnackbarAlert'
 // Contexts
 import { useProfile, useProfileData } from '../../contexts/ProfileContext'
 // Material-UI Components
 import { Avatar, Card, List, ListItem, ListItemAvatar, ListItemText, ListItemSecondaryAction, IconButton, Tooltip, Typography } from '@material-ui/core'
 // Material-UI Icons
-import KeyboardIcon from '@material-ui/icons/Keyboard';
-import MusicNoteIcon from '@material-ui/icons/MusicNote';
+import PhotoIcon from '@material-ui/icons/Photo'
+import MusicNoteIcon from '@material-ui/icons/MusicNote'
 // Material-UI Styles
 import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles({
@@ -41,7 +42,22 @@ export default function ViewKeebList(props) {
     const classes = useStyles()
     const profile = useProfile()
     const profileData = useProfileData()
-    const [loading, setLoading] = useState(false)
+   
+    const [open, setOpen] = useState({
+        sound: false,
+    });
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            setOpen({
+                sound: false,
+            });
+            return;
+        }
+        setOpen({
+            sound: false,
+        });
+    };
 
     useEffect(() => {
         profileData()
@@ -58,13 +74,16 @@ export default function ViewKeebList(props) {
         let id = event.currentTarget.id.slice(5)
         const files = event.target.files[0]
         const audio = new FormData()
-        setLoading(true)
         audio.append('file', files)
         audio.append('upload_preset', 'keebs_setups')
         const res = await API.uploadAudio(audio)
         const file = await res
-        API.updateSound(profile.token, id, file.secure_url)
-        setLoading(false)
+        API.updateSound(profile.token, id, file.secure_url).then(res => {
+            console.log(res)
+            setOpen({
+                sound: true
+            })
+        })
     }
 
     return (
@@ -76,12 +95,12 @@ export default function ViewKeebList(props) {
                         <ListItem key={res.id} divider>
                             <ListItemAvatar>
                                 <Avatar>
-                                    <Tooltip title={`Update ${res.maker} ${res.name} photos`} arrow>
+                                    <Tooltip title={`Update photos`} arrow>
                                         <IconButton
                                             className={classes.keebIcon}
                                             onClick={() => window.location.href = `/updatekeeb/photos/${res.id}`}
                                         >
-                                            <KeyboardIcon />
+                                            <PhotoIcon />
                                         </IconButton>
                                     </Tooltip>
                                 </Avatar>
@@ -89,7 +108,7 @@ export default function ViewKeebList(props) {
                             <ListItemText
                                 primary={
                                     <>
-                                        <Tooltip title={`Update ${res.maker} ${res.name} parts`} arrow>
+                                        <Tooltip title={`Update parts`} arrow>
                                             <Link to={`/updatekeeb/${res.id}`} className={classes.updateKeebLink}>
                                                 <strong>{res.maker} {res.name}</strong>
                                             </Link>
@@ -104,22 +123,18 @@ export default function ViewKeebList(props) {
                                     id={`sound${res.id}`}
                                     onChange={handleSoundTest}
                                 />
-                                {loading ?
-                                    <LoadingCircle />
-                                    :
-                                    <label htmlFor={`sound${res.id}`}>
-                                        <Tooltip title={`Upload sound test`} arrow>
-                                            <IconButton
-                                                edge="end"
-                                                aria-label="sound test"
-                                                id={res.id}
-                                                onClick={handleUploadSoundBtn}
-                                            >
-                                                <MusicNoteIcon />
-                                            </IconButton>
-                                        </Tooltip>
-                                    </label>
-                                }
+                                <label htmlFor={`sound${res.id}`}>
+                                    <Tooltip title={`Upload sound test`} arrow>
+                                        <IconButton
+                                            edge="end"
+                                            aria-label="sound test"
+                                            id={res.id}
+                                            onClick={handleUploadSoundBtn}
+                                        >
+                                            <MusicNoteIcon />
+                                        </IconButton>
+                                    </Tooltip>
+                                </label>
                             </ListItemSecondaryAction>
                         </ListItem>
                     ))
@@ -127,6 +142,10 @@ export default function ViewKeebList(props) {
                     null
                 }
             </List>
+            <SnackbarAlert
+                open={open}
+                handleClose={handleClose}
+            />
         </Card >
     )
 }

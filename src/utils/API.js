@@ -308,7 +308,7 @@ const API = {
             },
         }).then(res => {
             if (res.ok) {
-                window.location.href = "/"
+                res.json()
             } else {
                 throw new Error("Something went wrong")
             }

@@ -5,7 +5,7 @@ import LoadingCircle from '../../components/LoadingCircle'
 // Material-UI Components
 import { TextField, Button, Card, CardHeader, CardMedia, CardContent, CardActions, IconButton, Grid, Tooltip } from '@material-ui/core'
 // Material-UI Icons
-import PhotoIcon from '@material-ui/icons/Photo'
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import CloseIcon from '@material-ui/icons/Close';
 import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
 // Material-UI Styles
@@ -56,7 +56,7 @@ export default function KeebUpdateForm(props) {
                                     component="span"
                                     onClick={props.handleImageUploadBtn}
                                 >
-                                    <PhotoIcon />
+                                    <AddAPhotoIcon />
                                 </IconButton>
                             </Tooltip>
                         </label>

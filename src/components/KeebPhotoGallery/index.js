@@ -7,6 +7,9 @@ import RemoveCircleIcon from '@material-ui/icons/RemoveCircle'
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary'
 // Material-UI Styles
 import { makeStyles } from '@material-ui/core/styles'
+// CSS
+import './styles.css'
+
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -22,23 +25,21 @@ const useStyles = makeStyles((theme) => ({
         width: 700,
         height: 500,
     },
-    uploadBtn: {
-        width: '100%',
-        justifyContent: 'center'
-    },
     icon: {
         color: 'rgba(255, 255, 255, 0.54)',
     },
     photoTitle: {
         fontWeight: 'bold',
         fontSize: '24px',
-        color: 'black'
+        color: 'black',
+        textAlign:'center'
+
     },
     titleBar: {
-        background: 
-          'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
-          'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-      },
+        background:
+            'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
+            'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+    },
 }));
 
 export default function KeebPhotoGallery(props) {
@@ -65,7 +66,7 @@ export default function KeebPhotoGallery(props) {
                                 <GridListTileBar
                                     titlePosition="top"
                                     actionIcon={
-                                        <Tooltip title={`Delete ${props.keeb.maker} ${props.keeb.name} photo`}>
+                                        <Tooltip title="Delete photo">
                                             <IconButton
                                                 aria-label={`Remove ${props.keeb.name} photo`}
                                                 className={classes.icon}
@@ -85,17 +86,16 @@ export default function KeebPhotoGallery(props) {
                         null
                     }
                 </GridList>
-                <GridList cellHeight={200} className={classes.uploadBtn}>
-                    <Button
-                        onClick={props.showWidget}
-                        endIcon={<PhotoLibraryIcon />}
-                        style={{ height: '30px' }}
-                        color='primary'
-                        variant="contained"
-                    >
-                        Upload Photos
-                    </Button>
-                </GridList>
+            </div>
+            <div className='uploadBtn'>
+                <Button
+                    onClick={props.showWidget}
+                    endIcon={<PhotoLibraryIcon />}
+                    color='primary'
+                    variant="contained"
+                >
+                    Upload Photos
+             </Button>
             </div>
         </div>
     )

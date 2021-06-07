@@ -12,20 +12,17 @@ export default function SignInPage() {
     });
 
     const [open, setOpen] = useState({
-        success: false,
         error: false
     });
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
             setOpen({
-                success: false,
                 error: false
             });
             return;
         }
         setOpen({
-            success: false,
             error: false
         });
     };
