@@ -1,26 +1,36 @@
 // React
 import React from 'react'
+import { Link } from 'react-router-dom'
 // Components
 import SnackbarAlert from '../../components/SnackbarAlert'
 // Material-UI Components
-import { Container, TextField, Grid, Button } from '@material-ui/core'
+import { Container, Paper, TextField, Grid, Button } from '@material-ui/core'
 // Material-UI Icons
 import EmailIcon from '@material-ui/icons/Email';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
-import SendIcon from '@material-ui/icons/Send';
 // Material-UI Styles
 import { makeStyles } from '@material-ui/core/styles';
+// CSS
+import './styles.css'
 
 const useStyles = makeStyles((theme) => ({
     margin: {
         margin: theme.spacing(1),
     },
-    signInContainer: {
+    signInPaper: {
+        width: 300,
         display: 'flex',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginRight: 'auto',
+        marginLeft: 'auto'
     },
     signInBtn: {
         marginTop: '1rem',
+        textAlign: 'center',
+        marginBottom: '1rem',
+    },
+    registered: {
+        marginBottom: '1rem',
         textAlign: 'center'
     }
 }));
@@ -30,7 +40,7 @@ export default function SignInForm(props) {
     const classes = useStyles();
 
     return (
-        <Container className={classes.signInContainer}>
+        <Paper className={classes.signInPaper}>
             <div className={classes.signInForm}>
                 <h2 style={{ textAlign: 'center' }}>Sign in</h2>
                 <form noValidate autoComplete='off' onSubmit={props.handleFormSubmit}>
@@ -66,20 +76,37 @@ export default function SignInForm(props) {
                     </div>
                     <div className={classes.signInBtn}>
                         <Button
-                            variant='outlined'
                             color="primary"
-                            endIcon={<SendIcon />}
                             type='submit'
+                            variant="contained"
+                            style={{ textTransform: 'none' }}
                         >
                             Sign in
                         </Button>
                     </div>
                 </form>
+                <div className={classes.registered}>
+                    <p className='registered'>
+                        Not registered?
+                    </p>
+                    <Link
+                        to='/register'
+                        style={{ textDecoration: 'none' }}
+                    >
+                        <Button
+                            color="primary"
+                            variant="text"
+                            style={{ textTransform: 'none' }}
+                        >
+                            Sign up here!
+                        </Button>
+                    </Link>
+                </div>
                 <SnackbarAlert
                     open={props.open}
                     handleClose={props.handleClose}
                 />
             </div>
-        </Container >
+        </Paper>
     )
 }

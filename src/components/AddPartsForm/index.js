@@ -4,7 +4,7 @@ import React from 'react'
 // Material-UI Components
 import { Card, CardHeader, CardContent, TextField, Button } from '@material-ui/core'
 // Material-UI Icons
-import AddIcon from '@material-ui/icons/Add';
+import KeyboardIcon from '@material-ui/icons/Keyboard';
 // Material-UI Styles
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -99,7 +99,8 @@ export default function AddPartsForm(props) {
                     <Button
                         type='submit'
                         color="primary"
-                        endIcon={<AddIcon />}
+                        size='large'
+                        endIcon={<KeyboardIcon />}
                     >
                         CREATE KEEB
                     </Button>

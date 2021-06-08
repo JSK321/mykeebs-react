@@ -86,6 +86,7 @@ export default function AddKeebForm(props) {
                     <Button
                         type='submit'
                         color="primary"
+                        size='large'
                         endIcon={<AddIcon />}
                     >
                         ADD PARTS
