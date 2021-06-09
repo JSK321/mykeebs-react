@@ -19,7 +19,8 @@ import './styles.css'
 const useStyles = makeStyles((theme) => ({
     keebCard: {
         backgroundColor: "#0B0B0D",
-        color: '#BFBFBF'
+        // color: '#BFBFBF'
+        color: '#747C8C'
     },
     media: {
         height: '100%',
@@ -34,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
     cardTitle: {
         "& .MuiCardHeader-subheader": {
             color: "#747C8C"
+            // color: "#BFBFBF"
         }
     },
     expand: {
@@ -42,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
         transition: theme.transitions.create('transform', {
             duration: theme.transitions.duration.shortest,
         }),
-        color: '#747C8C'
+        color: '#BFBFBF'
     },
     expandOpen: {
         transform: 'rotate(180deg)',
@@ -165,7 +167,7 @@ export default function KeebCard(props) {
                     <IconButton
                         aria-label="no sound test"
                         disabled
-                        style={{ color: "#747C8C" }}
+                        style={{ color: "#BFBFBF" }}
                     >
                         <MusicOffIcon />
                     </IconButton>
@@ -175,7 +177,7 @@ export default function KeebCard(props) {
                             aria-label="sound test"
                             id='keebSoundTest'
                             onClick={handleClick}
-                            style={{ color: "#747C8C" }}
+                            style={{ color: "#BFBFBF" }}
                         >
                             <MusicNoteIcon />
                         </IconButton>
@@ -185,7 +187,7 @@ export default function KeebCard(props) {
                 <Tooltip title="New search">
                     <IconButton
                         aria-label="search again"
-                        style={{ color: "#747C8C" }}
+                        style={{ color: "#BFBFBF" }}
                         onClick={props.handleNewSearch}
                     >
                         <FindReplaceIcon />

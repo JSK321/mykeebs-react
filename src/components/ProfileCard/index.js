@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     profileCard: {
         height: '510px',
         backgroundColor: "#0B0B0D",
-        color: "#BFBFBF"
+        color: "#747C8C"
     },
     updateProfileBtn: {
         marginLeft: 'auto',
@@ -40,7 +40,6 @@ export default function ProfileCard(props) {
             <CardMedia
                 component='img'
                 alt='profile image'
-                // height='140'
                 image={profile !== null ? profile.profileImage : null}
                 className="profileImage"
             />

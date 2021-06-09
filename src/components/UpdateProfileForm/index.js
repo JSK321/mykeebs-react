@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: 'auto',
         marginRight: 'auto',
         backgroundColor: "#0B0B0D",
-        color: "#BFBFBF"
+        color: "#747C8C"
     },
     media: {
         height: '300px',
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
             color: "#BFBFBF",
         },
         "& .MuiInputBase-root": {
-            color: "#BFBFBF"
+            color: "#747C8C"
         },
     },
     input: {
@@ -70,6 +70,7 @@ export default function UpdateProfileForm(props) {
                                     aria-label="update photo"
                                     component="span"
                                     onClick={props.handleImageUploadBtn}
+                                    style={{ color: "#747C8C" }}
                                 >
                                     <AddAPhotoIcon />
                                 </IconButton>

@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
             color: "#BFBFBF",
         },
         "& .MuiInputBase-root": {
-            color: "#BFBFBF"
+            color: "#747C8C"
         },
     },
     signInBtn: {

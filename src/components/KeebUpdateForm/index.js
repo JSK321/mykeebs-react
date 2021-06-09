@@ -16,7 +16,7 @@ const useStyles = makeStyles(() => ({
         marginLeft: 'auto',
         marginRight: 'auto',
         backgroundColor: "#0B0B0D",
-        color: "#BFBFBF"
+        color: "#747C8C"
     },
     cardTitle: {
         "& .MuiCardHeader-subheader": {
@@ -37,7 +37,7 @@ const useStyles = makeStyles(() => ({
             color: "#BFBFBF",
         },
         "& .MuiInputBase-root": {
-            color: "#BFBFBF"
+            color: "#747C8C"
         },
     },
     input: {

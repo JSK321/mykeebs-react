@@ -18,7 +18,7 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles({
     updateKeebLink: {
         textDecoration: "none",
-        color: "#BFBFBF",
+        color: "#747C8C",
     },
     keebListDiv: {
         dispaly: 'flex',
@@ -26,7 +26,7 @@ const useStyles = makeStyles({
         width: '100%',
         height: "510px",
         backgroundColor: "#0B0B0D",
-        color: "#BFBFBF"
+        color: "#747C8C"
     },
     keebList: {
         height: '400px',

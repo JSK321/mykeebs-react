@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: 'auto',
         marginRight: 'auto',
         backgroundColor: "#0B0B0D",
-        color: "#BFBFBF"
+        color: "#747C8C"
     },
     addPartsInput: {
         "& .MuiFormLabel-root": {
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
             color: "#BFBFBF",
         },
         "& .MuiInputBase-root": {
-            color: "#BFBFBF"
+            color: "#747C8C"
         },
     },
 }));
