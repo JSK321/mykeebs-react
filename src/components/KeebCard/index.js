@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import clsx from 'clsx';
 // Components
 import KeebImageStepper from '../../components/KeebImageStepper'
+import SnackbarAlert from '../../components/SnackbarAlert'
 // Material-UI Components
 import { Card, CardHeader, CardActionArea, CardMedia, CardActions, Collapse, IconButton, Typography, List, ListItem, ListItemText, Tooltip, Popover } from '@material-ui/core'
 // Material-UI Icons
@@ -19,7 +20,6 @@ import './styles.css'
 const useStyles = makeStyles((theme) => ({
     keebCard: {
         backgroundColor: "#0B0B0D",
-        // color: '#BFBFBF'
         color: '#747C8C'
     },
     media: {
@@ -35,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
     cardTitle: {
         "& .MuiCardHeader-subheader": {
             color: "#747C8C"
-            // color: "#BFBFBF"
         }
     },
     expand: {
@@ -58,13 +57,35 @@ export default function KeebCard(props) {
     const [anchorEl, setAnchorEl] = useState(null)
     const [audio, setAudio] = useState(null)
 
+    const [showPhotos, setShowPhotos] = useState({
+        photos: false
+    });
+
     const handleClick = event => {
         if (parseInt(event.currentTarget.id) === props.id) {
-            setAnchorEl(event.currentTarget);
+            if (props.photos.length > 0) {
+                setAnchorEl(event.currentTarget);
+            } else {
+                setShowPhotos({
+                    photos: true
+                })
+            }
         }
         if (event.currentTarget.id === 'keebSoundTest') {
             setAudio(event.currentTarget)
         }
+    };
+
+    const handlePhotosClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            setShowPhotos({
+                photos: false
+            });
+            return;
+        }
+        setShowPhotos({
+            photos: false
+        });
     };
 
     const handleClose = () => {
@@ -124,6 +145,10 @@ export default function KeebCard(props) {
                     photos={props.photos}
                 />
             </Popover>
+            <SnackbarAlert
+                open={showPhotos}
+                handlePhotosClose={handlePhotosClose}
+            />
             <List>
                 <ListItem divider>
                     <ListItemText
@@ -187,7 +212,8 @@ export default function KeebCard(props) {
                 <Tooltip title="New search">
                     <IconButton
                         aria-label="search again"
-                        style={{ color: "#BFBFBF" }}
+                        id="searchAgain"
+                        style={{ color: "#BFBFBF", transform: 'scale(0)' }}
                         onClick={props.handleNewSearch}
                     >
                         <FindReplaceIcon />
@@ -299,6 +325,6 @@ export default function KeebCard(props) {
                     />
                 </ListItem>
             </Collapse>
-        </Card>
+        </Card >
     )
 }

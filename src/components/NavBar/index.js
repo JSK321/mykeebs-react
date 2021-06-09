@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 // API
 import API from '../../utils/API'
+// Components
+import SearchKeebInput from '../../components/SearchKeebInput'
 // Material-UI Components
 import { AppBar, Toolbar, IconButton, MenuItem, Menu } from '@material-ui/core';
 // Material-UI Icons
@@ -16,10 +18,13 @@ import './styles.css'
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        marginBottom: '4rem'
+        marginBottom: '5.5rem'
     },
     navBar: {
-        backgroundColor: '#0B0B0D'
+        display: 'flex',
+        justifyContent: 'space-between',
+        backgroundColor: '#0B0B0D',
+        paddingBottom: '.5rem',
     },
     menu: {
         "& .MuiPaper-root": {
@@ -30,28 +35,15 @@ const useStyles = makeStyles((theme) => ({
     menuButton: {
         marginRight: theme.spacing(2),
     },
-    title: {
-        flexGrow: 1,
+    search: {
+        flexGrow: 1
     },
     iconBtn: {
-        position: "absolute",
-        right: 0,
-        top: '5px',
-        marginRight: '1.3rem',
         color: '#747C8C'
     },
     profileIcon: {
-        position: "absolute",
-        right: 0,
-        top: '5px',
-        marginRight: '3.9rem',
         color: '#747C8C'
     },
-    menuIcon: {
-        position: 'absolute',
-        right: '35px',
-        top: '13px'
-    }
 }));
 
 export default function MenuAppBar() {
@@ -89,97 +81,100 @@ export default function MenuAppBar() {
 
     return (
         <div className={classes.root}>
-            <AppBar position="absolute" className={classes.navBar}>
-                <Toolbar>
+            <AppBar position="absolute">
+                <Toolbar className={classes.navBar}>
                     <Link to='/' className="homeLink">
                         Keebs
                     </Link>
-                    <div>
-                        {auth === true ?
-                            <Link
-                                to='/profile'
+                    <div className={classes.search}>
+                        <SearchKeebInput
+
+                        />
+                    </div>
+                    {auth === true ?
+                        <Link
+                            to='/profile'
+                        >
+                            <IconButton
+                                className={classes.profileIcon}
                             >
-                                <IconButton
-                                    className={classes.profileIcon}
+                                <AccountBoxIcon />
+                            </IconButton>
+                        </Link>
+                        :
+                        null
+                    }
+                    <IconButton
+                        aria-label="account of current user"
+                        aria-controls="menu-appbar"
+                        aria-haspopup="true"
+                        onClick={handleMenu}
+                        className={classes.iconBtn}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    <Menu
+                        id="menu-appbar"
+                        className={classes.menu}
+                        anchorEl={anchorEl}
+                        anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                        keepMounted
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                        open={open}
+                        onClose={handleClose}
+                    >
+                        <MenuItem onClick={handleClose}>
+                            <Link
+                                to='/about'
+                                className='appBarLink'>
+                                About
+                                </Link>
+                        </MenuItem>
+                        {auth === true ?
+                            <MenuItem onClick={handleClose}>
+                                <Link
+                                    to='/addkeebform'
+                                    className='appBarLink'
                                 >
-                                    <AccountBoxIcon />
-                                </IconButton>
-                            </Link>
+                                    Add keeb
+                                </Link>
+                            </MenuItem>
                             :
                             null
                         }
-                        <IconButton
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleMenu}
-                            className={classes.iconBtn}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Menu
-                            id="menu-appbar"
-                            className={classes.menu}
-                            anchorEl={anchorEl}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={open}
-                            onClose={handleClose}
-                        >
+                        {auth === false ?
                             <MenuItem onClick={handleClose}>
                                 <Link
-                                    to='/about'
-                                    className='appBarLink'>
-                                    About
-                                </Link>
+                                    to='/signin'
+                                    className='appBarLink'
+                                >
+                                    Sign in
+                                    </Link>
                             </MenuItem>
-                            {auth === true ?
-                                <MenuItem onClick={handleClose}>
-                                    <Link
-                                        to='/addkeebform'
-                                        className='appBarLink'
-                                    >
-                                        Add keeb
-                                </Link>
+                            :
+                            <MenuItem onClick={handleLogOut}>
+                                Sign out
                                 </MenuItem>
-                                :
-                                null
-                            }
-                            {auth === false ?
-                                <MenuItem onClick={handleClose}>
-                                    <Link
-                                        to='/signin'
-                                        className='appBarLink'
-                                    >
-                                        Sign in
+                        }
+                        {auth === false ?
+                            <MenuItem onClick={handleClose}>
+                                <Link
+                                    to='/register'
+                                    className='appBarLink'
+                                >
+                                    Register
                                     </Link>
-                                </MenuItem>
-                                :
-                                <MenuItem onClick={handleLogOut}>
-                                    Sign out
-                                </MenuItem>
-                            }
-                            {auth === false ?
-                                <MenuItem onClick={handleClose}>
-                                    <Link
-                                        to='/register'
-                                        className='appBarLink'
-                                    >
-                                        Register
-                                    </Link>
-                                </MenuItem>
-                                :
-                                null
-                            }
-                        </Menu>
-                    </div>
+                            </MenuItem>
+                            :
+                            null
+                        }
+                    </Menu>
                 </Toolbar>
             </AppBar>
         </div >

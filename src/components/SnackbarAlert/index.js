@@ -52,6 +52,12 @@ export default function SnackbarAlert(props) {
                     Keeb parts has been added!
                 </Alert>
             </Snackbar>
+            {/* Keeb Photo action Snackbar */}
+            <Snackbar open={props.open.photos} autoHideDuration={3000} onClose={props.handlePhotosClose}>
+                <Alert onClose={props.handleClose} severity="info">
+                    Additional photos are unavailable.
+                </Alert>
+            </Snackbar>
             {/* Keeb Parts Update Snackbar */}
             <Snackbar open={props.open.parts} autoHideDuration={3000} onClose={props.handleClose}>
                 <Alert onClose={props.handleClose} severity="success">
