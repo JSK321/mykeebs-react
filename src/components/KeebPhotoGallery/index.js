@@ -91,8 +91,8 @@ export default function KeebPhotoGallery(props) {
                 <Button
                     onClick={props.showWidget}
                     endIcon={<PhotoLibraryIcon />}
-                    color='primary'
                     variant="contained"
+                    style={{ backgroundColor: "#212026", color: "#747C8C" }}
                 >
                     Upload Photos
              </Button>

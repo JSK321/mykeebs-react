@@ -1,12 +1,12 @@
 .appBarLink{
     text-decoration: none;
-    color: inherit;
+    color: #747C8C;
     width: 100%
 }
 
 .homeLink, .homeLink:hover {
     text-decoration: none;
-    color:inherit;
+    color: #747C8C;
     font-size: 22px;
     display: flex;
 }

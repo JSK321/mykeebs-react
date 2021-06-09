@@ -18,20 +18,22 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles({
     updateKeebLink: {
         textDecoration: "none",
-        color: "black",
+        color: "#BFBFBF",
     },
     keebListDiv: {
         dispaly: 'flex',
         flexDirection: "column",
         width: '100%',
-        height: "510px"
+        height: "510px",
+        backgroundColor: "#0B0B0D",
+        color: "#BFBFBF"
     },
     keebList: {
         height: '400px',
         overflow: "auto"
     },
     keebIcon: {
-        color: 'white'
+        color: '#747C8C',
     },
     input: {
         display: 'none'
@@ -42,7 +44,7 @@ export default function ViewKeebList(props) {
     const classes = useStyles()
     const profile = useProfile()
     const profileData = useProfileData()
-   
+
     const [open, setOpen] = useState({
         sound: false,
     });
@@ -92,9 +94,11 @@ export default function ViewKeebList(props) {
             <List className={classes.keebList}>
                 {profile !== null ?
                     profile.keebs.map(res => (
-                        <ListItem key={res.id} divider>
+                        <ListItem key={res.id}>
                             <ListItemAvatar>
-                                <Avatar>
+                                <Avatar
+                                    style={{ backgroundColor: "transparent"}}
+                                >
                                     <Tooltip title={`Update photos`} arrow>
                                         <IconButton
                                             className={classes.keebIcon}
@@ -130,6 +134,7 @@ export default function ViewKeebList(props) {
                                             aria-label="sound test"
                                             id={res.id}
                                             onClick={handleUploadSoundBtn}
+                                            style={{color: "#747C8C"}}
                                         >
                                             <MusicNoteIcon />
                                         </IconButton>

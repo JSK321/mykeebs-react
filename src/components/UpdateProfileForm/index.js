@@ -16,15 +16,24 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: 475,
         marginLeft: 'auto',
         marginRight: 'auto',
-        // marginTop:"1rem"
+        backgroundColor: "#0B0B0D",
+        color: "#BFBFBF"
     },
     media: {
         height: '300px',
     },
     updateInputField: {
         margin: 0,
-        width: "100%"
-
+        width: "100%",
+        "& .MuiFormLabel-root": {
+            color: "#747C8C",
+        },
+        "& .MuiFormLabel-root.Mui-focused ": {
+            color: "#BFBFBF",
+        },
+        "& .MuiInputBase-root": {
+            color: "#BFBFBF"
+        },
     },
     input: {
         display: 'none'
@@ -98,7 +107,7 @@ export default function UpdateProfileForm(props) {
                             <TextField
                                 label="Name"
                                 name="name"
-                                placeholder="Profile name"
+                                placeholder="New username"
                                 value={props.name !== null ? props.name : null}
                                 margin="normal"
                                 onChange={props.handleInputChange}
@@ -109,7 +118,7 @@ export default function UpdateProfileForm(props) {
                             <TextField
                                 label="Email"
                                 name="email"
-                                placeholder="Profile email"
+                                placeholder="New email"
                                 value={props.email}
                                 margin="normal"
                                 onChange={props.handleInputChange}
@@ -121,7 +130,7 @@ export default function UpdateProfileForm(props) {
                                 label="Password"
                                 name="password"
                                 type='password'
-                                placeholder="Profile password"
+                                placeholder="New password"
                                 margin="normal"
                                 onChange={props.handleInputChange}
                                 className={classes.updateInputField}
@@ -134,12 +143,14 @@ export default function UpdateProfileForm(props) {
                 <Button
                     type='submit'
                     endIcon={<SaveAltIcon />}
+                    style={{ color: "#BFBFBF" }}
                     onClick={props.handleFormSubmit}
                 >
                     Save
                 </Button>
                 <Button
                     endIcon={<CloseIcon />}
+                    style={{ color: "#BFBFBF" }}
                     onClick={props.handleDeleteProfile}
                 >
                     Delete

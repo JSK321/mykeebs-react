@@ -11,19 +11,13 @@ import { makeStyles, } from '@material-ui/core/styles'
 // CSS
 import './styles.css'
 const useStyles = makeStyles((theme) => ({
-    margin: {
-        backgroundColor: "aliceblue",
-        width: 300
+    searchField: {
+        backgroundColor: "#747C8C",
+        width: 300,
+        "& .MuiInputBase-root": {
+            color: "#BFBFBF"
+        },
     },
-    paper: {
-        padding: theme.spacing(1),
-        backgroundColor: theme.palette.background.paper,
-        // height: '200px',
-        // overflow:'auto'
-    },
-    keebList: {
-        width: '150px'
-    }
 }));
 export default function SearchKeebInput(props) {
     const classes = useStyles();
@@ -38,7 +32,7 @@ export default function SearchKeebInput(props) {
                     renderInput={(params) => (
                         <TextField
                             {...params}
-                            className={classes.margin}
+                            className={classes.searchField}
                             margin="normal"
                             variant="outlined"
                             onChange={props.handleSearchInput}

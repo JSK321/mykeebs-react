@@ -22,7 +22,20 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'center',
         marginRight: 'auto',
-        marginLeft: 'auto'
+        marginLeft: 'auto',
+        backgroundColor: "#0B0B0D",
+        color: "#747C8C"
+    },
+    signInTextField: {
+        "& .MuiFormLabel-root": {
+            color: "#747C8C",
+        },
+        "& .MuiFormLabel-root.Mui-focused ": {
+            color: "#BFBFBF",
+        },
+        "& .MuiInputBase-root": {
+            color: "#BFBFBF"
+        },
     },
     signInBtn: {
         marginTop: '1rem',
@@ -37,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function SignInForm(props) {
-    const classes = useStyles();
+    const classes = useStyles()
 
     return (
         <Paper className={classes.signInPaper}>
@@ -53,6 +66,7 @@ export default function SignInForm(props) {
                                 <TextField
                                     label="Email"
                                     name='email'
+                                    className={classes.signInTextField}
                                     onChange={props.handleInputChange}
                                     fullWidth
                                 />
@@ -68,6 +82,7 @@ export default function SignInForm(props) {
                                     label="Password"
                                     name='password'
                                     type="password"
+                                    className={classes.signInTextField}
                                     onChange={props.handleInputChange}
                                     fullWidth
                                 />
@@ -79,7 +94,7 @@ export default function SignInForm(props) {
                             color="primary"
                             type='submit'
                             variant="contained"
-                            style={{ textTransform: 'none' }}
+                            style={{ textTransform: 'none', color: "#BFBFBF" }}
                         >
                             Sign in
                         </Button>
@@ -96,7 +111,7 @@ export default function SignInForm(props) {
                         <Button
                             color="primary"
                             variant="text"
-                            style={{ textTransform: 'none' }}
+                            style={{ textTransform: 'none', color: "#BFBFBF" }}
                         >
                             Sign up here!
                         </Button>

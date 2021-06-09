@@ -18,6 +18,15 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         marginBottom: '4rem'
     },
+    navBar: {
+        backgroundColor: '#0B0B0D'
+    },
+    menu: {
+        "& .MuiPaper-root": {
+            backgroundColor: '#212026',
+            color: '#747C8C'
+        }
+    },
     menuButton: {
         marginRight: theme.spacing(2),
     },
@@ -28,14 +37,15 @@ const useStyles = makeStyles((theme) => ({
         position: "absolute",
         right: 0,
         top: '5px',
-        marginRight: '1.3rem'
+        marginRight: '1.3rem',
+        color: '#747C8C'
     },
     profileIcon: {
         position: "absolute",
         right: 0,
         top: '5px',
         marginRight: '3.9rem',
-        color:'white'
+        color: '#747C8C'
     },
     menuIcon: {
         position: 'absolute',
@@ -79,7 +89,7 @@ export default function MenuAppBar() {
 
     return (
         <div className={classes.root}>
-            <AppBar position="absolute">
+            <AppBar position="absolute" className={classes.navBar}>
                 <Toolbar>
                     <Link to='/' className="homeLink">
                         Keebs
@@ -103,13 +113,13 @@ export default function MenuAppBar() {
                             aria-controls="menu-appbar"
                             aria-haspopup="true"
                             onClick={handleMenu}
-                            color="inherit"
                             className={classes.iconBtn}
                         >
                             <MenuIcon />
                         </IconButton>
                         <Menu
                             id="menu-appbar"
+                            className={classes.menu}
                             anchorEl={anchorEl}
                             anchorOrigin={{
                                 vertical: 'top',
@@ -123,6 +133,13 @@ export default function MenuAppBar() {
                             open={open}
                             onClose={handleClose}
                         >
+                            <MenuItem onClick={handleClose}>
+                                <Link
+                                    to='/about'
+                                    className='appBarLink'>
+                                    About
+                                </Link>
+                            </MenuItem>
                             {auth === true ?
                                 <MenuItem onClick={handleClose}>
                                     <Link

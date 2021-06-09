@@ -21,6 +21,12 @@ const useStyles = makeStyles((theme) => ({
             marginTop: theme.spacing(2),
         },
     },
+    removeKeebSnack: {
+        "& .MuiSnackbarContent-root": {
+            backgroundColor: "#212026",
+            color: '#BFBFBF'
+        }
+    },
 }));
 
 export default function SnackbarAlert(props) {
@@ -77,6 +83,7 @@ export default function SnackbarAlert(props) {
                 onClose={props.handleCloseConfirm}
                 anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                 message={`Are you sure to remove ${props.keeb}?`}
+                className={classes.removeKeebSnack}
                 action={
                     <>
                         <IconButton
@@ -104,6 +111,7 @@ export default function SnackbarAlert(props) {
                 onClose={props.handleCloseConfirm}
                 anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                 message="Are you sure to delete profile?"
+                className={classes.removeKeebSnack}
                 action={
                     <>
                         <IconButton

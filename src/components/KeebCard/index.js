@@ -17,10 +17,24 @@ import { makeStyles } from '@material-ui/core/styles';
 import './styles.css'
 
 const useStyles = makeStyles((theme) => ({
+    keebCard: {
+        backgroundColor: "#0B0B0D",
+        color: '#BFBFBF'
+    },
     media: {
         height: '100%',
         width: '100%',
         objectFit: 'contain'
+    },
+    audioPop: {
+        "& .MuiPaper-root": {
+            backgroundColor: "#BFBFBF"
+        }
+    },
+    cardTitle: {
+        "& .MuiCardHeader-subheader": {
+            color: "#747C8C"
+        }
     },
     expand: {
         transform: 'rotate(0deg)',
@@ -28,10 +42,12 @@ const useStyles = makeStyles((theme) => ({
         transition: theme.transitions.create('transform', {
             duration: theme.transitions.duration.shortest,
         }),
+        color: '#747C8C'
     },
     expandOpen: {
         transform: 'rotate(180deg)',
     },
+
 }));
 
 export default function KeebCard(props) {
@@ -65,9 +81,10 @@ export default function KeebCard(props) {
 
 
     return (
-        <Card className='keebCard' id={props.name}>
+        <Card className={classes.keebCard} id={props.name}>
             <CardHeader
                 title={props.name}
+                className={classes.cardTitle}
                 subheader={`Designed by: ${props.maker}`}
             />
             <CardActionArea
@@ -148,6 +165,7 @@ export default function KeebCard(props) {
                     <IconButton
                         aria-label="no sound test"
                         disabled
+                        style={{ color: "#747C8C" }}
                     >
                         <MusicOffIcon />
                     </IconButton>
@@ -157,6 +175,7 @@ export default function KeebCard(props) {
                             aria-label="sound test"
                             id='keebSoundTest'
                             onClick={handleClick}
+                            style={{ color: "#747C8C" }}
                         >
                             <MusicNoteIcon />
                         </IconButton>
@@ -166,6 +185,7 @@ export default function KeebCard(props) {
                 <Tooltip title="New search">
                     <IconButton
                         aria-label="search again"
+                        style={{ color: "#747C8C" }}
                         onClick={props.handleNewSearch}
                     >
                         <FindReplaceIcon />
@@ -176,6 +196,7 @@ export default function KeebCard(props) {
                     id='keebSoundTestPopover'
                     open={show}
                     anchorEl={audio}
+                    className={classes.audioPop}
                     onClose={handleClose}
                     anchorOrigin={{
                         vertical: 'top',
@@ -186,7 +207,7 @@ export default function KeebCard(props) {
                         horizontal: 'left',
                     }}
                 >
-                    <audio id="audio" controls style={{ backgroundColor: 'floralwhite' }}>
+                    <audio id="audio" controls style={{ backgroundColor: '#BFBFBF' }}>
                         <source src={props.keebSound} id="keebAudioSrc" />
                     </audio>
                 </Popover>

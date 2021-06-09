@@ -7,6 +7,7 @@ import Footer from './components/Footer'
 // Context
 import { ProfileProvider } from './contexts/ProfileContext'
 // Pages
+import AboutPage from './pages/AboutPage'
 import HomePage from './pages/HomePage'
 import SignInPage from './pages/SignInPage'
 import ProfilePage from './pages/ProfilePage'
@@ -52,12 +53,15 @@ function App() {
           <Route exact path="/register">
             <RegisterPage />
           </Route>
+          <Route exact path="/about">
+            <AboutPage />
+          </Route>
           <Route path="*">
             <NoMatch />
           </Route>
         </Switch>
+        <Footer />
       </Router>
-      <Footer />
     </ProfileProvider>
   );
 }

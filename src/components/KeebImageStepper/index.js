@@ -42,7 +42,7 @@ export default function KeebImageStepper(props) {
     const [activeStep, setActiveStep] = useState(0);
     const maxSteps = props.photos.length;
 
-    
+
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
     };
@@ -76,6 +76,7 @@ export default function KeebImageStepper(props) {
                 position="static"
                 variant="text"
                 activeStep={activeStep}
+                style={{ backgroundColor: "#BFBFBF" }}
                 nextButton={
                     <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
                         Next

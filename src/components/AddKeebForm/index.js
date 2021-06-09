@@ -13,10 +13,20 @@ const useStyles = makeStyles((theme) => ({
         width: '22rem',
         textAlign: 'center',
         marginLeft: 'auto',
-        marginRight: 'auto'
+        marginRight: 'auto',
+        backgroundColor: "#0B0B0D",
+        color: "#BFBFBF"
     },
-    sizeSelect: {
-        width: '100%'
+    addKeebInput: {
+        "& .MuiFormLabel-root": {
+            color: "#747C8C",
+        },
+        "& .MuiFormLabel-root.Mui-focused ": {
+            color: "#BFBFBF",
+        },
+        "& .MuiInputBase-root": {
+            color: "#BFBFBF"
+        },
     }
 }));
 
@@ -35,6 +45,7 @@ export default function AddKeebForm(props) {
                         placeholder="Keeb name"
                         fullWidth
                         margin="normal"
+                        className={classes.addKeebInput}
                         onChange={props.handleInputChange}
                         required
                     />
@@ -44,6 +55,7 @@ export default function AddKeebForm(props) {
                         placeholder="Keeb designer"
                         fullWidth
                         margin="normal"
+                        className={classes.addKeebInput}
                         onChange={props.handleInputChange}
                         required
                     />
@@ -53,6 +65,7 @@ export default function AddKeebForm(props) {
                         placeholder="Keeb angle"
                         fullWidth
                         margin="normal"
+                        className={classes.addKeebInput}
                         onChange={props.handleInputChange}
                         required
                     />
@@ -62,6 +75,7 @@ export default function AddKeebForm(props) {
                         placeholder="Case material"
                         fullWidth
                         margin="normal"
+                        className={classes.addKeebInput}
                         onChange={props.handleInputChange}
                         required
                     />
@@ -71,6 +85,7 @@ export default function AddKeebForm(props) {
                         placeholder="Case Color"
                         fullWidth
                         margin="normal"
+                        className={classes.addKeebInput}
                         onChange={props.handleInputChange}
                         required
                     />
@@ -80,16 +95,17 @@ export default function AddKeebForm(props) {
                         placeholder="Plate material"
                         fullWidth
                         margin="normal"
+                        className={classes.addKeebInput}
                         onChange={props.handleInputChange}
                         required
                     />
                     <Button
                         type='submit'
-                        color="primary"
                         size='large'
                         endIcon={<AddIcon />}
+                        style={{ textTransform: 'none', color: "#BFBFBF" }}
                     >
-                        ADD PARTS
+                        Add parts
                     </Button>
                 </form>
             </CardContent>

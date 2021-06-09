@@ -13,11 +13,21 @@ const useStyles = makeStyles((theme) => ({
         width: '22rem',
         textAlign: 'center',
         marginLeft: 'auto',
-        marginRight: 'auto'
+        marginRight: 'auto',
+        backgroundColor: "#0B0B0D",
+        color: "#BFBFBF"
     },
-    sizeSelect: {
-        width: '100%'
-    }
+    addPartsInput: {
+        "& .MuiFormLabel-root": {
+            color: "#747C8C",
+        },
+        "& .MuiFormLabel-root.Mui-focused ": {
+            color: "#BFBFBF",
+        },
+        "& .MuiInputBase-root": {
+            color: "#BFBFBF"
+        },
+    },
 }));
 
 export default function AddPartsForm(props) {
@@ -35,6 +45,7 @@ export default function AddPartsForm(props) {
                         placeholder="Switches"
                         fullWidth
                         margin="normal"
+                        className={classes.addPartsInput}
                         onChange={props.handleInputChange}
                         required
                     />
@@ -44,6 +55,7 @@ export default function AddPartsForm(props) {
                         placeholder="Film name"
                         fullWidth
                         margin="normal"
+                        className={classes.addPartsInput}
                         onChange={props.handleInputChange}
                     />
                     <TextField
@@ -52,6 +64,7 @@ export default function AddPartsForm(props) {
                         placeholder="Lube on switch"
                         fullWidth
                         margin="normal"
+                        className={classes.addPartsInput}
                         onChange={props.handleInputChange}
                     />
                     <TextField
@@ -60,6 +73,7 @@ export default function AddPartsForm(props) {
                         placeholder="Spring"
                         fullWidth
                         margin="normal"
+                        className={classes.addPartsInput}
                         onChange={props.handleInputChange}
                         required
                     />
@@ -69,6 +83,7 @@ export default function AddPartsForm(props) {
                         placeholder="Lube on springs"
                         fullWidth
                         margin="normal"
+                        className={classes.addPartsInput}
                         onChange={props.handleInputChange}
                     />
                     <TextField
@@ -77,6 +92,7 @@ export default function AddPartsForm(props) {
                         placeholder="Stabilizer name"
                         fullWidth
                         margin="normal"
+                        className={classes.addPartsInput}
                         onChange={props.handleInputChange}
                         required
                     />
@@ -86,6 +102,7 @@ export default function AddPartsForm(props) {
                         placeholder="Lube on stabilizers"
                         fullWidth
                         margin="normal"
+                        className={classes.addPartsInput}
                         onChange={props.handleInputChange}
                     />
                     <TextField
@@ -94,15 +111,16 @@ export default function AddPartsForm(props) {
                         placeholder="Keyset name"
                         fullWidth
                         margin="normal"
+                        className={classes.addPartsInput}
                         onChange={props.handleInputChange}
                     />
                     <Button
                         type='submit'
-                        color="primary"
                         size='large'
+                        style={{ textTransform: 'none', color: "#BFBFBF" }}
                         endIcon={<KeyboardIcon />}
                     >
-                        CREATE KEEB
+                        Create Keeb
                     </Button>
                 </form>
             </CardContent>

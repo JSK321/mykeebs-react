@@ -10,20 +10,35 @@ import CloseIcon from '@material-ui/icons/Close';
 import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
 // Material-UI Styles
 import { makeStyles } from '@material-ui/core/styles'
-const useStyles = makeStyles( () => ({
+const useStyles = makeStyles(() => ({
     root: {
         maxWidth: 475,
         marginLeft: 'auto',
         marginRight: 'auto',
-        // marginTop:"1rem"
+        backgroundColor: "#0B0B0D",
+        color: "#BFBFBF"
+    },
+    cardTitle: {
+        "& .MuiCardHeader-subheader": {
+            color: "#747C8C"
+        }
     },
     media: {
         height: '100%',
         width: '100%',
-        objectFit: 'contain'
+        objectFit: 'contain',
     },
     updateInputField: {
-        margin: 0
+        margin: 0,
+        "& .MuiFormLabel-root": {
+            color: "#747C8C",
+        },
+        "& .MuiFormLabel-root.Mui-focused ": {
+            color: "#BFBFBF",
+        },
+        "& .MuiInputBase-root": {
+            color: "#BFBFBF"
+        },
     },
     input: {
         display: 'none'
@@ -54,6 +69,7 @@ export default function KeebUpdateForm(props) {
                                 <IconButton
                                     aria-label="update photo"
                                     component="span"
+                                    style={{ color: "#747C8C" }}
                                     onClick={props.handleImageUploadBtn}
                                 >
                                     <AddAPhotoIcon />
@@ -63,6 +79,7 @@ export default function KeebUpdateForm(props) {
                     </>
                 }
                 title={props.name}
+                className={classes.cardTitle}
                 subheader={`Designed by ${props.maker}`}
             />
             {props.loading ?
@@ -73,7 +90,7 @@ export default function KeebUpdateForm(props) {
                 )
                 :
                 (
-                    (props.keebImage !== null ? 
+                    (props.keebImage !== null ?
                         <CardMedia
                             component="img"
                             alt={`${props.name} photo`}
@@ -210,12 +227,14 @@ export default function KeebUpdateForm(props) {
                 <Button
                     type="submit"
                     onClick={props.handleFormSubmit}
+                    style={{ color: "#BFBFBF" }}
                     endIcon={<SystemUpdateAltIcon />}
                 >
                     Save
                 </Button>
                 <Button
                     onClick={props.handleDeleteKeeb}
+                    style={{ color: "#BFBFBF" }}
                     endIcon={<CloseIcon />}
                 >
                     Delete

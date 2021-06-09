@@ -16,7 +16,9 @@ import './styles.css'
 
 const useStyles = makeStyles((theme) => ({
     profileCard: {
-        height: '510px'
+        height: '510px',
+        backgroundColor: "#0B0B0D",
+        color: "#BFBFBF"
     },
     updateProfileBtn: {
         marginLeft: 'auto',
@@ -46,7 +48,9 @@ export default function ProfileCard(props) {
                 <List>
                     <ListItem>
                         <ListItemAvatar>
-                            <Avatar>
+                            <Avatar
+                                style={{ backgroundColor: "transparent", color: "#747C8C" }}
+                            >
                                 <AccountCircleIcon />
                             </Avatar>
                         </ListItemAvatar>
@@ -60,7 +64,9 @@ export default function ProfileCard(props) {
                     </ListItem>
                     <ListItem>
                         <ListItemAvatar>
-                            <Avatar>
+                            <Avatar
+                                style={{ backgroundColor: "transparent", color: "#747C8C" }}
+                            >
                                 <EmailIcon />
                             </Avatar>
                         </ListItemAvatar>
@@ -75,17 +81,18 @@ export default function ProfileCard(props) {
                 </List>
             </CardContent>
             <CardActions>
-                <Button
-                    endIcon={<SettingsIcon />}
+                <Link
+                    to={profile !== null ? `/updateprofile/${profile.id}` : null}
+                    style={{ textDecoration: 'none', color: 'black' }}
                     className={classes.updateProfileBtn}
                 >
-                    <Link
-                        to={profile !== null ? `/updateprofile/${profile.id}` : null}
-                        style={{ textDecoration: 'none', color: 'black' }}
+                    <Button
+                        endIcon={<SettingsIcon />}
+                        style={{ color: "#BFBFBF" }}
                     >
                         Update profile
-                    </Link>
-                </Button>
+                    </Button>
+                </Link>
             </CardActions>
         </Card >
     )
