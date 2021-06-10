@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 // API
 import API from '../../utils/API'
 // Material-UI Components
-import { TextField, InputAdornment } from '@material-ui/core'
+import { TextField, InputAdornment, Slide } from '@material-ui/core'
 // Material-UI Lab
 import Autocomplete from '@material-ui/lab/Autocomplete';
 // Material-UI Icons
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
         },
         "@media (max-width: 400px)": {
             width: 150
-        }
+        },
     },
 }));
 
@@ -128,32 +128,37 @@ export default function SearchKeebInput(props) {
 
     return (
         <div className='searchDiv'>
-            <form onSubmit={handleSearch}>
-                <Autocomplete
-                    freeSolo
-                    id='searchInput'
-                    disableClearable
-                    options={keebInfo.keebs.map((keeb) => keeb.name)}
-                    renderInput={(params) => (
-                        <TextField
-                            {...params}
-                            className={classes.searchField}
-                            margin="normal"
-                            variant="outlined"
-                            onChange={handleSearchInput}
-                            InputProps={{
-                                ...params.InputProps,
-                                type: 'search',
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <SearchIcon />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-                    )}
-                />
-            </form>
+            <Slide
+                in={props.searchBar}
+                timeout={500}
+                direction="down"
+            >
+                <form onSubmit={handleSearch}>
+                    <Autocomplete
+                        freeSolo
+                        id='searchInput'
+                        disableClearable
+                        options={keebInfo.keebs.map((keeb) => keeb.name)}
+                        renderInput={(params) => (
+                            <TextField
+                                {...params}
+                                className={classes.searchField}
+                                variant="outlined"
+                                onChange={handleSearchInput}
+                                InputProps={{
+                                    ...params.InputProps,
+                                    type: 'search',
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <SearchIcon />
+                                        </InputAdornment>
+                                    ),
+                                }}
+                            />
+                        )}
+                    />
+                </form>
+            </Slide>
         </div >
     )
 

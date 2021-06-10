@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react'
 // API
 import API from '../../utils/API'
 // Components
-import SearchKeebInput from '../../components/SearchKeebInput'
 import KeebCard from '../../components/KeebCard'
 // Material-UI Components
 import { Container, Grid, Grow } from '@material-ui/core'

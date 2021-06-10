@@ -97,16 +97,19 @@ export default function ViewKeebList(props) {
                         <ListItem key={res.id}>
                             <ListItemAvatar>
                                 <Avatar
-                                    style={{ backgroundColor: "transparent"}}
+                                    style={{ backgroundColor: "transparent" }}
                                 >
-                                    <Tooltip title={`Update photos`} arrow>
-                                        <IconButton
-                                            className={classes.keebIcon}
-                                            onClick={() => window.location.href = `/updatekeeb/photos/${res.id}`}
-                                        >
-                                            <PhotoIcon />
-                                        </IconButton>
-                                    </Tooltip>
+                                    <Link
+                                        to={`/updatekeeb/photos/${res.id}`}
+                                    >
+                                        <Tooltip title={`Update photos`} arrow>
+                                            <IconButton
+                                                className={classes.keebIcon}
+                                            >
+                                                <PhotoIcon />
+                                            </IconButton>
+                                        </Tooltip>
+                                    </Link>
                                 </Avatar>
                             </ListItemAvatar>
                             <ListItemText
@@ -134,7 +137,7 @@ export default function ViewKeebList(props) {
                                             aria-label="sound test"
                                             id={res.id}
                                             onClick={handleUploadSoundBtn}
-                                            style={{color: "#747C8C"}}
+                                            style={{ color: "#747C8C" }}
                                         >
                                             <MusicNoteIcon />
                                         </IconButton>
