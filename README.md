@@ -36,7 +36,7 @@ A user is able to view custom mechanical keyboards, the search bar filters the c
 The back-end server side is required to run the application locally, it is found here at: https://github.com/JSK321/keebs-backend
 
 ## Screenshot
-![Website index](https://i.imgur.com/HOzCiuP.png)
+![Website index](https://i.imgur.com/q7cYC9h.png)
 
 ## License
 This project uses MIT
