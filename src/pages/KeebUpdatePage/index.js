@@ -8,7 +8,6 @@ import KeebUpdateForm from '../../components/KeebUpdateForm'
 import SnackbarAlert from '../../components/SnackbarAlert'
 // Context
 import { useProfile, useProfileData } from '../../contexts/ProfileContext'
-import { Snackbar } from '@material-ui/core'
 
 export default function KeebUpdatePage() {
     // Profile Context

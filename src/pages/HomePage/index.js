@@ -14,6 +14,8 @@ export default function HomePage(props) {
         keebs: [],
     })
 
+    const [checked, setChecked] = useState(true);
+
     useEffect(() => {
         loadKeebInfo()
     }, [])
@@ -42,14 +44,8 @@ export default function HomePage(props) {
                         keebInfo.keebs.map(keeb => (
                             <Grow
                                 key={keeb.id}
-                                in={true}
-                            // in={grow}
-                            // appear={grow}
-                            // timeout={1000}
-                            // timeout={{
-                            //     appear: 1000,
-                            //     enter: 1000,
-                            // }}
+                                in={checked}
+                                timeout={1000}
                             >
                                 <Grid item xl={4} lg={4} md={4} sm={6} xs={12}>
                                     <KeebCard

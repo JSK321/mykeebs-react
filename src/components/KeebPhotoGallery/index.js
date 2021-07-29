@@ -22,8 +22,12 @@ const useStyles = makeStyles((theme) => ({
         minHeight: '100vh',
     },
     gridList: {
-        width: 700,
-        height: 500,
+        width: 600,
+        height: 450,
+        '@media(max-width: 400px)' : {
+            width: '350px',
+        },
+        // border: '1px solid salmon'
     },
     icon: {
         color: 'rgba(255, 255, 255, 0.54)',
@@ -32,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 'bold',
         fontSize: '24px',
         color: 'black',
-        textAlign:'center'
+        textAlign: 'center'
 
     },
     titleBar: {
@@ -49,7 +53,9 @@ export default function KeebPhotoGallery(props) {
     return (
         <div className={classes.content}>
             <div className={classes.root}>
-                <GridList cellHeight={200} className={classes.gridList}>
+                <GridList 
+                // cellHeight={200} 
+                className={classes.gridList}>
                     <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
                         {props.keeb !== null ?
                             <ListSubheader component="div" className={classes.photoTitle}>
@@ -92,10 +98,10 @@ export default function KeebPhotoGallery(props) {
                     onClick={props.showWidget}
                     endIcon={<PhotoLibraryIcon />}
                     variant="contained"
-                    style={{ backgroundColor: "#212026", color: "#747C8C" }}
+                    style={{ backgroundColor: "#212026", color: "#747C8C", marginTop: '1rem' }}
                 >
                     Upload Photos
-             </Button>
+                </Button>
             </div>
         </div>
     )

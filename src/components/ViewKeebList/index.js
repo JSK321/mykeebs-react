@@ -19,6 +19,8 @@ const useStyles = makeStyles({
     updateKeebLink: {
         textDecoration: "none",
         color: "#747C8C",
+        display:'flex',
+        justifyContent:'center',
     },
     keebListDiv: {
         dispaly: 'flex',
@@ -102,7 +104,7 @@ export default function ViewKeebList(props) {
                                     <Link
                                         to={`/updatekeeb/photos/${res.id}`}
                                     >
-                                        <Tooltip title={`Update photos`} arrow>
+                                        <Tooltip title={`Update photo album`} arrow>
                                             <IconButton
                                                 className={classes.keebIcon}
                                             >
@@ -115,7 +117,7 @@ export default function ViewKeebList(props) {
                             <ListItemText
                                 primary={
                                     <>
-                                        <Tooltip title={`Update parts`} arrow>
+                                        <Tooltip title={`Update keeb`} arrow>
                                             <Link to={`/updatekeeb/${res.id}`} className={classes.updateKeebLink}>
                                                 <strong>{res.maker} {res.name}</strong>
                                             </Link>

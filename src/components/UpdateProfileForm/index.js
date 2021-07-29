@@ -92,7 +92,7 @@ export default function UpdateProfileForm(props) {
                         component="img"
                         alt={`${props.name} photo`}
                         className={classes.media}
-                        image={props.image}
+                        image={props.image !== null ? props.image : 'https://i.imgur.com/DzshH5n.png'}
                         title="profile photo"
                     />
                 )

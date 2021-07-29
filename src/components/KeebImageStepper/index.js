@@ -1,9 +1,7 @@
 // React
 import React, { useState } from 'react'
-// API
-import API from '../../utils/API'
 // Material-UI Components
-import { MobileStepper, Paper, Typography, Button } from '@material-ui/core'
+import { MobileStepper, Button } from '@material-ui/core'
 // Material-UI Icons
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight'
@@ -17,7 +15,7 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: 500,
+        maxWidth: 400,
         flexGrow: 1,
     },
     header: {
@@ -28,11 +26,13 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.default,
     },
     img: {
-        height: 350,
+        height: 300,
         display: 'block',
-        maxWidth: 500,
+        maxWidth: 400,
         overflow: 'hidden',
         width: '100%',
+        objectFit:'contain',
+        backgroundColor:"#BFBFBF"
     },
 }));
 

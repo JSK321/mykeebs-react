@@ -40,7 +40,9 @@ export default function ProfileCard(props) {
             <CardMedia
                 component='img'
                 alt='profile image'
-                image={profile !== null ? profile.profileImage : null}
+                image={
+                    profile !== null ? profile.profileImage : null
+                }
                 className="profileImage"
             />
             <CardContent>

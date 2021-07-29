@@ -54,10 +54,12 @@ export default function MenuAppBar() {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const [auth, setAuth] = useState(false);
-    const [searchBar, setSearchBar] = useState(true)
+    const [searchBar, setSearchBar] = useState(false)
+
 
     useEffect(() => {
         const token = localStorage.getItem('token')
+        const param = window.location.pathname
         API.getProfile(token).then(res => {
             if (res !== null) {
                 setAuth(true)
@@ -65,6 +67,9 @@ export default function MenuAppBar() {
                 setAuth(false)
             }
         })
+        if (param === "/") {
+            setSearchBar(true)
+        }
     }, [])
 
     const handleMenu = (event) => {

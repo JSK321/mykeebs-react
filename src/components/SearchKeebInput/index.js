@@ -12,6 +12,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { makeStyles, } from '@material-ui/core/styles'
 // CSS
 import './styles.css'
+
 const useStyles = makeStyles((theme) => ({
     searchField: {
         backgroundColor: "#212026",
@@ -60,7 +61,6 @@ export default function SearchKeebInput(props) {
         let keyword = event.target.value
         let filtered = keebInfo.keebs.filter(keebObj => {
             return (
-                keebObj.maker.toLowerCase().indexOf(keyword) > -1 ||
                 keebObj.name.toLowerCase().indexOf(keyword) > -1
             )
         })
@@ -82,6 +82,9 @@ export default function SearchKeebInput(props) {
     const handleSearch = async event => {
         event.preventDefault();
         let value = event.target.children[0].children[0].children[0].children[1].value
+        setSearchState({
+            serach: value
+        })
         let search = await API.getKeeb(value)
 
         if (search !== null) {
@@ -96,6 +99,7 @@ export default function SearchKeebInput(props) {
                 let keebCard = document.getElementById(keebs[i].name)
                 let keebSearch = document.getElementById(keeb.name)
                 let searchBtn = keebSearch.lastChild.children[1]
+
                 if (keebCard.style.transform === "" || keebCard.style.transform === 'scale(1)') {
                     keebCard.style.transitionDuration = '1s'
                     keebCard.style.transitionProperty = 'transform'

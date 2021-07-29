@@ -1,16 +1,16 @@
 .footer {
-    flex-shrink: 0;
-    height: 50px;
     margin-top: 1rem;
     background-color: #212026;
     color:#747C8C;
     text-align: center;
-    padding: 25px
+    padding: 25px;
 }
 
 .githubLink {
     text-decoration: none;
     color: #747C8C;
+    display: flex;
+    justify-content: space-evenly;
     margin: 1rem;
 }
 

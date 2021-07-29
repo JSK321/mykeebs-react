@@ -1,6 +1,5 @@
 // React
 import React from 'react'
-
 // Material-UI Components
 import { Card, CardHeader, CardContent, TextField, Button } from '@material-ui/core'
 // Material-UI Icons
@@ -8,7 +7,7 @@ import AddIcon from '@material-ui/icons/Add';
 // Material-UI Styles
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     keebCard: {
         width: '22rem',
         textAlign: 'center',
