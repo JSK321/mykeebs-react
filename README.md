@@ -44,8 +44,6 @@ This project uses MIT
 ## Contributors
 [JSK321](https://github.com/JSK321)
 
-CSS for the card flip [animation](https://davidwalsh.name/css-flip)
-
 ## Questions
 View my other [projects!](https://github.com/JSK321?tab=repositories)
 
