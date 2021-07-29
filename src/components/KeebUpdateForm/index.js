@@ -135,7 +135,7 @@ export default function KeebUpdateForm(props) {
                         <Grid item xs={6}>
                             <TextField
                                 label="Switches"
-                                name="switch"
+                                name="switches"
                                 placeholder="Switches"
                                 value={props.switches}
                                 margin="normal"
